@@ -250,7 +250,6 @@ sort: by_weight
 不为	bù;ab;ad;ad,ax;dh;cb;gi;ad wéi;ld;dd;dd;uu;ii;yl;dd	623
 不长	bù;ab;ad;ad,ax;dh;cb;gi;ad zhǎng;pn;pn;pd;uh;pc;ta;pn	329
 长的	cháng;pn;pn;pd;uh;pc;ta;pn de;bu;bu;bu;sh;ui;rq;bu	802
-长牙	cháng;pn;pn;pd;uh;pc;ta;pn yá;gp,ac;ap;ap;du;ly;ah;ap	84
 长头发	cháng;pn;pn;pd;uh;pc;ta;pn tóu;dd;dd;dd;hx;wm;ud;dd fā;fy;vd;ay,fd,vy,yd;rh;si;nt;vy	503
 长头发	zhǎng;pn;pn;pd;uh;pc;ta;pn tóu;dd;dd;dd;hx;wm;ud;dd fā;fy;vd;ay,fd,vy,yd;rh;si;nt;vy	503
 长尾巴	cháng;pn;pn;pd;uh;pc;ta;pn wěi;um;um;um;qa;cv;nt;um bā;sl;vv,sl;ag,kg,vg;tt;mb;cn;vv	399
@@ -311,7 +310,9 @@ sort: by_weight
 炸鱼	zhà;hv;hv;hv;tu;cw;ot;hv yú;da;da;da;qq;wv;qg;ea	28
 长的	zhǎng;pn;pn;pd;uh;pc;ta;pn de;bu;bu;bu;sh;ui;rq;bu	919
 长相	zhǎng;pn;pn;pd;uh;pc;ta;pn xiàng;mo;mo;mo;ws;eq;sh;lm	429
-长牙	zhǎng;pn;pn;pd;uh;pc;ta;pn yá;gp,ac;ap;ap;du;ly;ah;ap	283
+长牙	zhǎng;pn;pn;pd;uh;pc;ta;pn yá;gp,ac;ap;ap;du;ly;ah;ap	583
+长牙	cháng;pn;pn;pd;uh;pc;ta;pn yá;gp,ac;ap;ap;du;ly;ah;ap	384
+长芽	cháng;pn;pn;pd;uh;pc;ta;pn yá;cy;cy;cy;zu;ll;aa;cy	365
 重活	zhòng;ql;pa;pa,ql;sg;ld;tg;pa huó;du;dk;du;ko;ka;it;dk	391
 重活	chóng;ql;pa;pa,ql;sg;ld;tg;pa huó;du;dk;du;ko;ka;it;dk	265
 按这	àn;fn;fn;fa;jy;ub;rp;fn zhèi;zw;zw;zw;jq;vu;yp;zx	403
