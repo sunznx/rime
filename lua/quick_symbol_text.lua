@@ -81,7 +81,7 @@ local function init(env)
 
     env.single_symbol_pattern = "^" .. lead_char .. "([a-zA-Z0-9])$"
     env.double_symbol_pattern_text = "^" .. lead_char .. lead_char .. "$"
-    env.repeat_pattern = "^" .. lead_char .. "'" .. "$"  -- 用于上屏上次提交内容
+    env.repeat_pattern = "^" .. lead_char .. "'" .. "$"
 
     -- 初始化最后提交内容
     env.last_commit_text = "欢迎使用万象拼音！"
