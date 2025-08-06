@@ -770,7 +770,7 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -822,7 +822,7 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -873,7 +873,7 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -924,7 +924,7 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -975,7 +975,7 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -1026,7 +1026,7 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -1077,7 +1077,7 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -1128,7 +1128,7 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -1179,7 +1179,7 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -1230,7 +1230,7 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/hilited_menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -1281,7 +1281,7 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/hilited_menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -1332,7 +1332,7 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/hilited_menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -1383,7 +1383,7 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/hilited_menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -1434,7 +1434,7 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/hilited_menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -1485,7 +1485,7 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/hilited_menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -1536,7 +1536,7 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -1587,7 +1587,7 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -1638,7 +1638,7 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -1689,7 +1689,7 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -1740,7 +1740,7 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -1791,7 +1791,7 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -1842,7 +1842,7 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -1893,7 +1893,7 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -1944,7 +1944,7 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -1995,7 +1995,7 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -2046,7 +2046,7 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -2097,7 +2097,7 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -2148,7 +2148,7 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -2199,7 +2199,7 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -2250,7 +2250,7 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -2301,7 +2301,7 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -2352,7 +2352,7 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -2403,7 +2403,7 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -2454,7 +2454,7 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -2505,7 +2505,7 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -2556,7 +2556,7 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/hilited_menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -2607,7 +2607,7 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/hilited_menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -2658,7 +2658,7 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/hilited_menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -2709,7 +2709,7 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/hilited_menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -2760,7 +2760,7 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -2811,7 +2811,7 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -2862,7 +2862,7 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -2913,7 +2913,7 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -2964,7 +2964,7 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -3015,7 +3015,7 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -3048,7 +3048,7 @@ preset_keyboards:
       - { click: kb_ywz4, __include: styl/ywz_menu }
       - { click: kb_ywz5, __include: styl/ywz_menu }
       - { click: kb_ywz6, __include: styl/ywz_menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -3080,7 +3080,7 @@ preset_keyboards:
       - { click: kb_ywz4, __include: styl/ywz_menu }
       - { click: kb_ywz5, __include: styl/ywz_menu }
       - { click: kb_ywz6, __include: styl/ywz_menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -3113,7 +3113,7 @@ preset_keyboards:
       - { click: kb_ywz4, __include: styl/ywz_menu }
       - { click: kb_ywz5, __include: styl/ywz_menu }
       - { click: kb_ywz6, __include: styl/ywz_menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -3146,7 +3146,7 @@ preset_keyboards:
       - { click: kb_ywz4, __include: styl/ywz_menu }
       - { click: kb_ywz5, __include: styl/ywz_menu }
       - { click: kb_ywz6, __include: styl/ywz_menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -3179,7 +3179,7 @@ preset_keyboards:
       - { click: kb_ywz4, __include: styl/ywz_menu }
       - { click: kb_ywz5, __include: styl/ywz_menu }
       - { click: kb_ywz6, __include: styl/ywz_menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -3212,7 +3212,7 @@ preset_keyboards:
       - { click: kb_ywz4, __include: styl/ywz_menu }
       - { click: kb_ywz5, __include: styl/ywz_menu }
       - { click: kb_ywz6, __include: styl/ywz_menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -3245,7 +3245,7 @@ preset_keyboards:
       - { click: kb_ywz4, __include: styl/ywz_hilited_menu }
       - { click: kb_ywz5, __include: styl/ywz_menu }
       - { click: kb_ywz6, __include: styl/ywz_menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -3278,7 +3278,7 @@ preset_keyboards:
       - { click: kb_ywz4, __include: styl/ywz_hilited_menu }
       - { click: kb_ywz5, __include: styl/ywz_menu }
       - { click: kb_ywz6, __include: styl/ywz_menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -3311,7 +3311,7 @@ preset_keyboards:
       - { click: kb_ywz4, __include: styl/ywz_menu }
       - { click: kb_ywz5, __include: styl/ywz_hilited_menu }
       - { click: kb_ywz6, __include: styl/ywz_menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -3342,7 +3342,7 @@ preset_keyboards:
       - { click: kb_ywz4, __include: styl/ywz_menu }
       - { click: kb_ywz5, __include: styl/ywz_hilited_menu }
       - { click: kb_ywz6, __include: styl/ywz_menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -3375,7 +3375,7 @@ preset_keyboards:
       - { click: kb_ywz4, __include: styl/ywz_menu }
       - { click: kb_ywz5, __include: styl/ywz_menu }
       - { click: kb_ywz6, __include: styl/ywz_hilited_menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -3408,7 +3408,7 @@ preset_keyboards:
       - { click: kb_ywz4, __include: styl/ywz_menu }
       - { click: kb_ywz5, __include: styl/ywz_menu }
       - { click: kb_ywz6, __include: styl/ywz_hilited_menu }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -3464,7 +3464,7 @@ preset_keyboards:
       - { click: 'p', long_click: "danyinhao", __include: styl/key, swipe_down: zhiding, hint: '置顶' }
       # 第 2 行
       - { width: 5 }
-      - { click: 'a', long_click: select_all, __include: styl/key, __include: conf/key_height_zm }
+      - { click: 'a', long_click: select_all, __include: styl/key }
       - {
           click: 's',
           long_click: 'shenglue',
@@ -3501,7 +3501,7 @@ preset_keyboards:
       - { click: 'k', long_click: ':', __include: styl/key, swipe_down: rightyi, hint: '右移' }
       - { click: 'l', long_click: ";", __include: styl/key, swipe_down: chongzhi, hint: '重置' }
       # 第 3 行
-      - { click: Shift_L, composing: split_word, width: 15, key_back_color: off_key_back_color, __include: conf/key_height_zm }   
+      - { click: Shift_L, composing: split_word, width: 15, key_back_color: off_key_back_color }   
     #  - { click: Shift_L, width: 15 }
       - { click: 'z',long_click: 'rev', __include: styl/key }
       - { click: 'x', long_click: cut, __include: styl/key }
@@ -3529,7 +3529,6 @@ preset_keyboards:
           width: 11,
           key_back_color: off_key_back_color,
           __include: styl/off_key,
-          __include: conf/key_height_zm
         }     
       - {
           click: Keyboard_number,
@@ -3584,7 +3583,7 @@ preset_keyboards:
           hilited_key_symbol_color: enter_symbol_color,
           key_symbol_offset_x: 0,
         }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -3600,7 +3599,7 @@ preset_keyboards:
       - 'keys/@33/long_click': Keyboard_default
     #  - 'keys/@40/height': { __include: conf/key_height_last }
       
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -3649,7 +3648,7 @@ preset_keyboards:
           key_text_color: enter_sym_text_color,
           hilited_key_text_color: enter_sym_text_color,
         }
-      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: IME_switch, width: 18, height: 10, key_back_color: keyboard_back_color }
       - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
       - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
@@ -3761,10 +3760,7 @@ preset_keys:
   POWER: { label: 电源, send: POWER }
   SEARCH: { label: 搜寻, send: Find }
   SLEEP: { label: 休眠, send: SLEEP }
-
   VOICE_ASSIST: { label: 🎤, send: VOICE_ASSIST } #用于底部语音输入按钮  
-  IME_switch1: { label: 🌐, send: Control+` } #用于底部弹出对话框选择输入法
-
   VOLUME_DOWN: { label: 音量-, send: VOLUME_DOWN }
   VOLUME_UP: { label: 音量+, send: VOLUME_UP }
   VOLUME_MUTE: { label: 静音, send: VOLUME_MUTE }
