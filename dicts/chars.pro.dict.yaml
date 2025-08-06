@@ -14862,6 +14862,7 @@ sort: by_weight
 锪	huō;jx;jx;jh;dn;zh;qq;jx	1
 即	jí;ge;ge;eg,ge;rb;iz;vc;ve	895
 及	jí;pn;pn;nd,pd;rh;cj;ey;pn	874
+既	jì;gw;gv;gg,gw;rr;id;vc;vv	870
 计	jì;yu;yu;yu;cs;sn;yf;yu	862
 积	jī;hv;hb;hv;uf;xh;tk;hb	855
 暨	jì;gd;ga;dj,gd;rd;if;vc;jd	845
@@ -14886,7 +14887,6 @@ sort: by_weight
 绩	jì;sb;sr;sz;em;io;xg;sr	712
 急	jí;dx;dx;xi,xx;gn;xh;qv;ex	710
 吉	jí;tk;uk;ku,uk;go;gd;fk;uk	708
-既	jì;gw;gv;gg,gw;rr;id;vc;vv	696
 疾	jí;bu;bu;bu;mx;ao;ut;bd	694
 几	jī;pv;pv;py;ii;oj;mt;pv	691
 肌	jī;oj;oj;oj;li;vo;em;oj	691
@@ -33676,6 +33676,7 @@ sort: by_weight
 熟	shú;wh;wh;hu;in;gc;yb;we	715
 树	shù;mc;mc;md;wk;ek;sc;lc	707
 舒	shū;ry;rl;yu,uy;ep;ji;wf;ry	707
+数	shǔ;mw;mw;wl;lj;ph;ov;mw	699
 束	shù;gr;an;ad,mk;df;xs;gk;an	695
 署	shǔ;so;so;sv;av;yo;lf;so	668
 蔬	shū;ci;cv;cu;zr;lo;an;cu	667
@@ -33685,13 +33686,12 @@ sort: by_weight
 暑	shǔ;oo;oo;ov;vv;oo;jf;oo	624
 疏	shū;vi;vv;pi,ag,vg,vi;rr;to;nh;vv	623
 薯	shǔ;co;co;cu;zv;lo;al;co	615
-数	shǔ;mw;mw;wl;lj;ph;ov;mw	599
+竖	shù;ll;ll;ly;pb;pi;jc;al	598
 梳	shū;mi;mv;mi;wr;eo;sy;lv	589
 赎	shú;bd;kd;bm;mx;om;mf;bd	587
 枢	shū;mq;mx;mq;wr;eb;sa;lx	582
 墅	shù;lt;lt;ty;vg;dg;jf;lt	580
 蜀	shǔ;si;si;si;af;yc;lq;si	578
-竖	shù;ll;ll;ly;pb;pi;jc;al	567
 淑	shū;dy;dy;du;kl;kr;ih;dy	564
 抒	shū;fy;fl;fy;jp;ui;rc;fy	534
 漱	shù;dq;dr;dq,du;ke;ke;ig;dr	532
