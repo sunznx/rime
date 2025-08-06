@@ -65,7 +65,23 @@ local default_mapping = {
     ["9"] = "⑨",
     ["0"] = "⓪"
 }
-
+-- 中英文符号对照表（用于双击时映射）
+local full_width_punct_map = {
+    [";"] = "；",
+    [","] = "，",
+    ["."] = "。",
+    ["?"] = "？",
+    ["!"] = "！",
+    [":"] = "：",
+    ["'"] = "’",
+    ['"'] = "”",
+    ["("] = "（",
+    [")"] = "）",
+    ["["] = "【",
+    ["]"] = "】",
+    ["\\"] = "、",
+    ["/"] = "／"
+}
 -- 初始化符号输入的状态
 local function init(env)
     local config = env.engine.schema.config
@@ -81,7 +97,7 @@ local function init(env)
 
     env.single_symbol_pattern = "^" .. lead_char .. "([a-zA-Z0-9])$"
     env.double_symbol_pattern_text = "^" .. lead_char .. lead_char .. "$"
-    env.repeat_pattern = "^" .. lead_char .. "'" .. "$"
+    env.repeat_pattern = "^" .. lead_char .. "'" .. "$"  -- 用于上屏上次提交内容
 
     -- 初始化最后提交内容
     env.last_commit_text = "欢迎使用万象拼音！"
@@ -105,7 +121,8 @@ local function init(env)
                 context:clear()
             -- 2. 检查是否是双分号 (;;)，直接上屏分号
             elseif string.match(input, env.double_symbol_pattern_text) then
-                env.engine:commit_text("；")
+                local mapped = full_width_punct_map[lead_char] or lead_char
+                env.engine:commit_text(mapped)
                 context:clear()
             -- 3. 检查是否是单个符号键
             else

@@ -1,7 +1,7 @@
 # Trime style settings
 # encoding: utf-8
 
-name: 简纯 #方案名称
+name: 简纯+ #方案名称
 author: 'amzxyz' #作者
 conf:
   # 数字、编辑、功能键盘
@@ -9,29 +9,33 @@ conf:
     height: 71 #按键高度
   # 添加数字行
   num_line:
-    height: 39 # 数字行按键高度
-  # 26主键盘
+    height: 12 # 数字行按键高度
+    width: 10 # 数字行按键宽度
+    key_back_color: main_back_color
+    hilited_key_back_color: hilited_main_back_color
   main:
     height: 52 #按键高度
-    horizontal_gap: 6 #按键水平间距
-    vertical_gap: 7 #按键行距
-    key_symbol_offset_x: 6
+    horizontal_gap: 16 #按键水平间距
+    vertical_gap: 8 #按键行距
+    key_symbol_offset_x: 9
     key_hint_offset_x: 0
     key_hint_offset_y: -0.5
-    key_press_offset_x: 2
-    key_press_offset_y: 2
+    key_press_offset_x: 3
+    key_press_offset_y: 3
     keys/+:
       - width: 0 #底部留白开关，0为关，1~100开
         height: 1 #底部留白
+  key_height_zm: # 字母行 按键高
+    height: 18
   key_height_last: # 第4行 按键高度
     height: 50
 
   # letter键盘
   main_en:
     height: 52 #按键高度
-    horizontal_gap: 6 #按键水平间距
+    horizontal_gap: 16 #按键水平间距
     vertical_gap: 7 #按键行距
-    key_symbol_offset_x: 3
+    key_symbol_offset_x: 9
     key_hint_offset_x: 0
     key_hint_offset_y: -0.5
     key_press_offset_x: 2
@@ -51,18 +55,20 @@ conf:
         height: 1 #底部留白
   # 符号、颜文字键盘
   sym_height: 50 #按键高度
-  menu_height: 41 #菜单高度
+  menu_height: 10 #菜单高度
   sym_bottom_switch: 0 #底部留白开关
   sym_bottom: 1 #底部留白
   sym_long_text_size: 20 #长标签字号
 
+  26jian:
+    round_corner: 7
   # 符号键盘配置
   sym:
     author: 'amzxyz'
     ascii_mode: 1
     width: 12 #按键宽度
-    key_press_offset_x: 2
-    key_press_offset_y: 2
+    key_press_offset_x: 3
+    key_press_offset_y: 3
     round_corner: 0
   # 颜文字键盘配置
   ywz:
@@ -72,15 +78,15 @@ conf:
   bottom:
     keys/+:
       - width: { __include: conf/sym_bottom_switch }
-        height: { __include: conf/sym_bottom }
+      - height: { __include: conf/sym_bottom }
 
 
 style:
   color_scheme: default #默认配色方案
-  keyboard_height: 250 #锁定键盘高度，避免切换时键盘高度变化而造成闪烁
+  keyboard_height: 260 #锁定键盘高度，避免切换时键盘高度变化而造成闪烁
   keyboard_height_land: 200 #锁定横屏下键盘高度，避免切换时键盘高度变化而造成闪烁
   horizontal: true #水平模式。改变方向键的功能 （true：方向键适配横排候选；false：方向键适配竖排候选）
-  keyboard_padding: 8 #竖屏模式下，屏幕左右两侧与键盘的距离（曲面屏减少误触）
+  keyboard_padding: 2 #竖屏模式下，屏幕左右两侧与键盘的距离（曲面屏减少误触）
   keyboard_padding_left: 0 #竖屏屏模式下，左手键盘布局，屏幕左侧与键盘的距离
   keyboard_padding_right: 40 #竖屏屏模式下，左手键盘布局，屏幕右侧与键盘的距离
   keyboard_padding_bottom: 5 #竖屏模式下，屏幕下边缘与键盘的距离（避免误触发全面屏手势）
@@ -174,12 +180,12 @@ style:
   # 按键区
   proximity_correction: true #按键纠错
   vertical_correction: -5 #按键偏移（上偏为正）
-  horizontal_gap: 0 #键水平间距
-  vertical_gap: 0 #键盘行距
+  horizontal_gap: 5 #键水平间距
+  vertical_gap: 2 #键盘行距
   ## 主按键
   key_height: { __include: conf/sym_height } #键高
   key_width: 12 #键宽，占屏幕宽的百分比
-  round_corner: 13 #按键圆角半径
+  round_corner: 6 #按键圆角半径
   shadow_radius: 0.9 #按键阴影半径
   key_font: symbol.ttf #键盘字型
   latin_font: latin.ttf #西文字型
@@ -581,6 +587,7 @@ styl:
   key:
     key_back_color: main_back_color
     hilited_key_back_color: hilited_main_back_color
+    width: 10
   off_key:
     key_symbol_color: off_key_symbol_color
     hilited_key_symbol_color: off_key_symbol_color
@@ -621,7 +628,7 @@ styl:
   # 颜文字 底部菜单
   ywz_menu:
     __include: styl/menu
-    width: 16 #颜文字键盘菜单宽度
+    width: 16.66 #颜文字键盘菜单宽度
   # 颜文字 高亮的底部菜单
   ywz_hilited_menu:
     __include: styl/ywz_menu
@@ -718,7 +725,7 @@ liquid_keyboard:
     keys: "△▽○◇□☆▲▼●◆■★▷◁▶◀♻♲†⚝✡⚹✦✸✹￼�×⌫☑☒✅❎✔✘✓✗☀☼☽☾◑◐㏂㏘☭♀♂☹☻☠☜☝☞☚☟☛▪•‥…∷※♩♪♫♬§°♭♯♮‖¶№◎¤۞℗®©卍卐℡™㏇Φ⇦⇧⇨⇩⇪↖↑↗←↔→↙↓↘⇄⇅⇆⇤↩⇥▸◂▴▾◤◥◣◢㊤㊧㊥㊨㊦❏❐◲〼▢▣↶✁↷✍⏍ϟ📝✎✆☱☰☴⚿⛮⚙☲☯☵⛶☩☐☳☷☶💬🗨⟲ღ✈☂🎤🌐🔍"
 
 preset_keyboards:
-  symbols:
+  sym121:
     name: 中文1
     __include: conf/sym
     __patch: conf/bottom
@@ -755,20 +762,20 @@ preset_keyboards:
       - { click: '〕' }
       - { click: '﹂' }
       - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym11, __include: styl/hilited_menu }
       - { click: kb_sym12, __include: styl/menu }
+      - { click: kb_sym11, __include: styl/hilited_menu }
       - { click: kb_emoji, __include: styl/menu }
       - { click: kb_ywz, __include: styl/menu }
       - { click: kb_sym15, __include: styl/menu }
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym112:
     name: 中文2
     __include: conf/sym
@@ -799,28 +806,29 @@ preset_keyboards:
       - { click: '～' }
       - { click: kb_sym11d, __include: styl/unavl_off_sym }
       - { click: '＾' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
       - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym11, __include: styl/hilited_menu }
+
       - { click: kb_sym12, __include: styl/menu }
+      - { click: kb_sym11, __include: styl/hilited_menu }
       - { click: kb_emoji, __include: styl/menu }
       - { click: kb_ywz, __include: styl/menu }
       - { click: kb_sym15, __include: styl/menu }
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
-  sym121:
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
+  symbols:
     name: 英文1
     __include: conf/sym
     __patch: conf/bottom
@@ -857,20 +865,20 @@ preset_keyboards:
       - { click: '#' }
       - { click: '|' }
       - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym11, __include: styl/menu }
       - { click: kb_sym12, __include: styl/hilited_menu }
+      - { click: kb_sym11, __include: styl/menu }
       - { click: kb_emoji, __include: styl/menu }
       - { click: kb_ywz, __include: styl/menu }
       - { click: kb_sym15, __include: styl/menu }
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym122:
     name: 英文2
     __include: conf/sym
@@ -888,40 +896,40 @@ preset_keyboards:
       - { click: '~' }
       - { click: '♀' }
       - { click: '♂' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
       - { click: kb_sym12u, __include: styl/off_sym }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
       - { click: kb_sym12d, __include: styl/unavl_off_sym }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
       - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym11, __include: styl/menu }
       - { click: kb_sym12, __include: styl/hilited_menu }
+      - { click: kb_sym11, __include: styl/menu }
       - { click: kb_emoji, __include: styl/menu }
       - { click: kb_ywz, __include: styl/menu }
       - { click: kb_sym15, __include: styl/menu }
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym151:
     name: 特殊1
     __include: conf/sym
@@ -967,12 +975,12 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym152:
     name: 特殊2
     __include: conf/sym
@@ -1018,12 +1026,12 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym153:
     name: 特殊3
     __include: conf/sym
@@ -1069,12 +1077,12 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym154:
     name: 特殊4
     __include: conf/sym
@@ -1099,18 +1107,18 @@ preset_keyboards:
       - { click: '«' }
       - { click: '»' }
       - { click: '‥' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
       - { click: kb_sym15d5, __include: styl/off_sym }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
       - { click: BackSpace, __include: styl/off_sym }
       - { click: kb_sym11, __include: styl/menu }
       - { click: kb_sym12, __include: styl/menu }
@@ -1120,12 +1128,12 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym155:
     name: 特殊5
     __include: conf/sym
@@ -1150,18 +1158,18 @@ preset_keyboards:
       - { click: '︵' }
       - { click: '╭' }
       - { click: '╮' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
       - { click: kb_sym15d5, __include: styl/unavl_off_sym }
       - { click: '︶' }
       - { click: '╰' }
       - { click: '╯' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
       - { click: BackSpace, __include: styl/off_sym }
       - { click: kb_sym11, __include: styl/menu }
       - { click: kb_sym12, __include: styl/menu }
@@ -1171,12 +1179,12 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym161:
     name: 数学1
     __include: conf/sym
@@ -1222,12 +1230,12 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/hilited_menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym162:
     name: 数学2
     __include: conf/sym
@@ -1273,12 +1281,12 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/hilited_menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym163:
     name: 数学3
     __include: conf/sym
@@ -1324,12 +1332,12 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/hilited_menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym164:
     name: 数学4
     __include: conf/sym
@@ -1348,24 +1356,24 @@ preset_keyboards:
       - { click: '⇔' }
       - { click: '∂' }
       - { click: '∀' }
-      - { click: '' }
-      - { click: '' }
+      - { click: ' ' }
+      - { click: ' ' }
       - { click: kb_sym16u3, __include: styl/off_sym }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
       - { click: kb_sym16d4, __include: styl/unavl_off_sym }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
       - { click: BackSpace, __include: styl/off_sym }
       - { click: kb_sym11, __include: styl/menu }
       - { click: kb_sym12, __include: styl/menu }
@@ -1375,12 +1383,12 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/hilited_menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym171:
     name: 序号1
     __include: conf/sym
@@ -1426,12 +1434,12 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/hilited_menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym172:
     name: 序号2
     __include: conf/sym
@@ -1450,24 +1458,24 @@ preset_keyboards:
       - { click: '⑻' }
       - { click: '⑼' }
       - { click: '⑽' }
-      - { click: '' }
-      - { click: '' }
+      - { click: ' ' }
+      - { click: ' ' }
       - { click: kb_sym17u, __include: styl/off_sym }
       - { click: '㈠' }
       - { click: '㈡' }
       - { click: '㈢' }
       - { click: '㈣' }
       - { click: '㈤' }
-      - { click: '' }
-      - { click: '' }
+      - { click: ' ' }
+      - { click: ' ' }
       - { click: kb_sym17d, __include: styl/unavl_off_sym }
       - { click: '㈥' }
       - { click: '㈦' }
       - { click: '㈧' }
       - { click: '㈨' }
       - { click: '㈩' }
-      - { click: '' }
-      - { click: '' }
+      - { click: ' ' }
+      - { click: ' ' }
       - { click: BackSpace, __include: styl/off_sym }
       - { click: kb_sym11, __include: styl/menu }
       - { click: kb_sym12, __include: styl/menu }
@@ -1477,12 +1485,12 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/hilited_menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym211:
     name: 注音1
     __include: conf/sym
@@ -1528,12 +1536,12 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym212:
     name: 注音2
     __include: conf/sym
@@ -1579,12 +1587,12 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym213:
     name: 注音3
     __include: conf/sym
@@ -1603,24 +1611,24 @@ preset_keyboards:
       - { click: '丨' }
       - { click: 'ㄨ' }
       - { click: 'ㄩ' }
-      - { click: '' }
-      - { click: '' }
+      - { click: ' ' }
+      - { click: ' ' }
       - { click: kb_sym21u2, __include: styl/off_sym }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
       - { click: kb_sym21d3, __include: styl/unavl_off_sym }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
       - { click: BackSpace, __include: styl/off_sym }
       - { click: kb_sym21, __include: styl/hilited_menu }
       - { click: kb_sym22, __include: styl/menu }
@@ -1630,12 +1638,12 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym221:
     name: 日文1
     __include: conf/sym
@@ -1681,12 +1689,12 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym222:
     name: 日文2
     __include: conf/sym
@@ -1732,12 +1740,12 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym223:
     name: 日文3
     __include: conf/sym
@@ -1783,12 +1791,12 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym224:
     name: 日文4
     __include: conf/sym
@@ -1834,12 +1842,12 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym225:
     name: 日文5
     __include: conf/sym
@@ -1885,12 +1893,12 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym226:
     name: 日文6
     __include: conf/sym
@@ -1936,12 +1944,12 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym227:
     name: 日文7
     __include: conf/sym
@@ -1963,21 +1971,21 @@ preset_keyboards:
       - { click: 'ヿ' }
       - { click: '㍿' }
       - { click: kb_sym22u6, __include: styl/off_sym }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
       - { click: kb_sym22d7, __include: styl/unavl_off_sym }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
       - { click: BackSpace, __include: styl/off_sym }
       - { click: kb_sym21, __include: styl/menu }
       - { click: kb_sym22, __include: styl/hilited_menu }
@@ -1987,12 +1995,12 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym231:
     name: 音标1
     __include: conf/sym
@@ -2038,12 +2046,12 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym232:
     name: 音标2
     __include: conf/sym
@@ -2071,15 +2079,15 @@ preset_keyboards:
       - { click: 'n' }
       - { click: 'ŋ' }
       - { click: 'l' }
-      - { click: '' }
+      - { click: ' ' }
       - { click: kb_sym23d, __include: styl/unavl_off_sym }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
       - { click: BackSpace, __include: styl/off_sym }
       - { click: kb_sym21, __include: styl/menu }
       - { click: kb_sym22, __include: styl/menu }
@@ -2089,12 +2097,12 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym241:
     name: 希俄1
     __include: conf/sym
@@ -2127,10 +2135,10 @@ preset_keyboards:
       - { click: 'χ' }
       - { click: 'ψ' }
       - { click: 'ω' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
       - { click: BackSpace, __include: styl/off_sym }
       - { click: kb_sym21, __include: styl/menu }
       - { click: kb_sym22, __include: styl/menu }
@@ -2140,12 +2148,12 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym242:
     name: 希俄2
     __include: conf/sym
@@ -2178,10 +2186,10 @@ preset_keyboards:
       - { click: 'Χ' }
       - { click: 'Ψ' }
       - { click: 'Ω' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
       - { click: BackSpace, __include: styl/off_sym }
       - { click: kb_sym21, __include: styl/menu }
       - { click: kb_sym22, __include: styl/menu }
@@ -2191,12 +2199,12 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym243:
     name: 希俄3
     __include: conf/sym
@@ -2242,12 +2250,12 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym244:
     name: 希俄4
     __include: conf/sym
@@ -2258,8 +2266,8 @@ preset_keyboards:
       - { click: 'э' }
       - { click: 'ю' }
       - { click: 'я' }
-      - { click: '' }
-      - { click: '' }
+      - { click: ' ' }
+      - { click: ' ' }
       - { click: Back, __include: styl/off_sym }
       - { click: 'А' }
       - { click: 'Б' }
@@ -2293,12 +2301,12 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym245:
     name: 希俄5
     __include: conf/sym
@@ -2317,24 +2325,24 @@ preset_keyboards:
       - { click: 'Э' }
       - { click: 'Ю' }
       - { click: 'Я' }
-      - { click: '' }
-      - { click: '' }
+      - { click: ' ' }
+      - { click: ' ' }
       - { click: kb_sym24u4, __include: styl/off_sym }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
       - { click: kb_sym24d5, __include: styl/unavl_off_sym }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
       - { click: BackSpace, __include: styl/off_sym }
       - { click: kb_sym21, __include: styl/menu }
       - { click: kb_sym22, __include: styl/menu }
@@ -2344,12 +2352,12 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym251:
     name: 拉丁1
     __include: conf/sym
@@ -2395,12 +2403,12 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym252:
     name: 拉丁2
     __include: conf/sym
@@ -2446,12 +2454,12 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym253:
     name: 拉丁3
     __include: conf/sym
@@ -2461,33 +2469,33 @@ preset_keyboards:
       - { click: 'ü' }
       - { click: 'ý' }
       - { click: 'þ' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
       - { click: Back, __include: styl/off_sym }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
       - { click: kb_sym25u2, __include: styl/off_sym }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
       - { click: kb_sym25d3, __include: styl/unavl_off_sym }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
       - { click: BackSpace, __include: styl/off_sym }
       - { click: kb_sym21, __include: styl/menu }
       - { click: kb_sym22, __include: styl/menu }
@@ -2497,12 +2505,12 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym261:
     name: 制表1
     __include: conf/sym
@@ -2548,12 +2556,12 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/hilited_menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym262:
     name: 制表2
     __include: conf/sym
@@ -2599,12 +2607,12 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/hilited_menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym263:
     name: 制表3
     __include: conf/sym
@@ -2650,12 +2658,12 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/hilited_menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   sym264:
     name: 制表4
     __include: conf/sym
@@ -2701,12 +2709,12 @@ preset_keyboards:
       - { click: kb_sym26, __include: styl/hilited_menu }
       - { click: '', __include: styl/menu }
       - { click: kb_sym1, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   emoji1:
     name: emoji1
     __include: conf/sym
@@ -2752,12 +2760,12 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   emoji2:
     name: emoji2
     __include: conf/sym
@@ -2803,12 +2811,12 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   emoji3:
     name: emoji3
     __include: conf/sym
@@ -2854,12 +2862,12 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   emoji4:
     name: emoji4
     __include: conf/sym
@@ -2905,12 +2913,12 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   emoji5:
     name: emoji5
     __include: conf/sym
@@ -2956,12 +2964,12 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   emoji6:
     name: emoji6
     __include: conf/sym
@@ -2995,9 +3003,9 @@ preset_keyboards:
       - { click: '🏪' }
       - { click: '🚹' }
       - { click: '🚺' }
-      - { click: '' }
-      - { click: '' }
-      - { click: '' }
+      - { click: ' ' }
+      - { click: ' ' }
+      - { click: ' ' }
       - { click: BackSpace, __include: styl/off_sym }
       - { click: kb_sym11, __include: styl/menu }
       - { click: kb_sym12, __include: styl/menu }
@@ -3007,12 +3015,12 @@ preset_keyboards:
       - { click: kb_sym16, __include: styl/menu }
       - { click: kb_sym17, __include: styl/menu }
       - { click: kb_sym2, __include: styl/menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   ywz11:
     name: 开心1
     __include: conf/ywz
@@ -3040,12 +3048,12 @@ preset_keyboards:
       - { click: kb_ywz4, __include: styl/ywz_menu }
       - { click: kb_ywz5, __include: styl/ywz_menu }
       - { click: kb_ywz6, __include: styl/ywz_menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   ywz12:
     name: 开心2
     __include: conf/ywz
@@ -3072,12 +3080,12 @@ preset_keyboards:
       - { click: kb_ywz4, __include: styl/ywz_menu }
       - { click: kb_ywz5, __include: styl/ywz_menu }
       - { click: kb_ywz6, __include: styl/ywz_menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   ywz21:
     name: 喜欢1
     __include: conf/ywz
@@ -3105,12 +3113,12 @@ preset_keyboards:
       - { click: kb_ywz4, __include: styl/ywz_menu }
       - { click: kb_ywz5, __include: styl/ywz_menu }
       - { click: kb_ywz6, __include: styl/ywz_menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   ywz22:
     name: 喜欢2
     __include: conf/ywz
@@ -3138,12 +3146,12 @@ preset_keyboards:
       - { click: kb_ywz4, __include: styl/ywz_menu }
       - { click: kb_ywz5, __include: styl/ywz_menu }
       - { click: kb_ywz6, __include: styl/ywz_menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   ywz31:
     name: 伤心1
     __include: conf/ywz
@@ -3171,12 +3179,12 @@ preset_keyboards:
       - { click: kb_ywz4, __include: styl/ywz_menu }
       - { click: kb_ywz5, __include: styl/ywz_menu }
       - { click: kb_ywz6, __include: styl/ywz_menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   ywz32:
     name: 伤心2
     __include: conf/ywz
@@ -3204,12 +3212,12 @@ preset_keyboards:
       - { click: kb_ywz4, __include: styl/ywz_menu }
       - { click: kb_ywz5, __include: styl/ywz_menu }
       - { click: kb_ywz6, __include: styl/ywz_menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   ywz41:
     name: 生气1
     __include: conf/ywz
@@ -3237,12 +3245,12 @@ preset_keyboards:
       - { click: kb_ywz4, __include: styl/ywz_hilited_menu }
       - { click: kb_ywz5, __include: styl/ywz_menu }
       - { click: kb_ywz6, __include: styl/ywz_menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   ywz42:
     name: 生气2
     __include: conf/ywz
@@ -3270,12 +3278,12 @@ preset_keyboards:
       - { click: kb_ywz4, __include: styl/ywz_hilited_menu }
       - { click: kb_ywz5, __include: styl/ywz_menu }
       - { click: kb_ywz6, __include: styl/ywz_menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   ywz51:
     name: 惊讶1
     __include: conf/ywz
@@ -3303,12 +3311,12 @@ preset_keyboards:
       - { click: kb_ywz4, __include: styl/ywz_menu }
       - { click: kb_ywz5, __include: styl/ywz_hilited_menu }
       - { click: kb_ywz6, __include: styl/ywz_menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   ywz52:
     name: 惊讶2
     __include: conf/ywz
@@ -3334,12 +3342,12 @@ preset_keyboards:
       - { click: kb_ywz4, __include: styl/ywz_menu }
       - { click: kb_ywz5, __include: styl/ywz_hilited_menu }
       - { click: kb_ywz6, __include: styl/ywz_menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   ywz61:
     name: 无奈1
     __include: conf/ywz
@@ -3367,12 +3375,12 @@ preset_keyboards:
       - { click: kb_ywz4, __include: styl/ywz_menu }
       - { click: kb_ywz5, __include: styl/ywz_menu }
       - { click: kb_ywz6, __include: styl/ywz_hilited_menu }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   ywz62:
     name: 无奈2
     __include: conf/ywz
@@ -3400,6 +3408,12 @@ preset_keyboards:
       - { click: kb_ywz4, __include: styl/ywz_menu }
       - { click: kb_ywz5, __include: styl/ywz_menu }
       - { click: kb_ywz6, __include: styl/ywz_hilited_menu }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
 
   default:
     name: 26键
@@ -3407,44 +3421,50 @@ preset_keyboards:
     ascii_mode: 0
     label_transform: uppercase   #键盘字母转化为大写
     lock: true #切换程序时记忆键盘
-    width: 10
+    width: 11
     __patch: 
       - conf/main_en
-      - 'keys/@40/height': { __include: conf/key_height_last }
+      # - conf/26jian
+    #  - 'keys/@40/height': { __include: conf/key_height_last }
     keys:
       # 数字行
       - {click: num1, __include: conf/num_line}
-      - {click: num2}
-      - {click: num3}
-      - {click: num4}
-      - {click: num5}
-      - {click: num6}
-      - {click: num7}
-      - {click: num8}
-      - {click: num9}
-      - {click: num0}
+      - {click: num2, __include: conf/num_line}
+      - {click: num3, __include: conf/num_line}
+      - {click: num4, __include: conf/num_line}
+      - {click: num5, __include: conf/num_line}
+      - {click: num6, __include: conf/num_line}
+      - {click: num7, __include: conf/num_line}
+      - {click: num8, __include: conf/num_line}
+      - {click: num9, __include: conf/num_line}
+      - {click: num0, __include: conf/num_line}
       # 第 1 行
-      - { click: 'q', long_click: '1', __include: styl/key }
-      - { click: 'w', long_click: '2', __include: styl/key }
-      - { click: 'e', long_click: '3', __include: styl/key }
+      # 第 1 行
+      - { click: 'q', long_click: '!', swipe_down: 1, __include: styl/key }
+      - { click: 'w', long_click: '@', swipe_down: 2, __include: styl/key }
+      - { click: 'e', long_click: '#', swipe_down: 3, __include: styl/key }
       - {
           click: 'r',
-          long_click: '4',
+          long_click: '$',
+          swipe_down: 4,
+          hint: 4,
           __include: styl/key,
         }
-      - { click: 't', long_click: '5', __include: styl/key }
-      - { click: 'y', long_click: '6', __include: styl/key }
+      - { click: 't', long_click: '%', swipe_down: 5, __include: styl/key }
+      - { click: 'y', long_click: '^', swipe_down: 6, __include: styl/key }
       - {
           click: 'u',
-          long_click: '7',
+          long_click: '&',
+          swipe_down: 7,
+          hint: 7,
           __include: styl/key,
         }
-      - { click: 'i', long_click: '8', __include: styl/key }
-      - { click: 'o', long_click: '9', __include: styl/key }
-      - { click: 'p', long_click: "0", __include: styl/key, swipe_down: zhiding, hint: '置顶' }
+      - { click: 'i', long_click: '*', swipe_down: 8, __include: styl/key }
+      - { click: 'o', long_click: '"', swipe_down: 9, __include: styl/key }
+      - { click: 'p', long_click: "danyinhao", __include: styl/key, swipe_down: zhiding, hint: '置顶' }
       # 第 2 行
       - { width: 5 }
-      - { click: 'a', long_click: select_all, __include: styl/key }
+      - { click: 'a', long_click: select_all, __include: styl/key, __include: conf/key_height_zm }
       - {
           click: 's',
           long_click: 'shenglue',
@@ -3478,11 +3498,11 @@ preset_keyboards:
           __include: styl/key,
           swipe_down: leftyi, hint: '左移',
         }
-      - { click: 'k', long_click: ';', __include: styl/key, swipe_down: rightyi, hint: '右移' }
-      - { click: 'l', long_click: "'", __include: styl/key, swipe_down: chongzhi, hint: '重置' }
+      - { click: 'k', long_click: ':', __include: styl/key, swipe_down: rightyi, hint: '右移' }
+      - { click: 'l', long_click: ";", __include: styl/key, swipe_down: chongzhi, hint: '重置' }
       # 第 3 行
-      - { click: Shift_L, composing: split_word, width: 15 }   
-#      - { click: Shift_L, width: 15 }
+      - { click: Shift_L, composing: split_word, width: 15, key_back_color: off_key_back_color, __include: conf/key_height_zm }   
+    #  - { click: Shift_L, width: 15 }
       - { click: 'z',long_click: 'rev', __include: styl/key }
       - { click: 'x', long_click: cut, __include: styl/key }
       - { click: 'c', long_click: copy, __include: styl/key }
@@ -3498,7 +3518,7 @@ preset_keyboards:
           __include: styl/key,
         }
       - { click: 'm', long_click: '`', __include: styl/key }
-      - { click: BS, width: 15, 
+      - { click: BS, width: 15, key_back_color: off_key_back_color,
           swipe_up: 'Escape',
         }
       # 第 4 行
@@ -3507,12 +3527,15 @@ preset_keyboards:
           long_click: Color_switch,
           composing: Tab,
           width: 11,
+          key_back_color: off_key_back_color,
           __include: styl/off_key,
+          __include: conf/key_height_zm
         }     
       - {
           click: Keyboard_number,
           composing: CommitScriptText,
-          width: 12,      
+          width: 12, 
+          key_back_color: off_key_back_color,
           __include: styl/off_key,
           __patch: conf/key_height_last,
         }  
@@ -3533,6 +3556,7 @@ preset_keyboards:
           key_back_color: space_back_color,
           hilited_key_back_color: hilited_space_back_color,
         }        
+        
       - {
           click: 'juhao',
           label: ' 。',
@@ -3545,12 +3569,13 @@ preset_keyboards:
           click: 'Mode_switch',
           composing: "xiegang",
           width: 11,
+          key_back_color: off_key_back_color,
           __include: styl/off_key,  
         }
       - {
           click: Return,
           long_click: kb_func,
-          width: 15,
+          width: 14,
           key_back_color: enter_back_color,
           hilited_key_back_color: hilited_enter_back_color,
           key_text_color: enter_text_color,
@@ -3559,12 +3584,12 @@ preset_keyboards:
           hilited_key_symbol_color: enter_symbol_color,
           key_symbol_offset_x: 0,
         }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
 
   letter:
     ascii_mode: 1
@@ -3573,14 +3598,14 @@ preset_keyboards:
     __patch:
       - conf/main_en
       - 'keys/@33/long_click': Keyboard_default
-      - 'keys/@40/height': { __include: conf/key_height_last }
+    #  - 'keys/@40/height': { __include: conf/key_height_last }
       
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   number:
     name: 数字
     author: 'amzxyz'
@@ -3624,12 +3649,12 @@ preset_keyboards:
           key_text_color: enter_sym_text_color,
           hilited_key_text_color: enter_sym_text_color,
         }
-      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: zaoci, width: 16, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: IME_switch1, width: 18, height: 10, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: zaoci, width: 16, height: 10, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 10, key_back_color: keyboard_back_color } 
+      - { click: 'liquid_keyboard_clipboard1', width: 18, height: 10, key_back_color: keyboard_back_color }
   edit:
     name: 编辑
     author: 'amzxyz'
@@ -3674,15 +3699,15 @@ preset_keyboards:
       - { click: Comment_switch, __include: styl/off_func }
       - { click: Hint_switch, __include: styl/off_func }
       - { click: Back, __include: styl/off_func }
-      - { click: Deploy, __include: styl/off_func }
-      - { click: Sync, __include: styl/off_func }
+      - { click: TrimeApp, __include: styl/off_func }
+      - { click: MTApp, __include: styl/off_func }
       - { click: Schema_settings, __include: styl/off_func }
-#      - { click: Theme_settings, __include: styl/off_func }
+    #  - { click: Theme_settings, __include: styl/off_func }
       - { click: Settings, __include: styl/off_func }
       - { click: kb_edit, __include: styl/off_func }
       - { click: Baidu, __include: styl/off_func }
       - { click: Google, __include: styl/off_func }
-#      - { click: VOICE_ASSIST, __include: styl/off_func }     #注释掉原因是配置到了长按空格键
+    #  - { click: VOICE_ASSIST, __include: styl/off_func }     #注释掉原因是配置到了长按空格键
       - { click: IME_switch, __include: styl/off_func }
 
 
@@ -3738,8 +3763,7 @@ preset_keys:
   SLEEP: { label: 休眠, send: SLEEP }
 
   VOICE_ASSIST: { label: 🎤, send: VOICE_ASSIST } #用于底部语音输入按钮  
-  Back1: { label: 🔽, send: BACK }  #用于底部收起键盘
-  IME_switch1: { label: 🌐, send: LANGUAGE_SWITCH } #用于底部弹出对话框选择输入法
+  IME_switch1: { label: 🌐, send: Control+` } #用于底部弹出对话框选择输入法
 
   VOLUME_DOWN: { label: 音量-, send: VOLUME_DOWN }
   VOLUME_UP: { label: 音量+, send: VOLUME_UP }
@@ -3749,6 +3773,7 @@ preset_keys:
   ChineseDate: { label: 农历, command: date, option: 'zh_CN@calendar=chinese' } #农历等日期(>=Android 7.0)：date 语言@calendar=历法 格式。具体参见https://developer.android.com/reference/android/icu/util/Calendar.html
   Time: { label: 时间, command: date, option: 'HH:mm:ss' } #时间： date 格式
   TrimeApp: { label: 同文, command: run, option: 'com.osfans.trime' } #运行程序: run 包名
+  MTApp: { label: MT, command: run, option: 'bin.mt.plus/.Main' } #运行程序: run 包名
   TrimeCmp: { label: 同文组件, command: run, option: 'com.osfans.trime/.Pref' } #运行程序指定组件: run 包名/组件名
   Homepage: {
       label: 同文主页,
@@ -3794,7 +3819,7 @@ preset_keys:
   Return1: { label: 回车, send: Return }
   Hide: { label: '▼', send: BACK }
   BackSpace: { label: 退格, repeatable: true, send: BackSpace }
-  space: { label: '', preview: '{schema}', repeatable: false, functional: false, send: space}
+  space: { label: '', preview: ' ', repeatable: false, functional: false, send: space}
   space1: {label: 空格, repeatable: false, functional: false, send: space}  #用于liquidkeyboard显示一致性
   space2: {label: ⎵, repeatable: false, functional: false, send: space}  #用与数字键盘空格的展现形式
   jisuan: { label: '计算', send: V }
@@ -3832,6 +3857,7 @@ preset_keys:
   liquid_keyboard_exit: {label: 返回, send: function, command: liquid_keyboard, option: "-1"}  #退出liquidkeyboard
   liquid_keyboard_emoji: { label: 🙂, send: function, command: liquid_keyboard, option: "emoji" }
   liquid_keyboard_clipboard: { label: 剪贴, send: function, command: liquid_keyboard, option: "剪贴" }
+  liquid_keyboard_clipboard1: { label: 📋, send: function, command: liquid_keyboard, option: "剪贴" }
   # rime组合键
   F4: { label: 方案选单, send: F4 }
   BackToPreviousSyllable: { label: 删音节, send: Control+BackSpace }
@@ -3895,7 +3921,8 @@ preset_keys:
   fanyinhao: { label: "`", text: "`" }
   dengyu: { label: "=", text: "=" }
   danyinhao: { label: "'", text: "'" }
-  fenhao: { label: ";", text: ";" }
+  fenhao: { label: " ", text: ";" }
+  kuaifu: { label: " ", text: ";{Left}" }
   douhao: { label: ",", text: "," }
   juhao: { label: ".", text: "." }
   zkhz: { label: "[", text: "[" }
@@ -3915,61 +3942,19 @@ preset_keys:
   num9: { label: 9, send: 9 }
   num0: { label: 0, send: 0 }
 #配合18键键盘布局实现共键单发
-  18keyq: { label: " Q ", send: "q" }
-  18keywe: { label: "W E", send: "w" }
-  18keyrt: { label: "R T", send: "r" }
-  18keyy: { label: " Y ", send: "y" }
-  18keyu: { label: " U ", send: "u" }
-  18keyio: { label: "I O", send: "i" }
-  18keyp: { label: " P ", send: "p" }
-  18keya: { label: " A ", send: "a" }
-  18keysd: { label: "S D", send: "s" }
-  18keyfg: { label: "F G", send: "f" }
-  18keyh: { label: " H ", send: "h" }
-  18keyjk: { label: "J K", send: "j" }
-  18keyl: { label: " L ", send: "l" }
-  18keyz: { label: " Z ", send: "z" }
-  18keyxc: { label: "X C", send: "x" }
-  18keyv: { label: " V ", send: "v" }
-  18keybn: { label: "B N", send: "b" }
-  18keym: { label: " M ", send: "m" }
 
-#配合14键键盘布局实现共键单发
-  14keyqw: { label: " Q W ", send: "q" }
-  14keyer: { label: "E R", send: "e" }
-  14keyty: { label: "T Y", send: "t" }
-  14keyui: { label: "U I", send: "u" }
-  14keyop: { label: "O P", send: "o" }
-  14keyas: { label: "A S", send: "a" }
-  14keydf: { label: "D F", send: "d" }
-  14keygh: { label: "G H", send: "g" }
-  14keyjk: { label: "J K", send: "j" }
-  14keyl: { label: " L ", send: "l" }
-  14keyzx: { label: "Z X", send: "z" }
-  14keycv: { label: "C V", send: "c" }
-  14keybn: { label: "B N", send: "b" }
-  14keym: { label: " M ", send: "m" }
-  
-#配合9键键盘布局实现共键单发
-  9keyabc: { label: "ABC", send: "a" }
-  9keydef: { label: "DEF", send: "d" }
-  9keyghi: { label: "GHI", send: "g" }
-  9keyjkl: { label: "JKL", send: "j" }
-  9keymno: { label: "MNO", send: "m" }
-  9keypqrs: { label: "PQRS", send: "p" }
-  9keytuv: { label: "TUV", send: "t" }
-  9keywxyz: { label: "WXYZ", send: "w" }
-  
-  
   kb_sym1: { label: '◀', send: Eisu_toggle, select: symbols }
   kb_sym2: { label: '▶', send: Eisu_toggle, select: sym211 }
 
-  kb_sym11: { label: '中文', send: Eisu_toggle, select: symbols }
-  kb_sym11u: { label: '▲', send: Eisu_toggle, select: symbols }
+  kb_sym1: { label: '◀', send: Eisu_toggle, select: symbols }
+  kb_sym2: { label: '▶', send: Eisu_toggle, select: sym211 }
+
+  kb_sym11: { label: '中文', send: Eisu_toggle, select: sym121 }
+  kb_sym11u: { label: '▲', send: Eisu_toggle, select: sym121 }
   kb_sym11d: { label: '▼', send: Eisu_toggle, select: sym112 }
 
-  kb_sym12: { label: '英文', send: Eisu_toggle, select: sym121 }
-  kb_sym12u: { label: '▲', send: Eisu_toggle, select: sym121 }
+  kb_sym12: { label: '英文', send: Eisu_toggle, select: symbols }
+  kb_sym12u: { label: '▲', send: Eisu_toggle, select: symbols }
   kb_sym12d: { label: '▼', send: Eisu_toggle, select: sym122 }
 
   kb_sym15: { label: '特殊', send: Eisu_toggle, select: sym151 }

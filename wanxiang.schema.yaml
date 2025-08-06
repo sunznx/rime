@@ -289,7 +289,7 @@ recognizer:
     number: "^R[0-9]+[.]?[0-9]*"        # R 作为触发前缀, 响应 lua_translator@number_translator，数字金额大写
     lunar: "^N[0-9]{1,8}"               # N 作为触发前缀，响应 lua_translator@shijian，公历转农历，输入 N20250515 得到「二〇二五年五月十五」
     calculator: "^V.*$"                 # V 作为触发前缀，计算器功能引导
-    quick_symbol: "^;.*$"               # ; 作为触发前缀，快符引导，例如输入;q 后自动上屏快速符号，双击;;重复上屏
+    quick_symbol: "^;.*$"  # 快符引导，例如输入;q 后自动上屏快速符号，双击;;上屏中文分号本身，如果你想使用顿号 可以改成"^\\\\.*$"，双击输出、而;'输出重复上屏内容
     #add_user_dict: "^ac[A-Za-z/`']*$"      #自造词引导方式
 # 标点符号
 # punctuator 下面有三个子项：
