@@ -1215,7 +1215,6 @@ zhuaj	zuaj
 zhuak	zuak
 zhual	zual
 zhuam	zuam
-zhuan	zuan
 zhuap	zuap
 zhuaq	zuaq
 zhuar	zuar
