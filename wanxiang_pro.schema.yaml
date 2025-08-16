@@ -411,7 +411,8 @@ speller:
       - set_fuzhu_type       #辅助码类型
 ###############################以下是拼写运算规则中全拼转双拼码以及形码的过程，按照不同的方案规则划分段落###########################
 全拼: 
-  __append: 
+  __append:
+    - xform/Ⅰ//  #用于Lua判断输入类型的标记
     - xform/^([a-z]+)(;.*?)$/$1④$2/
     - xform/^(.*)ā(.*?)(;.*)$/$1a$2①$3/
     - xform/^(.*)á(.*?)(;.*)$/$1a$2②$3/
@@ -444,8 +445,9 @@ speller:
     - xlit/①②③④/7890
     - derive/^ng(\d)(;.*)$/eng$1$2/
     - xform/^n(\d)(;.*)/en$1$2/
-自然码: 
+自然码:
   __append:
+    - xform/Ⅱ//  #用于Lua判断输入类型的标记
     - xform/^([a-z]+)(;.*?)$/$1④$2/
     - xform/^(.*)ā(.*?)(;.*)$/$1a$2①$3/
     - xform/^(.*)á(.*?)(;.*)$/$1a$2②$3/
@@ -511,6 +513,7 @@ speller:
     - xform/^(aj|ak|al|ob|ez|ef)(\\d?)(;.*)$//   # 释放非原本自然码规则
 自然龙:    #原作者项目地址： https://github.com/rimeinn/rime-zrlong
   __append:
+    - xform/Ⅺ//  #用于Lua判断输入类型的标记
     - xform/^ēr/eQ/
     - xform/^ér/eK/
     - xform/^ěr/eU/
@@ -574,6 +577,7 @@ speller:
 
 汉心龙:    #原作者项目地址： https://hanxinma.gitlab.io/longma/
   __append:
+    - xform/Ⅻ//  #用于Lua判断输入类型的标记
     - xform/^(a|ā|á|ǎ|à)/Q$1/
     - xform/^(o|ō|ó|ǒ|ò)/R$1/
     - xform/^(e|ē|é|ě|è)/B$1/
@@ -711,6 +715,7 @@ speller:
     - xlit/QWERTYUIOPASDFGHMJCKLZXVBN¥&/qwertyuiopasdfghmjcklzxvbnfc/
 小鹤双拼: 
   __append:
+    - xform/Ⅲ//  #用于Lua判断输入类型的标记
     - xform/^([a-z]+)(;.*?)$/$1④$2/
     - xform/^(.*)ā(.*?)(;.*)$/$1a$2①$3/
     - xform/^(.*)á(.*?)(;.*)$/$1a$2②$3/
@@ -776,6 +781,7 @@ speller:
 
 微软双拼: 
   __append:
+    - xform/Ⅳ//  #用于Lua判断输入类型的标记
     - xform/^([a-z]+)(;.*?)$/$1④$2/
     - xform/^(.*)ā(.*?)(;.*)$/$1a$2①$3/
     - xform/^(.*)á(.*?)(;.*)$/$1a$2②$3/
@@ -844,6 +850,7 @@ speller:
 
 搜狗双拼: 
   __append:
+    - xform/Ⅴ//  #用于Lua判断输入类型的标记
     - xform/^([a-z]+)(;.*?)$/$1④$2/
     - xform/^(.*)ā(.*?)(;.*)$/$1a$2①$3/
     - xform/^(.*)á(.*?)(;.*)$/$1a$2②$3/
@@ -911,6 +918,7 @@ speller:
 
 紫光双拼: 
   __append:
+    - xform/Ⅶ//  #用于Lua判断输入类型的标记
     - xform/^([a-z]+)(;.*?)$/$1④$2/
     - xform/^(.*)ā(.*?)(;.*)$/$1a$2①$3/
     - xform/^(.*)á(.*?)(;.*)$/$1a$2②$3/
@@ -975,8 +983,9 @@ speller:
     - xform/^ch/Ⓐ/
     - xlit/ⓌⓉⓎⓊⒾⓄⓅⒶⒼⓈⒹⒻⒽⒿⓀⓁⓏⓍⒷⓃⓂⓆⓇ/wtyuiopagsdfhjklzxbnmqr/
 
-智能ABC: 
+智能ABC:
   __append:
+    - xform/Ⅵ//  #用于Lua判断输入类型的标记
     - xform/^([a-z]+)(;.*?)$/$1④$2/
     - xform/^(.*)ā(.*?)(;.*)$/$1a$2①$3/
     - xform/^(.*)á(.*?)(;.*)$/$1a$2②$3/
@@ -1041,6 +1050,7 @@ speller:
 
 国标双拼:
   __append:
+    - xform/Ⅸ//  #用于Lua判断输入类型的标记
     - xform/^([a-z]+)(;.*?)$/$1④$2/
     - xform/^(.*)ā(.*?)(;.*)$/$1a$2①$3/
     - xform/^(.*)á(.*?)(;.*)$/$1a$2②$3/

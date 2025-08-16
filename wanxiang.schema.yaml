@@ -397,6 +397,7 @@ speller:
 
 全拼:
   __append:
+    - xform/Ⅰ//  #用于Lua判断输入类型的标记
     - xform/^([a-z]+)$/$1④/
     - xform/^(.*)ā(.*)$/$1a$2①/
     - xform/^(.*)á(.*)$/$1a$2②/
@@ -442,6 +443,7 @@ speller:
     - derive/([tl])eng$/$1en/ # ten → teng
 自然码: 
   __append:
+    - xform/Ⅱ//  #用于Lua判断输入类型的标记
     - xform/^([a-z]+)$/$1④/
     - xform/^(.*)ā(.*)$/$1a$2①/
     - xform/^(.*)á(.*)$/$1a$2②/
@@ -509,6 +511,7 @@ speller:
     #- abbrev/^([a-z]).+$/$1/   #简拼
 自然龙:      #原作者项目地址： https://github.com/rimeinn/rime-zrlong
   __append:
+    - xform/Ⅺ//  #用于Lua判断输入类型的标记
     - xform/^(ā|á|ǎ|à)([ioun])$/a$1$2/
     - xform/^(ō|ó|ǒ|ò)([ioun])$/o$1$2/
     - xform/^(ē|é|ě|è)([ioun])$/e$1$2/
@@ -571,6 +574,7 @@ speller:
     - xlit/QWERTYUIOPASDFGHMJCKLZXVBN/qwertyuiopasdfghmjcklzxvbn/
 汉心龙:    #原作者项目地址： https://hanxinma.gitlab.io/longma/
   __append:
+    - xform/Ⅻ//  #用于Lua判断输入类型的标记
     - xform/^(a|ā|á|ǎ|à)/Q$1/
     - xform/^(o|ō|ó|ǒ|ò)/R$1/
     - xform/^(e|ē|é|ě|è)/B$1/
@@ -644,6 +648,7 @@ speller:
 
 小鹤双拼: 
   __append:
+    - xform/Ⅲ//  #用于Lua判断输入类型的标记
     - xform/^([a-z]+)$/$1④/
     - xform/^(.*)ā(.*)$/$1a$2①/
     - xform/^(.*)á(.*)$/$1a$2②/
@@ -710,6 +715,7 @@ speller:
     #- abbrev/^([a-z]).+$/$1/   #简拼
 搜狗双拼: 
   __append:
+    - xform/Ⅴ//  #用于Lua判断输入类型的标记
     - xform/^([a-z]+)$/$1④/
     - xform/^(.*)ā(.*)$/$1a$2①/
     - xform/^(.*)á(.*)$/$1a$2②/
@@ -777,6 +783,7 @@ speller:
     #- abbrev/^([a-z]).+$/$1/   #简拼
 微软双拼: 
   __append:
+    - xform/Ⅳ//  #用于Lua判断输入类型的标记
     - xform/^([a-z]+)$/$1④/
     - xform/^(.*)ā(.*)$/$1a$2①/
     - xform/^(.*)á(.*)$/$1a$2②/
@@ -845,6 +852,7 @@ speller:
     #- abbrev/^([a-z]).+$/$1/   #简拼
 智能ABC:
   __append:
+    - xform/Ⅵ//  #用于Lua判断输入类型的标记
     - xform/^([a-z]+)$/$1④/
     - xform/^(.*)ā(.*)$/$1a$2①/
     - xform/^(.*)á(.*)$/$1a$2②/
@@ -908,6 +916,7 @@ speller:
     #- abbrev/^([a-z]).+$/$1/   #简拼
 紫光双拼:
   __append:
+    - xform/Ⅶ//  #用于Lua判断输入类型的标记
     - xform/^([a-z]+)$/$1④/
     - xform/^(.*)ā(.*)$/$1a$2①/
     - xform/^(.*)á(.*)$/$1a$2②/
@@ -973,6 +982,7 @@ speller:
 
 拼音加加:
   __append:
+    - xform/Ⅷ//  #用于Lua判断输入类型的标记
     - xform/^([a-z]+)$/$1④/
     - xform/^(.*)ā(.*)$/$1a$2①/
     - xform/^(.*)á(.*)$/$1a$2②/
@@ -1036,6 +1046,7 @@ speller:
     - xlit/ⓆⓌⓇⓉⓎⓊⒾⓄⓅⓈⒹⒻⒼⒽⓂⒿⒸⓀⓁⓏⓍⓋⒷⓃ/qwrtyuiopsdfghmjcklzxvbn/
 乱序17:  
   __append:
+    - xform/Ⅹ//  #用于Lua判断输入类型的标记
     - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
     - xform/^ng$/eng/
     - xform/ńg|ňg|ǹg/eng/
