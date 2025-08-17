@@ -188,12 +188,10 @@ okou	okiu
 otou	otiu
 oyou	oyiu
 akou	akiu
-alou	aliu
 atou	atiu
 imou	imiu
 irou	iriu
 itou	itiu
-nlou	nliu
 nzou	nziu
 grou	griu
 gzou	gziu
@@ -219,7 +217,6 @@ utou	utiu
 uyou	uyiu
 uzou	uziu
 omou	omiu
-elou	eliu
 ahou	ahiu
 gmou	gmiu
 urou	uriu
@@ -860,7 +857,6 @@ zoux	ziux
 zouy	ziuy
 zouz	ziuz
 soup	siup
-loua	liua
 roua	riua
 coub	ciub
 couf	ciuf
