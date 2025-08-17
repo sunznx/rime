@@ -19,7 +19,7 @@ function correcter:load_corrections_from_file(env)
     end
 
     local candidates = {
-      ("lua/data/typo_%s.txt"):format(id),
+        ("lua/data/typo_%s.txt"):format(id),
     }
 
     local file, close_file, err
@@ -106,9 +106,9 @@ function P.init(env)
 
     -- 可选：方案变更时重载
     if env.engine and env.engine.schema_change_notifier then
-      env._conn_schema = env.engine.schema_change_notifier:connect(function()
-        correcter:load_corrections_from_file(env)
-      end)
+        env._conn_schema = env.engine.schema_change_notifier:connect(function()
+          correcter:load_corrections_from_file(env)
+        end)
     end
 end
 

@@ -7538,7 +7538,6 @@ sort: by_weight
 㝎	dìng;bv;bv;bv;wr;pp;	1
 奵	dīng;nd;nd;nd;ba;vs;	1
 掟	dìng;fz;dr,fr;fd;ut;rp;fr	1
-町	dīng;td;td;td;qa;ls;td	1
 甼	dīng;td;td;td;qa;ls;	1
 艼	dǐng;cd;cd;cd;la;as;	1
 釘	dìng;jd;jd;jd;za;qs;	1
@@ -7573,6 +7572,7 @@ sort: by_weight
 𩾚	dīng;dn;dn;dn,nd;ax;sw;	1
 𪔂	dǐng;vo;ov;;qa;hn;	1
 𫂫	dìng;;vc;;;;	1
+町	dīng;td;td;td;qa;ls;td	1
 丢	diū;pq;ps;pq,ps;tk;tf;pv	647
 丟	diū;aq;ws;pq;nk;gc;	343
 铥	diū;jq;js;jd;zk;qt;jv	285
@@ -36425,6 +36425,7 @@ sort: by_weight
 蝏	tíng;id;id;it;ca;jy;	439
 廳	tīng;gx;gx;gt,gx;xh;yb;	423
 铤	tǐng;jw;jz;jt;zu;qt;jr	408
+町	tǐng;td;td;td;qa;ls;td	377
 庁	tīng;gd;gd;gd;xa;ys;	363
 葶	tíng;cd;cd;ct;la;ay;cd	335
 珽	tǐng;ww;wz;wt;nu;gt;wr	334
@@ -36470,7 +36471,6 @@ sort: by_weight
 忊	tìng;xd;xd;xd;ha;ns;	1
 梃	tìng;mw;mz;mt;eu;st;lr	1
 濎	tìng;do;dv;dd;ka;ih;	1
-町	tǐng;td;td;td;qa;ls;td	1
 鋌	tǐng;jw;jz;jt;zu;qt;	1
 閮	tǐng;mw;mz;mt;au;ut;	1
 㓅	tīng;;dd;;;;	1
