@@ -1116,11 +1116,9 @@ sheij	shiej
 sheik	shiek
 sheil	shiel
 sheim	shiem
-shein	shien
 sheio	shieo
 sheip	shiep
 sheiq	shieq
-sheir	shier
 sheis	shies
 sheiw	shiew
 sheix	shiex
@@ -1173,7 +1171,6 @@ sha	sja
 sho	sjo
 #shu	sju冲突
 #ew修正为ue横向偏移
-juea	juwa
 jueb	juwb
 jued	juwd
 juef	juwf
