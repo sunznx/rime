@@ -264,8 +264,8 @@ function ZH.func(input, env)
     local context = env.engine.context
     local input_str = context.input
     local should_skip_candidate_comment = wanxiang.is_function_mode_active(context) or input_str == ""
-    local is_comment_hint = env.engine.context:get_option("fuzhu_hint")
     local is_tone_comment = env.engine.context:get_option("tone_hint")
+    local is_comment_hint = env.engine.context:get_option("fuzhu_hint")
     local is_chaifen_enabled = env.engine.context:get_option("chaifen_switch")
 
     for cand in input:iter() do
@@ -278,8 +278,13 @@ function ZH.func(input, env)
         local initial_comment = cand.comment
         local final_comment = initial_comment
 
-        -- ① 辅助码注释或者声调注释
-        if is_comment_hint or is_tone_comment then
+        -- ① 辅助码注释或者声调注释，这种冗余的写法只是为了共存时使用
+        if is_comment_hint then
+            local fz_comment = get_fz_comment(cand, env, initial_comment)
+            if fz_comment then
+                final_comment = fz_comment
+            end
+        elseif is_tone_comment then
             local fz_comment = get_fz_comment(cand, env, initial_comment)
             if fz_comment then
                 final_comment = fz_comment
