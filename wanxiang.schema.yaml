@@ -720,6 +720,7 @@ speller:
     - xform/ui(\d)$/Ⓥ$1/
     - xform/in(\d)$/Ⓑ$1/
     - xlit/ⓆⓌⓇⓉⓎⓊⒾⓄⓅⓈⒹⒻⒼⒽⒿⓀⓁⓏⓍⒸⓋⒷⓃⓂ/qwrtyuiopsdfghjklzxcvbnm/
+    - xform/^(aj|ac|ad|ew|ef|oz)(\d?)$//
     - derive/^(..)(\d)$/$1/
     - derive/^(.).+(\d)$/$1$2/
     #- abbrev/^([a-z]).+$/$1/   #简拼

@@ -515,7 +515,7 @@ speller:
     - xform/^ch/Ⓘ/
     - xform/^zh/Ⓥ/
     - xlit/ⓆⓌⓇⓉⓎⓊⒾⓄⓅⓈⒹⒻⒼⒽⓂⒿⒸⓀⓁⓏⓍⓋⒷⓃ/qwrtyuiopsdfghmjcklzxvbn/
-    - xform/^(aj|ak|al|ob|ez|ef)(\\d?)(;.*)$//   # 释放非原本自然码规则
+    - xform/^(aj|ak|al|ob|ez|ef)(\d?)(;.*)$//   # 释放非原本自然码规则
 自然龙:    #原作者项目地址： https://github.com/rimeinn/rime-zrlong
   __append:
     - xform/Ⅺ//  #用于Lua判断输入类型的标记
@@ -783,7 +783,7 @@ speller:
     - xform/^ch/Ⓘ/
     - xform/^zh/Ⓥ/
     - xlit/ⓆⓌⓇⓉⓎⓊⒾⓄⓅⓈⒹⒻⒼⒽⒿⓀⓁⓏⓍⒸⓋⒷⓃⓂ/qwrtyuiopsdfghjklzxcvbnm/
-
+    - xform/^(aj|ac|ad|ew|ef|oz)(\d?)(;.*)$//
 微软双拼: 
   __append:
     - xform/Ⅳ//  #用于Lua判断输入类型的标记
