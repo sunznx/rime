@@ -1236,6 +1236,8 @@ user_dict_set:
   initial_quality: 0
   enable_completion: false
   enable_sentence: false
+  core_word_length: 4          # >0 启用，按段学词 + 相邻段拼接
+  max_word_length: 7           # >0 启用，过长短语不记整词，只加元素权重
   spelling_hints: 100
   comment_format:
   preedit_format:     #影响到输入框的显示和“Shift+回车”上屏的字符，交给super_preedit处理

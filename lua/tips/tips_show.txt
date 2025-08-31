@@ -29759,7 +29759,7 @@
 翻译：瞬时的	instantaneous
 翻译：瞬间;一刹那	twinkling
 翻译：瞬间;第二;助手	second
-翻译：瞬间NUM	jiff
+翻译：瞬间	jiff
 翻译：瞬间吊起	trice
 翻译：瞬间的;刹那间的	momentary
 翻译：瞻养费	alimony
