@@ -272,7 +272,7 @@ key_binder:
   # Lua 配置: 以词定字（上屏当前词句的第一个或最后一个字），和中括号翻页有冲突
   select_first_character: "bracketleft"  # 左中括号 [
   select_last_character: "bracketright"  # 右中括号 ]
-  search: "`"             # 辅码引导符，要添加到 speller/alphabet
+  search: "`"             # 反查引导符，要添加到 speller/alphabet
   bindings:               # 也可以再增加方案专有的
     - { when: has_menu, accept: 1, send: apostrophe }
 

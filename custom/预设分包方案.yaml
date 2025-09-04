@@ -330,7 +330,7 @@ key_binder:
   shijian_keys: ["/", "o"]
   # Lua 配置: 超级tips上屏按键
   tips_key: "period"   #修改时候去default找
-  search: "`"             # 辅码引导符，要添加到 speller/alphabet
+  search: "`"             # 反查引导符，要添加到 speller/alphabet
   bindings:             # 也可以再增加方案专有的
     #- { when: composing, accept: Tab, send: '[' } ## 取消注释后：tab引导辅助码
     - { when: composing, accept: Control+w, send: Control+BackSpace }
