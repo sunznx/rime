@@ -1228,7 +1228,6 @@ xuea	xuwa
 xueb	xuwb
 xuec	xuwc
 xued	xuwd
-xuwe	xuwe
 xuef	xuwf
 xueg	xuwg
 xueh	xuwh
@@ -1269,7 +1268,6 @@ yuez	yuwz
 nueb	nuwb
 nuek	nuwk
 nuey	nuwy
-niwe	nuwe
 nuen	nuwn
 nuep	nuwp
 nuez	nuwz
