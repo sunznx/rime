@@ -1060,7 +1060,6 @@ bian	biam
 mian	miam
 nian	niam
 pian	piam
-qian	qiam
 dian	diam
 tian	tiam
 #ign修正为ing

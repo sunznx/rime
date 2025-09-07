@@ -178,7 +178,7 @@ local function get_az_comment(_, env, initial_comment)
         if not fuzhu and fz and fz ~= "" then fuzhu = fz end
     end
 
-    -- 构建最终的评论
+    -- 构建最终注释
     if #pinyins > 0 then
         local pinyin_str = table.concat(pinyins, ",")
         if fuzhu then
