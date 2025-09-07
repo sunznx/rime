@@ -145,7 +145,7 @@ end
 -- ################################
 ---@return string
 local function get_az_comment(_, env, initial_comment)
-    if not initial_comment or initial_comment == "" then return "" end
+    if not initial_comment or initial_comment == "" then return "〔无〕" end
     local final_comment = nil
     local auto_delimiter = env.settings.auto_delimiter or " "
     -- 拆分初始评论为多个段落
@@ -178,7 +178,7 @@ local function get_az_comment(_, env, initial_comment)
         if not fuzhu and fz and fz ~= "" then fuzhu = fz end
     end
 
-    -- 构建最终注释
+    -- 构建最终的评论
     if #pinyins > 0 then
         local pinyin_str = table.concat(pinyins, ",")
         if fuzhu then
@@ -187,9 +187,8 @@ local function get_az_comment(_, env, initial_comment)
             final_comment = "〔无〕"
         end
     end
-
     -- 如果没有匹配到其他条件，确保返回默认格式
-    return final_comment or "〔无〕"
+    return final_comment
 end
 -- #########################
 -- # 辅助码提示或带调全拼注释模块 (Fuzhu)
