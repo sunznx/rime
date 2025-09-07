@@ -271,8 +271,9 @@ wanxiang_reverse:
   dictionary: wanxiang_reverse
   db_class: stabledb
   enable_user_dict: false
-  prefix: "`"  # 反查前缀（反查时前缀会消失影响打英文所以设定为两个字母，或可改成一个非字母符号），与 recognizer/patterns/radical_lookup 匹配
-  tips: "〔反查：部件|笔画〕"
+  enable_sentence: false
+  prefix: "`"  # 反查前缀（反查时前缀会消失），与 recognizer/patterns/wanxiang_reverse 匹配
+  tips: "〔反查：拆分|笔画〕"
 
 # 部件拆字滤镜
 radical_reverse_lookup:

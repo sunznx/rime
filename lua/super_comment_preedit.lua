@@ -148,12 +148,12 @@ local function get_az_comment(_, env, initial_comment)
     if not initial_comment or initial_comment == "" then return "" end
     local final_comment = nil
     local auto_delimiter = env.settings.auto_delimiter or " "
-    -- 拆分各字注释段
+    -- 拆分初始评论为多个段落
     local segments = {}
     for segment in initial_comment:gmatch("[^%s]+") do
         table.insert(segments, segment)
     end
-    local semicolon_count = select(2, segments[1]:gsub(";", "")) -- 使用第一个段判断
+    local semicolon_count = select(2, segments[1]:gsub(";", "")) -- 使用第一个段来判断分号的数量
     local pinyins = {}
     local fuzhu = nil
     for _, segment in ipairs(segments) do
@@ -177,16 +177,19 @@ local function get_az_comment(_, env, initial_comment)
         if pinyin then table.insert(pinyins, pinyin) end
         if not fuzhu and fz and fz ~= "" then fuzhu = fz end
     end
-    -- 拼接结果
+
+    -- 构建最终注释
     if #pinyins > 0 then
         local pinyin_str = table.concat(pinyins, ",")
         if fuzhu then
             final_comment = string.format("〔音%s 辅%s〕", pinyin_str, fuzhu)
         else
-            final_comment = string.format("〔音%s〕", pinyin_str)
+            final_comment = "〔无〕"
         end
     end
-    return final_comment or ""
+
+    -- 如果没有匹配到其他条件，确保返回默认格式
+    return final_comment or "〔无〕"
 end
 -- #########################
 -- # 辅助码提示或带调全拼注释模块 (Fuzhu)
