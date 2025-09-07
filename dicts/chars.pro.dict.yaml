@@ -23623,6 +23623,9 @@ sort: by_weight
 𧑀	lüè;ig;ig;ii;ce;jv;	1
 𧕌	lüè;ti;ti;lk;qc;lt;	1
 𪅅	lüè;tn;tn;nl,ln;qx;lt;	1
+呣	m̀;km;km;km;dk;kx;km	1
+呒	ḿ;kw;kw;kw;dd;kf;kw	1
+呣	ḿ;km;km;km;dk;kx;km	1
 吗	ma;km;km;km;dn;kc;km	866
 马	mǎ;va;va;aa,vh;nm;cn;va	769
 码	mǎ;um;um;um;mn;dc;um	744
@@ -25610,7 +25613,6 @@ sort: by_weight
 𫠏	mù;;am;;;;	1
 𬭁	mǔ;jm;jm;jm;zk;qx;jm	1
 𬰃	mù;;ym;;;;	1
-呣	m̀;km;km;km;dk;kx;km	1
 嗯	ǹ;kx;kx;ke;dh;kl;kx	898
 嗯	ń;kx;kx;ke;dh;kl;kx	13
 嗯	ň;kx;kx;ke;dh;kl;kx	1
@@ -26590,7 +26592,8 @@ sort: by_weight
 𪘎	niè;vk;vk;iy;ls;hb;	1
 𪵉	niē;;ky;;;;	1
 𬛸	niē;;jg;;;;	1
-𪘅	niè;;ik;;;;	1您	nín
+𪘅	niè;;ik;;;;	1
+您	nín;rx;rx;xn;jh;wq;rx	753
 拰	nǐn;fw;fr;fr;ug;rw;	216
 囜	nín;ks;ks;ks;rk;lc;	82
 恁	nín;rx;rx;xr;jh;wt;rx	1
@@ -31271,6 +31274,7 @@ sort: by_weight
 杒	rèn;mr;mr;mr;ei;sv;	50
 梕	rèn;mx;mx;mr;eh;sv;	38
 躵	rěn;ux;ux;ur;zh;tm;	38
+恁	rèn;rx;rx;xr;jh;wt;rx	1
 𫟃	rén;;sr;;;;	1
 𡰥	rén;ue;ue;ue;cm;nf;	1
 菍	rěn;cx;cx;cn;lh;aw;cx	1
@@ -51034,5 +51038,3 @@ sort: by_weight
 𪱢	zuò;;od;;;;	1
 𫝶	zuò;;gt;;;;	1
 𫝷	zuò;;gt;;;;	1
-呒	ḿ;kw;kw;kw;dd;kf;kw	1
-呣	ḿ;km;km;km;dk;kx;km	1
