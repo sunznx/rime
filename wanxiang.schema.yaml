@@ -1143,7 +1143,7 @@ user_dict_set:
   initial_quality: 0
   enable_completion: false
   enable_sentence: false
-  spelling_hints: 100
+  spelling_hints: 50
   comment_format:
   preedit_format:     #影响到输入框的显示和“Shift+回车”上屏的字符，交给super_preedit_pro处理
     - xform/7/¹/
@@ -1161,7 +1161,7 @@ add_user_dict:
   enable_completion: true # 提前显示尚未输入完整码的字〔仅 table_translator 有效〕
   enable_user_dict: false
   enable_auto_phrase: false    # lua造词功能，在custom开启，相关功能位于super_comment_preedit，开启后：模型能造的句子不造词，现有的词不造词，只造词库没有的，选词可造词
-  encode_commit_history: false # 是否对已上屛词自动成词〔仅 table_translator 有效〕  
+  spelling_hints: 50
   comment_format:
   prefix: "``"
   tips: "〔开始造词〕"

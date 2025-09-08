@@ -1251,7 +1251,7 @@ user_dict_set:
   enable_sentence: false
   core_word_length: 4          # >0 启用，按段学词 + 相邻段拼接
   max_word_length: 7           # >0 启用，过长短语不记整词，只加元素权重
-  spelling_hints: 100
+  spelling_hints: 50
   comment_format:
   preedit_format:               # preedit_format 影响到输入框的显示和“Shift+回车”上屏的字符
     - xform/7/¹/
@@ -1270,12 +1270,10 @@ add_user_dict:
   user_dict: zc
   enable_charset_filter: false # 是否开启字符集过滤
   enable_completion: true # 提前显示尚未输入完整码的字〔仅 table_translator 有效〕
-  enable_encoder: true # 是否开启自动造词〔仅 table_translator 有效〕
-  enable_sentence: true #  是否开启自动造句
   enable_user_dict: true
   enable_auto_phrase: false
-  encode_commit_history: false # 是否对已上屛词自动成词〔仅 table_translator 有效〕
-  preedit_format:   
+  spelling_hints: 50
+  preedit_format:
   comment_format:
   prefix: "``"
   tips: "〔开始造词〕"
