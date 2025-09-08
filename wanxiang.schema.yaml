@@ -66,7 +66,6 @@ engine:
     - lua_processor@*limit_repeated             #用于限制最大候选长度以及最大重复输入声母编码长度，避免性能异常
     - lua_processor@*backspace_limit            #防止连续 Backspace 在编码为空时删除已上屏内容
     - lua_processor@*typo_corrector             #基于编码策略的按键纠错,可与转写法共用,能跨越单字编码到词组级别,补齐转写方式短板
-    - lua_processor@*userdb_sync_delete         #⚠️危险操作：通过输入 /del 触发,用于清理自定义同步目录下txt用户词典里被标记c<0的词条，操作步骤：必须先同步、再执行/del、再去部署刷新状态、再去同步回收词典，完成动作。
     - ascii_composer                            #处理英文模式及中英文切换
     - recognizer                                #与 matcher 搭配，处理符合特定规则的输入码，如网址、反查等 tags
     - key_binder                                #在特定条件下将按键绑定到其他按键，如重定义逗号、句号为候选翻页、开关快捷键等
@@ -1159,10 +1158,7 @@ add_user_dict:
   dictionary: wanxiang
   initial_quality: -1
   user_dict: zc
-  enable_charset_filter: false # 是否开启字符集过滤
   enable_completion: true # 提前显示尚未输入完整码的字〔仅 table_translator 有效〕
-  enable_encoder: true # 是否开启自动造词〔仅 table_translator 有效〕
-  enable_sentence: true #  是否开启自动造句
   enable_user_dict: false
   enable_auto_phrase: false    # lua造词功能，在custom开启，相关功能位于super_comment_preedit，开启后：模型能造的句子不造词，现有的词不造词，只造词库没有的，选词可造词
   encode_commit_history: false # 是否对已上屛词自动成词〔仅 table_translator 有效〕  
