@@ -1464,7 +1464,6 @@
 大发雷霆	dflt	0
 东方明珠	dfmv	0
 大腹便便	dfpp	0
-达·芬奇	dfqi	0
 答非所问	dfsw	0
 打发时间	dfuj	0
 大幅上升	dfuu	0
@@ -3893,7 +3892,6 @@
 除你以外	inyw	0
 常年在外	inzw	0
 长篇大论	ipdl	0
-IP地址	ipdv	0
 长篇累牍	ipld	0
 承平盛世	ipuu	0
 长篇小说	ipxu	0
@@ -10305,7 +10303,6 @@ IP地址	ipdv	0
 无处藏身	wicu	0
 无处躲藏	widc	0
 无处遁形	widx	0
-WiFi	wifi	0
 无肠公子	wigz	0
 无产阶级	wijj	0
 无处可去	wikq	0
@@ -10472,7 +10469,6 @@ WiFi	wifi	0
 污泥浊水	wnvu	0
 无奈之下	wnvx	0
 无能为力	wnwl	0
-Word	word	0
 威迫利诱	wply	0
 王婆卖瓜	wpmg	0
 无凭无据	wpwj	0

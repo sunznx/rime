@@ -33192,7 +33192,8 @@ sort: by_weight
 是	shì;oz;or;op,ov;ot;jg;or	975
 十	shí;al;al;aa;ns;fg;aa	968
 时	shí;oc;oc;oc;ok;jf;oc	965
-拾	shí;fk;fk;fh;ud;rw;fk	961
+事	shì;gy;al;aa;fb;gk;av	961
+拾	shí;fk;fk;fh;ud;rw;fk	955
 使	shǐ;rl;rl;rl;jb;wg;rl	952
 市	shì;wj;wj;wj;zr;ym;wj	941
 式	shì;yg;yg;gy,yg;pu;aa;gg	910
@@ -33202,7 +33203,6 @@ sort: by_weight
 诗	shī;yc;yc;ys;sk;yf;yc	845
 世	shì;cv;av;ca,cv,aa;la;an;av	832
 实	shí;bd;bd;bt;wm;pu;gd	812
-事	shì;gy;al;aa;fb;gk;av	810
 师	shī;lj;lj;ab,aj,db,dj;pr;jg;aj	791
 食	shí;rg;rl;rl,pd;qs;wy;rh	789
 试	shì;yg;yg;yu;su;ya;yg	789
@@ -37722,10 +37722,10 @@ sort: by_weight
 𪴸	wǎng;;vb;;;;	1
 为	wèi;ld;dd;dd;ii;yl;dd	870
 为	wéi;ld;dd;dd;ii;yl;dd	847
+未	wèi;am;an;ex,ad;aw;fi;an	833
 位	wèi;rl;rl;rl;ji;wu;rl	825
 味	wèi;kw;kw;kw;da;kf;kw	802
 微	wēi;rj;iw;xw;wh;tm;rw	778
-未	wèi;am;an;ex,ad;aw;fi;an	776
 维	wéi;sv;sf;sv;iu;xw;sa	772
 围	wéi;kw;kw;kw;rg;lf;ww	745
 委	wěi;hn;hn;hn;xb;tv;hn	745
@@ -47563,8 +47563,8 @@ sort: by_weight
 𪭪	zhā;;fc;;;;	1
 𫎘	zhá;;fb;;;;	1
 𫛠	zhá;;mn;;;;	1
-债	zhài;rb;rr;rz;jo;wg;rr	707
-摘	zhāi;fg;fk;fd,fg;uc;ru;fk	657
+摘	zhāi;fg;fk;fd,fg;uc;ru;fk	707
+债	zhài;rb;rr;rz;jo;wg;rr	668
 窄	zhǎi;bv;bv;xv,bv;ew;pw;gv	653
 宅	zhái;bq;bq;bq,bt;wr;pt;gq	644
 寨	zhài;bm;bm;mb,bm;we;pf;gx	615
