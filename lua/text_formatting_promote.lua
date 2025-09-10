@@ -10,6 +10,8 @@
            - 第一候选永远不动
            - 其余按组输出：①不含字母 → ②纯字母且与编码完全相同（忽略大小写）→ ③其他
            - 仅对 table 系列候选参与分组重排，非 table 归入“其他”
+  新增规则：
+           - 若“第二候选”为 user_table，则不执行任何排序；按原顺序（仅做 A、B）直接输出并返回
 ]]
 
 local M = {}
@@ -32,12 +34,18 @@ local function ulen(s)
 end
 
 ------------------------------------------------------------
--- C：仅让 table 系列参与重排
+-- C：仅让 table 系列参与重排；并提供 user_table 判定
 ------------------------------------------------------------
 local function is_table_phrase(cand)
     local g = cand.get_genuine and cand:get_genuine() or cand
     local t = (g and g.type) or cand.type or ""
     return t == "table" or t == "user_table"
+end
+
+local function is_user_table(cand)
+    local g = cand.get_genuine and cand:get_genuine() or cand
+    local t = (g and g.type) or cand.type or ""
+    return t == "user_table"
 end
 
 ------------------------------------------------------------
@@ -140,43 +148,84 @@ function M.func(input, env)
     if not do_promote then
         -- 仅 A + B，不重排
         for cand in input:iter() do
-        cand = with_formatted_text(cand)
-        cand = autocap_candidate(cand, code)
-        yield(cand)
+            cand = with_formatted_text(cand)
+            cand = autocap_candidate(cand, code)
+            yield(cand)
         end
         return
     end
 
     -- A + B + C：第一候选不动；其余按分组顺序输出
-    local first
+    local first_processed = nil   -- 处理过 A、B 的第一候选
+    local first           = nil   -- 分组逻辑里的第一候选（与 first_processed 相同）
     local no_alpha, equal_alpha, others = {}, {}, {}
     local i = 0
+    local second_is_user_table = false
+    local passed_second_check  = false
 
     for cand in input:iter() do
-        cand = with_formatted_text(cand)     -- 功能 A
-        cand = autocap_candidate(cand, code) -- 功能 B
+        -- 先做 A、B
+        cand = with_formatted_text(cand)
+        cand = autocap_candidate(cand, code)
 
         i = i + 1
         if i == 1 then
-        first = cand                        -- 第一候选永远不动
-        else
-        -- 仅 table 系列参与分组；非 table 直接归入“其他”
-        if is_table_phrase(cand) then
-            local txt = cand.text
-            if not has_alpha(txt) then
-            no_alpha[#no_alpha + 1] = cand
-            elseif is_equal_alpha(txt, code) then
-            equal_alpha[#equal_alpha + 1] = cand
+            first_processed = cand
+            -- 延后到判定第二候选后再决定是否排序
+        elseif i == 2 and not passed_second_check then
+            -- 检查“第二候选是否为 user_table”（看 genuine/type）
+            local g = cand.get_genuine and cand:get_genuine() or cand
+            second_is_user_table = is_user_table(g or cand)
+            passed_second_check  = true
+
+            if second_is_user_table then
+                -- ★ 第二候选为 user_table：不执行排序，原序输出并直接返回
+                if first_processed then yield(first_processed) end
+                yield(cand)
+                -- 余下候选保持原序（仍做 A、B）
+                for rest in input:iter() do
+                    rest = with_formatted_text(rest)
+                    rest = autocap_candidate(rest, code)
+                    yield(rest)
+                end
+                return
             else
-            others[#others + 1] = cand
+                -- 否则进入正常分组逻辑：先固定第一候选
+                first = first_processed
+                -- 第二候选作为分组对象继续往下分类
+                if is_table_phrase(cand) then
+                    local txt = cand.text
+                    if not has_alpha(txt) then
+                        no_alpha[#no_alpha + 1] = cand
+                    elseif is_equal_alpha(txt, code) then
+                        equal_alpha[#equal_alpha + 1] = cand
+                    else
+                        others[#others + 1] = cand
+                    end
+                else
+                    others[#others + 1] = cand
+                end
             end
+
         else
-            others[#others + 1] = cand
-        end
+            -- 已过第二候选判定，按原有分组规则处理
+            if is_table_phrase(cand) then
+                local txt = cand.text
+                if not has_alpha(txt) then
+                    no_alpha[#no_alpha + 1] = cand
+                elseif is_equal_alpha(txt, code) then
+                    equal_alpha[#equal_alpha + 1] = cand
+                else
+                    others[#others + 1] = cand
+                end
+            else
+                others[#others + 1] = cand
+            end
         end
     end
 
-    if first then yield(first) end
+    -- 正常分组输出
+    if first then yield(first) else if first_processed then yield(first_processed) end end
     for _, c in ipairs(no_alpha)    do yield(c) end  -- ① 不含字母
     for _, c in ipairs(equal_alpha) do yield(c) end  -- ② 纯字母且等于编码
     for _, c in ipairs(others)      do yield(c) end  -- ③ 其他
