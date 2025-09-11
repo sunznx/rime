@@ -87,7 +87,7 @@ style:
     max_width: 1400          # 2800
     min_height: 0              # 候选框最小高度、宽度
     min_width: 50 #80
-    type: horizontal        # 布局类型；功能近似 style 下的窗口控制选项   horizontal; vertical
+    #type: horizontal        # 布局类型；功能近似 style 下的窗口控制选项   horizontal; vertical
     border_width: 1         # 边框宽度，别名 `border`
     border: 1
     margin_x: 8                # 主体元素和候选框的左右、上下边距，为负值时，不显示候选框
