@@ -122,7 +122,6 @@ ahou	ahpu
 gmou	gmpu
 urou	urpu
 ucou	ucpu
-amou	ampu
 arou	arpu
 gfou	gfpu
 ekou	ekpu
