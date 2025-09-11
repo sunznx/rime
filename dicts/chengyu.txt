@@ -6588,7 +6588,6 @@
 黏在一起	nzyq
 念兹在兹	nzzz
 藕断丝连	odsl
-嗯呐嗯呐	onon
 呕心沥血	oxlx
 欧亚大陆	oydl
 偶一为之	oywv
@@ -18425,7 +18424,6 @@ AVL树	avlu
 耳鸣耳聋	emel
 噩梦降临	emjl
 二码上屏	emup
-嗯呐嗯呐	enen
 儿女成行	enih
 儿女双全	enuq
 儿女之情	envq
@@ -22910,7 +22908,6 @@ AVL树	avlu
 花色品种	hspv
 话虽如此	hsrc
 害死人了	hsrl
-骇死人了	hsrl
 黑色人种	hsrv
 回溯算法	hssf
 狐死首丘	hsuq
@@ -22918,7 +22915,6 @@ AVL树	avlu
 红色炸弹	hsvd
 红色政权	hsvq
 黄色炸药	hsvy
-骇死我了	hswl
 害死我了	hswl
 黄色网站	hswv
 黄色文学	hswx
