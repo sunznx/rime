@@ -7,10 +7,10 @@
 --         - 仅对 ASCII 单词生效；若候选含非 ASCII、含空格、或编码与候选不匹配等，则不转换
 -- 功能 C：候选重排（仅编码长度 2..6 时）
 --         - 第一候选永远不动
---         - 其余按组输出：①不含字母 → ②纯字母且与编码完全相同（忽略大小写）→ ③其他
---         - 仅 table 系列参与分组（table/user_table），非 table 归入“其他”
+--         - 其余按组输出：①不含字母 → ②其他
+--         - 仅 table 系列参与分组（table/user_table），非 table 归入"其他"
 -- 新增规则：
---         - 若“第二候选”为 user_table，则不执行任何排序；按原顺序（仅做 A、B）直接输出并返回
+--         - 若"第二候选"为 user_table，则不执行任何排序；按原顺序（仅做 A、B）直接输出并返回
 -- 性能优化：
 --         - 单次遍历；中文/emoji 等（首字节>0x7F）且不含 '\' 的候选极早退
 --         - 正则改字节级判断；仅必要时 new Candidate
@@ -48,7 +48,14 @@ end
 local function has_ascii_alpha_fast(s)
     for i = 1, #s do
         local b = byte(s, i)
-        if (b >= 65 and b <= 90) or (b >= 97 and b <= 122) then return true end
+        -- 检查字母 (A-Z, a-z)
+        if (b >= 65 and b <= 90) or (b >= 97 and b <= 122) then 
+            return true 
+        end
+        -- 检查特殊符号：半角空格(32)、#(35)、·(183)、-(45)、@(64)
+        if b == 32 or b == 35 or b == 183 or b == 45 or b == 64 then
+            return true
+        end
     end
     return false
 end
@@ -147,14 +154,8 @@ local function belong_group1_no_alpha(cand)
     return is_table_phrase(cand) and (not has_ascii_alpha_fast(cand.text))
 end
 
-local function belong_group2_equal_alpha(cand, pure_code)
-    if not is_table_phrase(cand) then return false end
-    local txt = cand.text
-    return is_ascii_word_fast(txt) and is_ascii_word_fast(pure_code) and ascii_equal_ignore_case(txt, pure_code)
-end
-
 ------------------------------------------------------------
--- 主滤镜：单次遍历 + “第二候选 user_table 直通” + 排序窗口
+-- 主滤镜：单次遍历 + "第二候选 user_table 直通" + 排序窗口
 ------------------------------------------------------------
 function M.func(input, env)
     local code = env.engine.context.input or ""
@@ -193,14 +194,11 @@ function M.func(input, env)
     local grouped_cnt = 0    -- 已参与分组的数量（不含第 1 个）
     local window_closed = false
 
-    local group2_equal_alpha = {}
-    local group3_others = {}
+    local group2_others = {}
 
     local function flush_groups()
-        for _, c in ipairs(group2_equal_alpha) do yield(c) end
-        for _, c in ipairs(group3_others)     do yield(c) end
-        group2_equal_alpha = {}
-        group3_others = {}
+        for _, c in ipairs(group2_others) do yield(c) end
+        group2_others = {}
     end
 
     for cand in input:iter() do
@@ -220,11 +218,9 @@ function M.func(input, env)
             mode = "grouping"
             grouped_cnt = 1
             if belong_group1_no_alpha(cand) then
-            yield(cand) -- 组①即时吐
-            elseif belong_group2_equal_alpha(cand, pure_code) then
-            group2_equal_alpha[#group2_equal_alpha + 1] = cand
+            yield(cand) -- 组①即时吐（不含字母的table系列）
             else
-            group3_others[#group3_others + 1] = cand
+            group2_others[#group2_others + 1] = cand -- 其他候选
             end
             if sort_window > 0 and grouped_cnt >= sort_window then
             flush_groups()
@@ -242,11 +238,9 @@ function M.func(input, env)
             if (not window_closed) and ((sort_window <= 0) or (grouped_cnt < sort_window)) then
             grouped_cnt = grouped_cnt + 1
             if belong_group1_no_alpha(cand) then
-                yield(cand) -- 组①即时吐
-            elseif belong_group2_equal_alpha(cand, pure_code) then
-                group2_equal_alpha[#group2_equal_alpha + 1] = cand
+                yield(cand) -- 组①即时吐（不含字母的table系列）
             else
-                group3_others[#group3_others + 1] = cand
+                group2_others[#group2_others + 1] = cand -- 其他候选
             end
             -- 达到窗口上限：先冲洗，再把后续全部直通
             if sort_window > 0 and grouped_cnt >= sort_window then

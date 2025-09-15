@@ -59,21 +59,28 @@ Y	Y
 y	Y
 Z	Z
 z	Z
-AA	AA
-AI	AI
-AK	AK
+AA	Aa
+kW	Kw
+HB	Hb
+ts	Ts
+PV	Pv
+PE	Pe
+PP	Pp
+AD	Ad
+AI	Ai
+AK	Ak
 am	Am
 as	As
 at	At
-AV	AV
+AV	Av
 be	Be
-BT	BT
+BT	Bt
 by	By
 C#	C#
-CD	CD
-CN	CN
-CS	CS
-DJ	DJ
+CD	Cd
+CN	Cn
+CS	Cs
+DJ	Dj
 do	Do
 er	Er
 Fn	Fn
@@ -82,48 +89,48 @@ go	Go
 Go	Go
 he	He
 hi	Hi
-HK	HK
+HK	Hk
 ho	Ho
 id	Id
 ID	Id
-ID	ID
-IE	IE
+IE	Ie
 if	If
 in	In
-IO	IO
-IP	IP
-IQ	IQ
+IO	Io
+IP	Ip
+IQ	Iq
 is	Is
 it	It
-JS	JS
-LV	LV
+JS	Js
+LV	Lv
 me	Me
 mu	Mu
 my	My
-NG	NG
+NG	Ng
 no	No
 nu	Nu
-OC	OC
+OC	Oc
 of	Of
 ok	Ok
-OK	OK
+OK	Ok
 on	On
 or	Or
-OS	OS
-PC	PC
+OS	Os
+PC	Pc
 pi	Pi
-PK	PK
-PS	PS
-QQ	QQ
+PK	Pk
+PS	Ps
+QQ	Qq
 so	So
-TM	TM
+TM	Tm
 to	To
-TV	TV
-UI	UI
-UK	UK
+TV	Tv
+UI	Ui
+UK	Uk
 up	Up
+us	Us
 US	Us
-WC	WC
+WC	Wc
 we	We
 xi	Xi
 oh	Oh
@@ -146,7 +153,7 @@ cd	Cd
 gm	Gm
 co	Co
 ag	Ag
-dB	DB
+dB	Db
 kb	Kb
 en	En
 ah	Ah
@@ -157,7 +164,6 @@ vs	Vs
 ad	Ad
 jo	Jo
 hp	Hp
-us	Us
 cc	Cc
 ic	Ic
 ax	Ax
@@ -9303,12 +9309,12 @@ glans	Glans
 barbecue	BBQ
 December	Dec
 February	Feb
-Hong Kong	HK
-Instagram	IG
+Hong Kong	Hk
+Instagram	Ig
 NBA 2K	NBA2K
 November	Nov
 One UI	OneUI
-Photoshop	PS
+Photoshop	Ps
 Rush A	RushA
 Rush B	RushB
 Saturday	Sat
@@ -10813,7 +10819,7 @@ Janice	Janice
 jargon	Jargon
 Jarvis	Jarvis
 jasper	Jasper
-JavaScript	JS
+JavaScript	Jv
 Jeanne	Jeanne
 Jeeves	Jeeves
 Jensen	Jensen
@@ -12258,7 +12264,7 @@ TCP/IP	TCP/IP
 teamed	Teamed
 techno	Techno
 Tehran	Tehran
-television	TV
+television	Tv
 teller	Teller
 Telnet	Telnet
 temper	Temper
@@ -16242,7 +16248,7 @@ caries	Caries
 maguey	Maguey
 pulque	Pulque
 scampi	Scampi
-Adult Video	AV
+Adult Video	Av
 Big Sur	BigSur
 by the way	BTW
 Day One	DayOne
@@ -16255,7 +16261,7 @@ Kubernetes	K8s
 Kung Fu	KungFu
 Mac Pro	MacPro
 MyGO!!!!!	MyGO
-Objective-C	OC
+Objective-C	Oc
 PowerPoint	PPT
 Pro Max	ProMax
 QR code	QRcode
@@ -24246,7 +24252,7 @@ qBittorrent	QBit
 RFC 3339	RFC3339
 Secure Shell	SSH
 Touch ID	TouchID
-United States	US
+United States	Us
 Video CD	VideoCD
 Xbox One	XboxOne
 Aberdeen	Aberdeen
@@ -24837,7 +24843,7 @@ costumes	Costumes
 cottages	Cottages
 couldn't	Couldn't
 councils	Councils
-Counter-Strike	CS
+Counter-Strike	Cs
 counters	Counters
 counties	Counties
 counting	Counting
@@ -26964,7 +26970,7 @@ underlie	Underlie
 underway	Underway
 uniforms	Uniforms
 uniquely	Uniquely
-United Kingdom	UK
+United Kingdom	Uk
 universe	Universe
 unlawful	Unlawful
 unlikely	Unlikely
@@ -33529,7 +33535,7 @@ OmniFocus	OmniFocus
 one-liner	One-liner
 OpenFeign	OpenFeign
 operating	Operating
-Operating System	OS
+Operating System	Os
 operation	Operation
 operative	Operative
 operators	Operators
@@ -38773,8 +38779,8 @@ Game Boy Advance	GBA
 Google Ads	GoogleAds
 Google One	GoogleOne
 Grand Theft Auto	GTA
-Internet Explorer	IE
-internet protocol	IP
+Internet Explorer	Ie
+internet protocol	Ip
 Laugh Out Loudly	LOL
 Laugh Tale	LaughTale
 Legal High	LegalHigh
@@ -47266,7 +47272,7 @@ Google Voice	GoogleVoice
 Honey Select	HoneySelect
 Hybrid drive	Hybriddrive
 iCloud Drive	ICloudDrive
-Intelligence quotient	IQ
+Intelligence quotient	Iq
 iTunes Match	ITunesMatch
 iTunes Store	ITunesStore
 Java Development Kit	JDK

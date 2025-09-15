@@ -39,6 +39,7 @@ translator:
   dictionary: wanxiang_mixedcode
   enable_user_dict: false
 通用派生规则:
+  - derive|^([A-Z].)$|$1/|
   # 数字派生，先将整数类派生出英文写法
   - derive/(?<!\d)1([1-9])(?!\d)/'shí'$1/
   - derive/([1-9])0000(?!0)/$1'wàn'/
