@@ -50,8 +50,8 @@ switches:
   - name: corrector                     #一个基于数据库策略的编码纠错工具,优势是跨词汇直接修正编码,与转写方式形成互补，归属：typo_corrector.lua
     reset: 1
     states: [ 纠错关, 纠错开 ]
-  - name: search_single_char            #多体现在编码重合但候选有单字或者多字的情况辅码查词时是否单字优先，全拼常见，类似于特定编码情况下、反查状态下的调序能力。归属：search.lua
-    states: [正常, 单字]
+  - name: char_priority                #多体现在编码重合但候选有单字或者多字的情况`引导的辅码查词时是否单字优先，全拼常见，类似于特定编码情况下、反查状态下的调序能力。归属：search.lua
+    states: [词组先, 单字先]
 
 
 # 输入引擎
@@ -107,9 +107,9 @@ engine:
     - simplifier@s2tw                               #简繁切换台繁
     - simplifier@s2hk                               #简繁切换港繁
     - simplifier@chinese_english                    #中英翻译滤镜
-    - lua_filter@*search@wanxiang_reverse           #部件拆字辅码放在简繁转换之后
+    - lua_filter@*super_lookup                      #字词输入中反查辅助筛选
+    - lua_filter@*super_sequence*F                  #手动排序放在assist_sort 后面，高亮候选 ctrl+j左移动 ctrl+k 右移动 ctrl+0 移除位移
     - lua_filter@*text_formatting_promote           #给自定义用户词扩展一个换行:\n, 制表符：\t, 回车符：\r, 空格：\s ，并对简码位置提升到第二位，同时保证英文前置避免无效派生干扰
-    - lua_filter@*super_sequence*F                  #手动排序，高亮候选 ctrl+j左移动 ctrl+k 右移动 ctrl+0 移除位移
     - uniquifier                                    # 去重
 
 # Tips 配置项
@@ -360,6 +360,10 @@ radical_reverse_lookup:
   overwrite_comment: true   #是否覆盖其他提示
   dictionary: wanxiang      #带音调的词典
 
+wanxiang_lookup: #设置归属于super_lookup.lua
+  tags: [ abc ]  # 检索当前tag的候选
+  key: "`"       # 输入中反查引导符，要添加到 speller/alphabet
+  lookup: [ wanxiang_reverse ] #反查滤镜数据库，万象都合并为一个了
 
 # 处理符合特定规则的输入码，如网址、反查
 recognizer:
@@ -401,7 +405,6 @@ key_binder:
   # Lua 配置: 以词定字（上屏当前词句的第一个或最后一个字），和中括号翻页有冲突
   select_first_character: "bracketleft"  # 左中括号 [
   select_last_character: "bracketright"  # 右中括号 ]
-  search: "`"             # 反查引导符，要添加到 speller/alphabet
   bindings:               # 也可以再增加方案专有的
 #- { when: composing, accept: Tab, send: '[' } ## 取消注释后：tab引导辅助码
     - { when: composing, accept: Control+w, send: Control+BackSpace }
