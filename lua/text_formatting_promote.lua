@@ -37,7 +37,7 @@ local function has_ascii_alpha_fast(s)
     for i = 1, #s do
         local b = byte(s, i)
         if (b >= 65 and b <= 90) or (b >= 97 and b <= 122) then return true end
-        -- 以下字节符号被视作“ASCII痕迹”
+        -- 以下字节符号被视作“ASCII痕迹”半角空格(32)、#(35)、·(183)、-(45)、@(64)
         if b == 32 or b == 35 or b == 183 or b == 45 or b == 64 then return true end
     end
     return false
