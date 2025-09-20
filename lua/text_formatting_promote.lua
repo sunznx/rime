@@ -260,8 +260,8 @@ function M.init(env)
         if okb and bv ~= nil then env.suppress_mirror = bv end
     end
 
-    env.cache  = nil
-    env.locked = false
+    env.cache   = nil   -- 未锁定时记录的第一候选
+    env.locked  = false -- 是否处于“prefix/suffix”锁定
 end
 
 function M.fini(env) end

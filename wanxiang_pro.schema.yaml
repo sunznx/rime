@@ -1354,7 +1354,7 @@ add_user_dict:
   enable_charset_filter: false # 是否开启字符集过滤
   enable_completion: true # 提前显示尚未输入完整码的字〔仅 table_translator 有效〕
   enable_user_dict: true
-  enable_auto_phrase: false
+  enable_auto_phrase: true
   spelling_hints: 50
   preedit_format:
   comment_format:
