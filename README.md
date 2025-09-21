@@ -232,7 +232,7 @@ sequence_deepin.txt
 sequence_windows.txt
 sequence_iPhone.txt
 ```
-4. 按「部署」，会进行以下几步：
+3. 按「部署」，会进行以下几步：
 
 ①、自动导出数据到 `sequence_deepin.txt` 文件(假设为当前设备)，因此这个当前设备文件会被覆盖，请不要手动修改避免丢失；
 
