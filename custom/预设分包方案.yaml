@@ -316,7 +316,7 @@ wanxiang_mixedcode:
 emoji:
   option_name: emoji
   opencc_config: emoji.json
-  inherit_comment: false
+  tags: [abc]
 
 #中文转英文
 chinese_english:

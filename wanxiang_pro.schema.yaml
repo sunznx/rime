@@ -318,7 +318,7 @@ wanxiang_mixedcode:
 emoji:
   option_name: emoji
   opencc_config: emoji.json
-  inherit_comment: false  # 在 corrector.lua 及反查中，emoji 返回空注释
+  tags: [abc]
 
 
 #中文转英文
