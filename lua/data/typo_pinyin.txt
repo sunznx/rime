@@ -1003,9 +1003,9 @@ cong	cpmg
 #i修正为o
 gong	ging
 hong	hing
-rong	ring
-song	sing
-zong	zing
+#rong	ring
+#song	sing
+#zong	zing
 cong	cing
 #kong	king
 #由于上面是king英文，滞后一步处理
