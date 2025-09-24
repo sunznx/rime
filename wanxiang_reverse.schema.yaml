@@ -3,7 +3,7 @@
 ###############选择与之匹配的拼音方案#####################
 set_shuru_schema:
   __include: 全拼    #可选的选项有（全拼, 自然码, 小鹤双拼, 微软双拼, 搜狗双拼, 智能ABC, 紫光双拼, 拼音加加, 国标双拼, 乱序17）
-  __patch: hspzn      #笔画类型有hspzn和hupvd可选
+  __patch: hspzn      #笔画类型有hspzn，hupvd及hslzy（适配乱序17）可选
 
 ######################################################
 schema:
@@ -48,6 +48,11 @@ hspzn:
 hupvd:
   __append:
     - xlit/HSPZN/hupvd/
+#适配乱序17按键映射的笔画映射（横在HP键，竖在Sh键，撇在L键，捺在Y键，折在Zh键）
+hslzy:  
+  __append:
+    - xlit/HSPZN/hslzy/   
+    
 全拼:
   - xform/'//
   - derive/^([nl])ue$/$1ve/
