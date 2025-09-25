@@ -25,7 +25,7 @@ package_schema_base() {
 
     # 1. 拷贝 custom/ 下除 wanxiang_pro.custom* 外的所有 yaml、md、jpg、ng 文件
     mkdir -p "$OUT_DIR"/custom
-    find "$CUSTOM_DIR" -type f \( -name "*.yaml" -o -name "*.md" -o -name "*.jpg" -o -name "*.png" -o -name "*.txt" \) \
+    find "$CUSTOM_DIR" -type f \( -name "*.yaml" -o -name "*.md" -o -name "*.jpg" -o -name "*.png" \) \
         ! \( -name "wanxiang_pro.custom*" -o -name "预设分包方案.yaml" \) -exec cp {} "$OUT_DIR"/custom \;
 
     # 2. 拷贝根目录下除指定内容外的文件/文件夹
@@ -35,11 +35,12 @@ package_schema_base() {
         if [[ "$name" == "release-please-config.json" ]]; then continue; fi
         if [[ "$name" == "pro-"*-fuzhu-dicts ]]; then continue; fi
         if [[ "$name" == "chaifen" ]]; then continue; fi 
+        if [[ "$name" == "CHANGELOG.md" ]]; then continue; fi
         if [[ "$name" == "wanxiang_pro.dict.yaml" || "$name" == "wanxiang_pro.schema.yaml" ]]; then continue; fi
         if [[ "$name" == "wanxiang_chaifen.dict.yaml" || "$name" == "wanxiang_chaifen.schema.yaml" ]]; then continue; fi
         if [[ "$name" == "wanxiang_charset.dict.yaml" || "$name" == "wanxiang_charset.schema.yaml" ]]; then continue; fi
         #if [[ "$name" == "custom_phrase_flypy.txt" ]]; then continue; fi
-        if [[ "$name" == "custom" || "$name" == "dist" ]]; then continue; fi
+        if [[ "$name" == "dist" ]]; then continue; fi
         if [[ "$name" == "LICENSE" ]]; then continue; fi
 
         # 处理 dicts 文件夹
@@ -112,7 +113,7 @@ package_schema_pro() {
 
     # 4. 拷贝 custom/ 下除 wanxiang.custom.yaml 外的所有 yaml、md、jpg、png 文件
     mkdir -p "$OUT_DIR"/custom
-    find "$ROOT_DIR/custom" -type f \( -name "*.yaml" -o -name "*.md" -o -name "*.jpg" -o -name "*.png" -o -name "*.txt" \) \
+    find "$ROOT_DIR/custom" -type f \( -name "*.yaml" -o -name "*.md" -o -name "*.jpg" -o -name "*.png" \) \
         ! \( -name "wanxiang.custom*" -o -name "预设分包方案.yaml" \) -exec cp {} "$OUT_DIR"/custom \;
 
     # 5. 拷贝根目录下除指定内容外的文件/文件夹
@@ -123,9 +124,10 @@ package_schema_pro() {
         if [[ "$name" == "pro-"*-fuzhu-dicts ]]; then continue; fi
         if [[ "$name" == "chaifen" ]]; then continue; fi
         if [[ "$name" == "wanxiang_t9.schema.yaml" ]]; then continue; fi
+        if [[ "$name" == "CHANGELOG.md" ]]; then continue; fi
         if [[ "$name" == "wanxiang.dict.yaml" || "$name" == "wanxiang.schema.yaml" ]]; then continue; fi
         if [[ -e "$OUT_DIR/$name" ]]; then continue; fi
-        if [[ "$name" == "custom" || "$name" == "dist" ]]; then continue; fi
+        if [[ "$name" == "dist" ]]; then continue; fi
         if [[ "$name" == "LICENSE" ]]; then continue; fi
         cp -r "$item" "$OUT_DIR/"
     done
