@@ -78,6 +78,8 @@
 
 方案提供了custom文件夹，预设了一些文件与教程，请不要删除相关文件，根据文件夹中内容进行相关修改变更：
 
+**不要在default.custom写东西,任何patch都要对方案文件进行patch，default.custom留给前端操作请务必悉知！**
+
 ```
 wanxiang.custom.yaml是对wanxiang.schema.yaml的补丁以此类推
 可以打补丁的类型：
