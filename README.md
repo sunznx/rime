@@ -153,15 +153,16 @@ schema,default,weasel,squirrel
 
 **功能5**  句子中间或者单字输入时需要可以使用更精确的聚拢方式"声调辅助"，7890数字按键代表1234声，轻声归并到4声，在功能4中我们可以在双拼两码后面3个编码的位置任意插入声调与两位辅助码混合使用，就是除了不用斜杠了，我们还顺序自由了，下面由两个图片说明问题,其实在键盘上想要安排四个按键是很难得,不是占用这个按键就是占用另外的,还有得朋友觉得离得远,还有得更是不需要声调,要把候选做成9个。这些都是存在的情况,现在的处理也是妥协后的结果,要想完全不占用按键类似的办法可以改成大写字母来代表,像地球拼音则是使用大于小于号这一片的符号来表示,我们的词库有声调这个基础,一定程度上还是要利用起来：
 
-![截图_选择区域_20250512101814.png](https://storage.deepin.org/thread/202505120222182012_截图_选择区域_20250512101814.png)
+<img src="https://storage.deepin.org/thread/202505120222182012_截图_选择区域_20250512101814.png" height="130" width="520">
 
-![截图_选择区域_20250512101752.png](https://storage.deepin.org/thread/20250512022217432_截图_选择区域_20250512101752.png)
+<img src="https://storage.deepin.org/thread/20250512022217432_截图_选择区域_20250512101752.png" height="130" width="520">
 
-![截图_选择区域_20250512101713.png](https://storage.deepin.org/thread/202505120222163619_截图_选择区域_20250512101713.png)
+<img src="https://storage.deepin.org/thread/202505120222163619_截图_选择区域_20250512101713.png" height="130" width="520">
+
 
 **功能6**  混合输入:字母、汉字、数字、用于连接的特殊符号等组合，以及英文混输，我们统一放在了wanxiang_mixedcode.schema.yaml混合编码方案里，此功能无需引导，直接输入，不参与组句，类似：1000wclips、AD钙奶、PN结、Type-C以及纯英文，同样可以通过custom来定义你所使用的双拼。
 
-![东风5C](https://github.com/amzxyz/amzxyz/blob/main/%E6%B7%B7%E5%90%88%E7%BC%96%E7%A0%81.jpg)
+![东风5C](https://storage.deepin.org/thread/202509260105536966_混合编码.jpg)
 
 **整合说明** 万象方案整合度很高，我们不希望使用户文件夹变得复杂，功能5中我们将两类习惯的五笔画和多分拆字和两分拆字整合到了一起，可以认为是4个挂接方案；在功能6中，我们将 英文输入、中英混合编码、以及一些其他混合编码整合到了一起，共享方案转写，两个功能都保证了可配置性，都能与你所使用的双拼契合，
 对于词库也都整合到了dicts里面，为了能更好的统一更新和分发，仓库中我们支持基础版本词库、携带pro的辅助码版本词库、英文词库、混合词库4个类别，在release中各自归类，最终做到了根目录15个文件、4个文件夹示人，其中的custom目录还携带了用户自定义的法宝秘籍，能称得上简约而不简单。
@@ -185,62 +186,62 @@ schema,default,weasel,squirrel
 #节日：ojr 或者 /jr
 #问候模板：/day 或者 oday
 ```
-<img src="https://github.com/amzxyz/amzxyz/blob/main/N20250102.jpg" height="100" width="620">
-<img src="https://github.com/amzxyz/amzxyz/blob/main/N0102.jpg" height="100" width="550">
+<img src="https://storage.deepin.org/thread/202509260107542641_N20250102.jpg" height="80">
+<img src="https://storage.deepin.org/thread/202509260108069991_N0102.jpg" height="80">
 
 **Unicode：** 大写 U 开头，如 U62fc 得到「拼」。
 
-<img src="https://github.com/amzxyz/amzxyz/blob/main/U%E7%A0%81.jpg" height="100" width="280">
+<img src="https://storage.deepin.org/thread/202509260111366093_U码.jpg" height="80">
 
 **数字、金额大写：**  大写 R 开头，如 R1234 得到「一千二百三十四、壹仟贰佰叁拾肆元整」。
 
-<img src="https://github.com/amzxyz/amzxyz/blob/main/%E9%87%91%E9%A2%9D%E5%A4%A7%E5%86%99.jpg" height="100" width="550">
+<img src="https://storage.deepin.org/thread/202509260124573417_金额大写.jpg" height="80">
 
  **/引导模式：**  通过输入 /sx 快捷输入关于“数学”的特殊符号，具体能输入什么可以打开 symbols.yaml学习。
 
-<img src="https://github.com/amzxyz/amzxyz/blob/main/%E7%AC%A6%E5%8F%B7%E6%95%B0%E5%AD%A6.jpg" height="100" width="350">
-<img src="https://github.com/amzxyz/amzxyz/blob/main/%E7%AC%A6%E5%8F%B7%E5%A4%A7%E4%BA%8E.jpg" height="100" width="250">
-<img src="https://github.com/amzxyz/amzxyz/blob/main/%E7%AC%A6%E5%8F%B7%E5%9C%86%E7%82%B9.jpg" height="100" width="210">
+<img src="https://storage.deepin.org/thread/202509260126183029_符号数学.jpg" height="80">
+<img src="https://storage.deepin.org/thread/202509260126173818_符号大于.jpg" height="80">
+<img src="https://storage.deepin.org/thread/202509260126167252_符号圆点.jpg" height="80">
 
 **计算器：**  通过输入大写V引导继续输入如：V3+5  候选框就会有8和3+5=8，基础功能 `+ - * / % ^` 还支持 `sin(x) cos(x)` 等众多运算方式，打开super_calculator.lua阅读相关用法。
 
-<img src="https://github.com/amzxyz/amzxyz/blob/main/%E8%AE%A1%E7%AE%97%E5%99%A81.png" height="100" width="400">
-<img src="https://github.com/amzxyz/amzxyz/blob/main/%E8%AE%A1%E7%AE%97%E5%99%A82.jpg" height="100" width="270">
+<img src="https://storage.deepin.org/thread/202509260127113759_计算器1.png" height="80">
+<img src="https://storage.deepin.org/thread/202509260127126065_计算器2.jpg" height="80">
 
 **自动上屏：**  例如：三位、四位简码唯一时，自动上屏如`jjkw岌岌可危` `zmhu怎么回事` 。默认未开启，方案文件中`speller:`字段下取消注释这两句开启 `#  auto_select: true  #  auto_select_pattern: ^[a-z]+/|^[a-df-zA-DF-Z]\w{3}|^e\w{4}`
 
 **错音错字提示：**  例如：输入`gei yu给予`，获得`jǐ yǔ`提示，此功能与全拼、双拼类型无关全部支持；
 
-<img src="https://github.com/amzxyz/amzxyz/blob/main/%E9%94%99%E9%9F%B3%E7%BB%99%E4%BA%88.jpg" height="100" width="200">      <img src="https://github.com/amzxyz/amzxyz/blob/main/%E9%94%99%E9%9F%B3%E5%B4%A9%E6%BA%83.jpg" height="100" width="170">
+<img src="https://storage.deepin.org/thread/202509260127525844_错音给予.jpg" height="80">      <img src="https://storage.deepin.org/thread/202509260127524705_错音崩溃.jpg" height="80">
 
 **快符Lua：** 例如通过 ```a/``` ，快速自动上屏“！”符号或者定义为任意字符，享受26字母的扩展。其中值设置为`repeat`则意味着按下对应按键能否重复上一次上屏的内容；
 
 **超级tips：** 支持将表情、化学式、翻译、简码 提示等等你能想到得数据获得提示显示并将通过一个自定义按键直接上屏，默认为“.” 也表现为句号，如需句号翻页可以采用其他作为触发。避免了这类内容占用候选框，通过Control+t 进行开关。⚠️仓输入法、超越输入法设置按键交由rime去处理，没有特殊需求应该一律交给rime；
 
-化学式：<img src="https://github.com/amzxyz/amzxyz/blob/main/tips%E5%8C%96%E5%AD%A6%E5%BC%8F.jpg" height="100" width="210">符号：<img src="https://github.com/amzxyz/amzxyz/blob/main/tips%E7%AC%A6%E5%8F%B7.jpg" height="100" width="165">表情：<img src="https://github.com/amzxyz/amzxyz/blob/main/tips%E8%A1%A8%E6%83%85.jpg" height="100" width="210">
+化学式：<img src="https://storage.deepin.org/thread/202509260128462735_tips化学式.jpg" height="80">符号：<img src="https://storage.deepin.org/thread/202509260128454675_tips符号.jpg" height="80">表情：<img src="https://storage.deepin.org/thread/202509260128457494_tips表情.jpg" height="80">
 
 **首选格式化：** 将自定义短语中，诸如\n \s \t 等行中标识符转换为实际的换行、空格、制表符等等，使得类似输入jys可以打出一首带格式的《静夜思》，这将成为类似书名号输入场景的利器。
 
 例：```静夜思\n\s\s李白\n床前明月光\n疑似地上霜\n举头望明月\n低头思故乡	jys```
 
-<img src="https://github.com/amzxyz/amzxyz/blob/main/%E6%A0%BC%E5%BC%8F%E5%8C%96.jpg" height="260" width="220"> 
+<img src="https://storage.deepin.org/thread/202509260129305342_格式化.jpg" height="260"> 
 
 **首选加成对符号：** 将输入中的短语通过输入追加\a 这样的末尾编码，触发相对于a这个字母映射的成对符号，例如：``` sj mk lq lh ji\l=《三毛流浪记》```可以通过custom自定义符号和触发方式。
 
 工作逻辑：输入词汇编码 > 按下锁定按钮\  >  按下映射字符\a  >  《候选包裹成对符号》
 
-<img src="https://github.com/amzxyz/amzxyz/blob/main/%E9%A6%96%E9%80%89%E6%88%90%E5%AF%B9%E7%AC%A6%E5%8F%B71.jpg" height="100" width="150"> <img  src="https://github.com/amzxyz/amzxyz/blob/main/%E9%A6%96%E9%80%89%E6%88%90%E5%AF%B9%E7%AC%A6%E5%8F%B72.jpg" height="100" width="150"> <img  src="https://github.com/amzxyz/amzxyz/blob/main/%E9%A6%96%E9%80%89%E6%88%90%E5%AF%B9%E7%AC%A6%E5%8F%B73.jpg" height="100" width="190">
+<img src="https://storage.deepin.org/thread/202509260130219621_首选成对符号1.jpg" height="80"> <img  src="https://storage.deepin.org/thread/202509260130208277_首选成对符号2.jpg" height="80"> <img  src="https://storage.deepin.org/thread/202509260130199763_首选成对符号3.jpg" height="80">
 
 **英文候选格式化：** 输入hello则得到hello，输入首字母大写Hello则得到Hello和一众首字母大写的联想词，输入前两码大写HEllo则得到全为大写的HELLO和一众大写英文。
 
-<img src="https://github.com/amzxyz/amzxyz/blob/main/%E9%A6%96%E5%AD%97%E6%AF%8D%E5%A4%A7%E5%86%99.jpg" height="100" width="520">
-<img src="https://github.com/amzxyz/amzxyz/blob/main/%E5%8F%8C%E5%AD%97%E6%AF%8D%E5%A4%A7%E5%86%99.jpg" height="100" width="550">
+<img src="https://storage.deepin.org/thread/202509260133175234_首字母大写.jpg" height="80">
+<img src="https://storage.deepin.org/thread/202509260133175362_双字母大写.jpg" height="80">
 
 **辅助码提示（仅PRO）：** 任意长度候选词的辅助码提示能力，默认开启1个字的辅助码，可以在方案文件中定义更长的长度。Ctrl+a可以实时在开启辅助码提示、开启声调全拼提示、关闭注释 三个状态循环，Ctrl+c开启拆分辅助提示，优先级高于普通辅助提示；
 
-<img  src="https://github.com/amzxyz/amzxyz/blob/main/%E8%BE%85%E5%8A%A9%E7%A0%81%E6%8F%90%E7%A4%BA.jpg" height="100" width="550">
-<img  src="https://github.com/amzxyz/amzxyz/blob/main/%E5%A3%B0%E8%B0%83%E6%8F%90%E7%A4%BA.jpg" height="100" width="530">
-<img  src="https://github.com/amzxyz/amzxyz/blob/main/%E6%8B%86%E5%88%86%E6%8F%90%E7%A4%BA.jpg" height="100" width="470">
+<img  src="https://storage.deepin.org/thread/202509260134283927_辅助码提示.jpg" height="80">
+<img  src="https://storage.deepin.org/thread/202509260134278003_声调提示.jpg" height="80">
+<img  src="https://storage.deepin.org/thread/202509260134284782_拆分提示.jpg" height="80">
 
 
 **输入码音调显示：** 通过Ctrl+s可以使得输入码实时动态显示全拼并加音调，这是万象特色功能；
