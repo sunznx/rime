@@ -5,6 +5,28 @@ name: wanxiang_reverse
 version: "LTS"
 sort: original
 ...
+α	alpha
+Α	alpha
+β	beta
+Β	beta
+γ	gamma
+Γ	gamma
+δ	delta
+Δ	delta
+ε	epsilon
+Ε	epsilon
+ζ	zeta
+Ζ	zeta
+η	eta
+Η	eta
+θ	theta
+Θ	theta
+ι	iota
+Ι	lota
+κ	kappa
+Κ	kappa
+λ	lambda
+Λ	lambda
 #拆分
 啊	kou'a
 啊	kuo'a
