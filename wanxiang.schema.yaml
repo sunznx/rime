@@ -47,6 +47,9 @@ switches:
   - name: super_tips                    #开启后在输入编码后面的提示区显示实时的提示数据，受tips数据库影响，表情、翻译、车牌、符号等对应关系数据，并可实现句号上屏，不开启则默认，影响的是segment.prompt参数，归属：super_tips.lua
     states: [ 提示关, 提示开 ]
     reset: 1
+  - name: charset_filter               #字符集过滤，默认开启8105通规显示，即小字集，可通过开关实时开启全字集，快捷键配套ctrl+g,归属：chars_filter.lua
+    states: [ 小字集, 大字集 ]
+    reset: 1
   - name: char_priority                #多体现在编码重合但候选有单字或者多字的情况`引导的辅码查词时是否单字优先，全拼常见，类似于特定编码情况下、反查状态下的调序能力。归属：super_lookup.lua
     states: [词组先, 单字先]
 
@@ -96,6 +99,7 @@ engine:
     - script_translator@add_user_dict      #按需自造词
     - script_translator@user_dict_set      #使用自造词
   filters:
+    - lua_filter@*chars_filter                      #字符集过滤
     - reverse_lookup_filter@radical_reverse_lookup  #部件拆字滤镜，放在super_comment前面，进一步被超级注释处理以获得拼音编码的提示
     - lua_filter@*super_comment_preedit             #超级注释模块、超级preedit，支持错词提示、辅助码显示，部件组字读音注释，有声调、无声调全拼编码的转换，支持个性化配置和关闭相应的功能，详情搜索super_comment_preedit进行详细配置
     - simplifier@emoji                              #Emoji滤镜
