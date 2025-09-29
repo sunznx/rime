@@ -32,14 +32,14 @@ local function replace_schema(file_path, target_schema)
 
     -- 根据文件名决定替换模式
     if file_path:find("wanxiang_reverse") then
-        content = content:gsub("([%s]*__include:%s*wanxiang_reverse%.schema:/)[^%sa-zA-Z\r\n]+", "%1" .. target_schema)
+        content = content:gsub("([%s]*__include:%s*wanxiang_algebra:/reverse/)[^%sa-zA-Z\r\n]+", "%1" .. target_schema)
 
     elseif file_path:find("wanxiang_mixedcode") then
-        content = content:gsub("([%s]*__include:%s*wanxiang_mixedcode%.schema:/)[^%sa-zA-Z\r\n]+", "%1" .. target_schema)
+        content = content:gsub("([%s]*__patch:%s*wanxiang_algebra:/mixed/)[^%sa-zA-Z\r\n]+", "%1" .. target_schema)
 
     elseif file_path:find("wanxiang%.custom") or file_path:find("wanxiang_pro%.custom") then
-        content = content:gsub("([%s%-]*wanxiang[_]pro%.schema:/)[^%sa-zA-Z\r\n]+", "%1" .. target_schema, 1)
-        content = content:gsub("([%s%-]*wanxiang%.schema:/)[^%sa-zA-Z\r\n]+", "%1" .. target_schema, 1)
+        content = content:gsub("([%s%-]*wanxiang_algebra:/pro/)[^%sa-zA-Z\r\n]+", "%1" .. target_schema, 1)
+        content = content:gsub("([%s%-]*wanxiang_algebra:/base/)[^%sa-zA-Z\r\n]+", "%1" .. target_schema, 1)
     end
     
 

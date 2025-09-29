@@ -1,15 +1,5 @@
 # Rime schema
 # encoding: utf-8
-# 方案说明
-# 方案说明
-########################万象拼音 ###########################
-set_shuru_schema:               #配置此项就是选择什么输入法,同时拆分反查和中英文混输也将匹配该输入方案
-  __include: 全拼
-super_comment:                  # 超级注释模块，子项配置 true 开启，false 关闭
-  candidate_length: 1           # 候选词辅助码提醒的生效长度，0为关闭  但同时清空其它，应当使用上面开关来处理
-  corrector_type: "〔comment〕"  # 错音措字，随意更换左右括号，比如"〔comment〕" 不加括号为无括号，comment占位不能动
-  chaifen: "〔chaifen〕"         # 拆分显示，随意更换左右括号，比如"〔chaifen〕" 不加括号为无括号，chaifen占位不能动
-########################以下是方案配置######################################################
 schema:
   schema_id: wanxiang_t9
   name: 万象・仓九
@@ -99,6 +89,11 @@ engine:
     - lua_filter@*super_lookup                      #字词输入中反查辅助筛选
     - lua_filter@*text_formatting_promote           #给自定义用户词扩展一个换行:\n, 制表符：\t, 回车符：\r, 空格：\s
     - uniquifier                                    # 去重
+
+super_comment:                  # 超级注释模块，子项配置 true 开启，false 关闭
+  candidate_length: 1           # 候选词辅助码提醒的生效长度，0为关闭  但同时清空其它，应当使用上面开关来处理
+  corrector_type: "〔comment〕"  # 错音措字，随意更换左右括号，比如"〔comment〕" 不加括号为无括号，comment占位不能动
+  chaifen: "〔chaifen〕"         # 拆分显示，随意更换左右括号，比如"〔chaifen〕" 不加括号为无括号，chaifen占位不能动
 
 # Tips 配置项
 tips:
@@ -290,12 +285,6 @@ speller:
   visual_delimiter: " "  # super_preedit.lua配置：是否让分隔符号跟着一起转换，例如nǐ'hǎo 在实际使用中表现出视觉拥挤，我们可以让delimiter平时是'转换为拼音的时候使用空格nǐ hǎo，更符合实际。
   tone_isolate: true     # super_preedit.lua配置：是否将数字声调从转换后拼音中隔离出来（true=隔离， false 直接参与转换）例如：nǐ3
   algebra:
-    __patch:
-      - set_shuru_schema     #拼音转双拼码在文件头部配置
-
-
-全拼:
-  __append:
     - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
     - xform/^(.*);.*$/$1/
     - abbrev/^([a-z]).+$/$1/
@@ -318,43 +307,6 @@ speller:
     - derive/[pqrs]/7/
     - derive/[tuv]/8/
     - derive/[wxyz]/9/
-
-模糊音: 
-  __append:
-    # n - l
-    - derive/^l/n
-    - derive/^n/l
-    # r - y     开头
-    - derive/^y/r
-    - derive/^r/y
-    # h - f     开头
-    - derive/^h/f
-    - derive/^f/h
-    # r - l     开头
-    - derive/^r/l
-    - derive/^l/r
-    # k - g     开头
-    - derive/^k/g
-    - derive/^g/k
-    # an - ang
-    - derive/([ui]?)([āáǎàa])ng(.*)$/$1$2n$3
-    - derive/([ui]?)([āáǎàa])n(.*)$/$1$2ng$3
-    # en - eng
-    - derive/([ēéěèe])ng(.*)$/$1n$2
-    - derive/([ēéěèe])n(.*)$/$1ng$2
-    # in - ing
-    - derive/([īíǐìi])ng(.*)$/$1n$2
-    - derive/([īíǐìi])n(.*)$/$1ng$2
-    # c - ch
-    - derive/^c([^h]*)/ch$1
-    - derive/^ch/c
-    # z - zh
-    - derive/^z([^h]*)/zh$1
-    - derive/^zh/z
-    # s - sh
-    - derive/^s([^h]*)/sh$1
-    - derive/^sh/s
-
 
 __include: octagram             #启用语言模型
 #语法模型
