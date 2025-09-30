@@ -51814,3 +51814,10 @@ SpongeBob SquarePants	SpongeBobSquarePants
 Unified Extensible Firmware Interface	UEFI
 digitalrepresentation	Digitalrepresentation
 electroencephalograph	Electroencephalograph
+Agentic Commerce Protocol	ACP
+git pull	gitpull
+git push -u origin main	gitpush
+git push -u origin wanxiang	gitpushw
+git add	gitadd
+git add .	gitadd
+git commit -m ""	gitcommit
