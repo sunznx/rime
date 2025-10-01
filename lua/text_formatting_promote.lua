@@ -302,7 +302,7 @@ function M.func(input, env)
     -- 输入为空：释放状态并返回
     if not code or code == "" then
         env.cache, env.locked = nil, false
-        return
+    --    return  如返回会造成无编码的联想词汇被清空（候选有重建候选逻辑）
     end
 
     -- composition 为空：只重置状态，不 return（避免输入 "\" 后空候选）

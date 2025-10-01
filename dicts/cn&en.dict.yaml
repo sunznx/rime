@@ -359,7 +359,6 @@ Go程	Go'chéng
 TG群	TG'qún
 Telegram群	Telegram'qún
 Wi-Fi密码	Wi'jiǎn'Fi'mì'mǎ
-DNA检测	DNA'jiǎn'cè
 A级	A'jí
 B级	B'jí
 C级	C'jí
@@ -1030,7 +1029,6 @@ NaCl溶液	NaCl'róng'yè
 pH值	pH'zhí
 Docker镜像	Docker'jìng'xiàng
 CO2排放	CO'èr'pái'fàng
-DNA序列	DNA'xù'liè
 RNA聚合酶	RNA'jù'hé'méi
 GPU加速	GPU'jiā'sù
 FFT变换	FFT'biàn'huàn
@@ -1061,7 +1059,6 @@ MRI检查	MRI'jiǎn'chá
 CT扫描	CT'sǎo'miáo
 ECG心电图	ECG'xīn'diàn'tú
 PCR实验	PCR'shí'yàn
-DNA测序	DNA'cè'xù
 RNA分析	RNA'fēn'xī
 Si材料	Si'cái'liào
 Fe元素	Fe'yuán'sù
@@ -1230,6 +1227,11 @@ GB	Gfi
 Home键	Home'jiàn
 End键	End'jiàn
 DNA分子	DNA'fēn'zǐ
+DNA鉴定	DNA'jiàn'dìng
+DNA比对	DNA'bǐ'duì
+DNA检测	DNA'jiǎn'cè
+DNA测序	DNA'cè'xù
+DNA序列	DNA'xù'liè
 1000w clips	1000'wàn'clips
 800w clips	800'wàn'clips
 500w clips	500'wàn'clips
