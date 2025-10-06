@@ -65,7 +65,7 @@
 /mspy     → 微软双拼
 /zrm      → 自然码
 /sogou    → 搜狗双拼
-/abc      → 智能ABC
+/znabc    → 智能ABC
 /ziguang  → 紫光双拼
 /pyjj     → 拼音加加
 /gbpy     → 国标双拼

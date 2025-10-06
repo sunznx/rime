@@ -37,7 +37,7 @@ local function replace_schema(file_path, target_schema)
         -- "__patch: wanxiang_reverse.schema:/hspzn" -> "__patch: wanxiang_algebra:/reverse/hspzn"
         content = content:gsub("(%-?%s*__patch:%s*)wanxiang_reverse%.schema:/([^%s\r\n]+)", "%1wanxiang_algebra:/reverse/%2")
 
-        content = content:gsub("([%s]*__include:%s*wanxiang_algebra:/reverse/)[^%sa-zA-Z\r\n]+", "%1" .. target_schema)
+        content = content:gsub("([%s]*__include:%s*wanxiang_algebra:/reverse/)%S+", "%1" .. target_schema)
 
     elseif file_path:find("wanxiang_mixedcode") then
 
@@ -51,7 +51,7 @@ local function replace_schema(file_path, target_schema)
                 .. lead .. "__patch:  wanxiang_algebra:/mixed/全拼"
         end
         )
-        content = content:gsub("([%s]*__patch:%s*wanxiang_algebra:/mixed/)[^%sa-zA-Z\r\n]+", "%1" .. target_schema)
+        content = content:gsub("([%s]*__patch:%s*wanxiang_algebra:/mixed/)%S+", "%1" .. target_schema)
 
     elseif file_path:find("wanxiang%.custom") or file_path:find("wanxiang_pro%.custom") then
         -- 先把旧前缀整体替换为新前缀
@@ -61,8 +61,9 @@ local function replace_schema(file_path, target_schema)
         content = content:gsub("(%-+%s*)wanxiang_pro%.schema:/", "%1wanxiang_algebra:/pro/")
 
         -- 再将 base/pro 后面的 schema 名替换为 target_schema
-        content = content:gsub("([%s%-]*wanxiang_algebra:/pro/)[^%sa-zA-Z\r\n]+", "%1" .. target_schema, 1)
-        content = content:gsub("([%s%-]*wanxiang_algebra:/base/)[^%sa-zA-Z\r\n]+", "%1" .. target_schema, 1)
+        content = content:gsub("([%s%-]*wanxiang_algebra:/pro/)%S+",  "%1" .. target_schema, 1)
+        content = content:gsub("([%s%-]*wanxiang_algebra:/base/)%S+", "%1" .. target_schema, 1)
+
 
     end
 
@@ -117,14 +118,14 @@ local function translator(input, seg, env)
         ["/mspy"] = "微软双拼",
         ["/zrm"] = "自然码",
         ["/sogou"] = "搜狗双拼",
-        ["/abc"] = "智能ABC",
+        ["/znabc"] = "智能ABC",
         ["/ziguang"] = "紫光双拼",
         ["/pyjj"] = "拼音加加",
         ["/gbpy"] = "国标双拼",
         ["/lxsq"] = "乱序17",
         ["/zrlong"] = "自然龙",
         ["/hxlong"] = "汉心龙",
-        ["/pinyin"] = "全拼"
+        ["/pinyin"] = "全拼",
     }
 
     local target_schema = schema_map[input]
