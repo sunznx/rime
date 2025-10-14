@@ -322,7 +322,8 @@ B 重复以上操作完成更多设备的添加和同步
 **字符集过滤：** 默认开启过滤，写在charset.dict.yaml的就是可以通过的字表，默认为8105+𰻞𰻞，如果你想什么字在小字集模式可以通过可以写在这里，配套开关【小字集、大字集】，快捷键Ctrl+g 
 
 **自定义词库：** 自定义词库首先要利用[LMDG](https://github.com/amzxyz/RIME-LMDG)中的脚本将你自己的词库刷成与万象同类型的声调、或者声调+辅助码的形态，因为主词库要参与转写。对于custom_phrase则需要手动编辑编码为实际输入的编码
-
+- [用于Linux Mac的词库刷拼音辅助码工具](https://github.com/amzxyz/rime_wanxiang/releases/download/tools/wanxiang-dicts-tools-linux-mac)
+- [用于Windows的词库刷拼音辅助码工具](https://github.com/amzxyz/rime_wanxiang/releases/download/tools/wanxiang-dicts-tools.exe)
 <img alt="pay" src="./custom/万象输入方案.png">
 
 ## 鸣谢
