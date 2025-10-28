@@ -30,7 +30,7 @@ speller:
   alphabet: "abcdefghijklmnopqrstuvwxyz;"
   delimiter: " '"
   algebra:
-    __include: wanxiang_algebra:/mixed/全拼
+    __include: wanxiang_algebra:/people/全拼
 
 
 translator:
