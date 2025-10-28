@@ -2726,7 +2726,7 @@ people:
     - derive/'([nl])ue$/'$1ve/
     - derive/^([jqxy])u/$1v/
     - derive/'([jqxy])u/'$1v/
-    - derive|^(.*)$|$1/|
+    - xform|^(.*)$|$1/|
   自然码:
     - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
     - derive/^([jqxy])u(?=^|$|')/$1v/
@@ -2764,7 +2764,7 @@ people:
     - xform/([a-z>])ou(?=^|$|')/$1<b>/
     - xform/in(?=^|$|')/<n>/
     - xform/'|<|>//
-    - derive|^(.*)$|$1/|
+    - xform|^(.*)$|$1/|
   小鹤双拼:
     - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
     - derive/^([jqxy])u(?=^|$|')/$1v/
@@ -2802,7 +2802,7 @@ people:
     - xform/ui(?=^|$|')/<v>/
     - xform/in(?=^|$|')/<b>/
     - xform/'|<|>//
-    - derive|^(.*)$|$1/|
+    - xform|^(.*)$|$1/|
   微软双拼:
     - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
     - derive/^([jqxy])u(?=^|$|')/$1v/
@@ -2842,7 +2842,7 @@ people:
     - xform/in(?=^|$|')/<n>/
     - xform/ing(?=^|$|')/;/
     - xform/'|<|>//
-    - derive|^(.*)$|$1/|
+    - xform|^(.*)$|$1/|
   搜狗双拼:
     - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
     - derive/^([jqxy])u(?=^|$|')/$1v/
@@ -2881,7 +2881,7 @@ people:
     - xform/in(?=^|$|')/<n>/
     - xform/ing(?=^|$|')/;/
     - xform/'|<|>//
-    - derive|^(.*)$|$1/|
+    - xform|^(.*)$|$1/|
   智能ABC:
     - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
     - xform/^zh/<a>/
@@ -2914,7 +2914,7 @@ people:
     - xform/un(?=^|$|')/<n>/
     - xform/[uv]e(?=^|$|')|ui(?=^|$|')/<m>/
     - xform/'|<|>//
-    - derive|^(.*)$|$1/|
+    - xform|^(.*)$|$1/|
   紫光双拼:
     - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
     - derive/^([jqxy])u(?=^|$|')/$1v/
@@ -2949,7 +2949,7 @@ people:
     - xform/ao(?=^|$|')/<q>/
     - xform/an(?=^|$|')/<r>/
     - xform/'|<|>//
-    - derive|^(.*)$|$1/|
+    - xform|^(.*)$|$1/|
   拼音加加:
     - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
     - derive/^([jqxy])u(?=^|$|')/$1v/
@@ -2987,7 +2987,7 @@ people:
     - xform/([a-z>])ou(?=^|$|')/$1<p>/
     - xform/in(?=^|$|')/<l>/
     - xform/'|<|>//
-    - derive|^(.*)$|$1/|
+    - xform|^(.*)$|$1/|
   国标双拼:
     - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
     - derive/^([aoe])([ioun])(?=^|$|')/$1$1$2/
@@ -3023,7 +3023,7 @@ people:
     - xform/ui(?=^|$|')/<v>/
     - xform/in(?=^|$|')/<l>/
     - xform/'|<|>//
-    - derive|^(.*)$|$1/|
+    - xform|^(.*)$|$1/|
   乱序17:
     - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
     - derive/^([jqxy])u(?=^|$|')/$1v/
@@ -3084,7 +3084,7 @@ people:
     - xform/([a-z>])u(?=^|$|')/$1<d>/
     - xform/([a-z>])v(?=^|$|')/$1<x>/  
     - xform/'|<|>//
-    - derive|^(.*)$|$1/|
+    - xform|^(.*)$|$1/|
   自然龙:
     - xform/('|^)(ā|á|ǎ|à)([ioun])(?=^|$|')/'a$2$3/
     - xform/('|^)(ō|ó|ǒ|ò)([ioun])(?=^|$|')/'o$2$3/
@@ -3163,7 +3163,7 @@ people:
     - xform/'|<|>//
     - derive/al/a/    # 中英文兼容,aā⇋a
     - derive/op/o/    # 中英文兼容,oō⇋o
-    - derive|^(.*)$|$1/|
+    - xform|^(.*)$|$1/|
   汉心龙:
     - xform/('|^)(ā|á|ǎ|à)([ioun])(?=^|$|')/'<q>$2$3/
     - xform/('|^)(ō|ó|ǒ|ò)([ioun])(?=^|$|')/'<r>$2$3/
@@ -3244,7 +3244,7 @@ people:
     # (应对中英混输中的无声调的轻声,待优化……无法解决中英混输中轻声的转换问题)
     - derive/le/dk/   # 中英文兼容,le⇋了
     - derive/ma/pe/   # 中英文兼容,ma⇋吗,嘛
-    - derive|^(.*)$|$1/|
+    - xform|^(.*)$|$1/|
 
 模糊音: 
   __append:
@@ -3295,4 +3295,4 @@ people:
     - derive/^(.*?)(\d?);(bd|dw|df|dw|yl|rw|fs|iw)$/$1$3/
     - derive/^(.*?)(\d?);.*?,(bd|dw|df|dw|yl|rw|fs|iw)$/$1$3/
     - derive/^(.*?)(\d?);.*?,.*?,(bd|dw|df|dw|yl|rw|fs|iw)$/$1$3/
-    - derive/^(.*?)(\d?);.*?,.*?,.*?,(bd|dw|df|dw|yl|rw|fs|iw)$/$1$3/
+    - derive/^(.*?)(\d?);.*?,.*?,.*?,(bd|dw|df|dw|yl|rw|fs|iw)$/$1$3/b55lg9fDU74e19400aG34GaoT8I
