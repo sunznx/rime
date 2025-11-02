@@ -1722,28 +1722,6 @@ function IsLeap(y)
 end
 -- 日期格式化函数，用于自定义日期格式。N20150101和/rq使用
 function format_date(today, format_str)
-    -- 替换占位符
-    local result = format_str
-    
-    -- 处理四位年份 - 使用传入的日期参数
-    result = result:gsub("Y", string.format("%04d", today.year))  -- 四位年份（如：2023）
-    
-    -- 处理两位年份 - 使用传入的日期参数
-    result = result:gsub("y", string.format("%02d", today.year % 100))  -- 两位年份（如：23）
-    
-    -- 处理带前导零的月日 - 使用传入的日期参数
-    result = result:gsub("m", string.format("%02d", today.month))  -- 两位月份（带前导零）
-    result = result:gsub("d", string.format("%02d", today.day))    -- 两位日期（带前导零）
-    
-    -- 处理不带前导零的月日 - 使用传入的日期参数
-    result = result:gsub("n", tostring(today.month))  -- 月份（不带前导零）
-    result = result:gsub("j", tostring(today.day))     -- 日期（不带前导零）
-    
-    return result
-end
--- 日历查询
--- 日期格式化函数，放在文件开头
-function format_date(today, format_str)
     local result = format_str
     
     -- 处理四位年份
