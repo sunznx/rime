@@ -1,5 +1,5 @@
--- ctrl_partial_commit.lua
--- Ctrl+1..9：上屏首选前 N 字；按 preedit/script_text 的前 N 音节对齐 raw input
+-- @amzxyz  https://github.com/amzxyz/rime_wanxiang
+-- Ctrl+1..9,0：上屏首选前 N 字；按 preedit/script_text 的前 N 音节对齐 raw input
 local wanxiang = require("wanxiang")
 
 local M = {}
@@ -18,10 +18,11 @@ end
 
 -- tone_display 开：用上下文保存的 preedit；否则用 script_text
 local function script_prefix(ctx, n)
-    local use_env = ctx:get_option("tone_display")
+    local is_tone_display = ctx:get_option("tone_display")
+    local is_full_pinyin = ctx:get_option("full_pinyin")
     local s = ""
 
-    if use_env then
+    if is_tone_display or is_full_pinyin then
         if (ctx:get_property("sequence_preedit_key") or "") == (ctx.input or "") then
             s = ctx:get_property("sequence_preedit_val") or ""
         else
@@ -83,15 +84,10 @@ function M.init(env)
         if ctx.clear_non_confirmed_composition then
             ctx:clear_non_confirmed_composition()
         end
-        ctx:refresh_non_confirmed_composition()
-
         -- 把光标放到余码末尾
         if ctx.caret_pos ~= nil then
             ctx.caret_pos = #rest   -- raw 为 ASCII，字节数即长度
         end
-
-        -- 再刷新一次巩固 caret
-        ctx:refresh_non_confirmed_composition()
     end)
 end
 
