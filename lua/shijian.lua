@@ -2430,89 +2430,118 @@ local function translator(input, seg, env)
     local context = engine.context
     local config  = engine.schema.config
     local segment = context.composition:back()
+    local function set_ndate_tag(ctx, on)
+        local comp = ctx and ctx.composition
+        if not comp or comp:empty() then return end
+        local back_seg = comp:back()
+        if not back_seg then return end
+        if on then
+            back_seg.tags = back_seg.tags + Set({ "Ndate" })
+        else
+            back_seg.tags = back_seg.tags - Set({ "Ndate" })
+        end
+    end
+    local handled = false  -- 仅当我们真正产出了候选，才设置为 true 并 return
 
+    local function set_ndate_tag(context, on)
+        local comp = context and context.composition
+        if not comp or comp:empty() then return end
+        local seg = comp:back()
+        if not seg then return end
+        if on then
+            seg.tags = seg.tags + Set({ "Ndate" })
+        else
+            seg.tags = seg.tags - Set({ "Ndate" })
+        end
+    end
+
+    -- 你的 translator 主体里（只贴 N 分支及其结构）
     if input:sub(1, 1) == "N" then
-        local n = input:sub(2)
-        local yr = os.date("%Y")
-        segment.tags = segment.tags + Set({ "Ndate" })
-        -- N0101–N1231（仅月日）
-        if #n == 4 and n:match("^%d%d%d%d$") then
-            context:set_property("sequence_adjustment_code", "Nmmdd")
+        local n   = input:sub(2)
+        local len = #n
+        local only_digits = (n:match("^%d*$") ~= nil)
+        local ndate_mode  = (only_digits and len >= 1 and len <= 8)
+        local handled = false
 
-            local mm = tonumber(n:sub(1, 2))
-            local dd = tonumber(n:sub(3, 4))
+        -- 仅按形态开/关标签，不提前 return
+        set_ndate_tag(context, ndate_mode)
 
-            -- 先做范围校验：01–12 / 01–31（不通过直接提示并返回）
-            if not (mm and dd and mm >= 1 and mm <= 12 and dd >= 1 and dd <= 31) then
-                set_prompt_if_invalid(context, " 〔日期不存在〕")
-                return
-            end
+        if ndate_mode then
+            local yr = os.date("%Y")
 
-            -- 真实存在性（闰年、大小月等）
-            if not DateExists(yr, mm, dd) then
-                set_prompt_if_invalid(context, " 〔日期不存在〕")
-                return
-            end
+            -- NMMDD：长度=4，且“不是年份（19xx/20xx）”时才当作月日
+            if (len == 4) and not (n:match("^19%d%d$") or n:match("^20%d%d$")) then
+                context:set_property("sequence_adjustment_code", "Nmmdd")
 
-            -- 合法：继续原逻辑
-            local display_year = " 〔" .. yr .. "年" .. "〕"
-            set_prompt_if_invalid(context, display_year)
+                local mm = tonumber(n:sub(1, 2))
+                local dd = tonumber(n:sub(3, 4))
 
-            local mm_str = string.format("%02d", mm)
-            local dd_str = string.format("%02d", dd)
-            local date_str = yr .. mm_str .. dd_str .. "01"
-            local lunar = QueryLunarInfo(env, date_str)
+                -- 粗校验 + 精校验（不 return；合法时再产出、并结束）
+                local ok = (mm and dd and mm >= 1 and mm <= 12 and dd >= 1 and dd <= 31)
+                if ok then
+                    ok = DateExists(tonumber(yr), mm, dd)
+                end
 
-            if #lunar > 0 then
-                local candidates = {
-                    { string.format("%d月%d日", mm, dd), "" },
-                    { string.format("%02d月%02d日", mm, dd), "" }
-                }
+                if not ok then
+                    set_prompt_if_invalid(context, " 〔日期不存在〕")
+                else
+                    -- 合法 → 产出候选并结束
+                    set_prompt_if_invalid(context, " 〔" .. yr .. "年" .. "〕")
 
-                local zodiacs = {"鼠","牛","虎","兔","龙","蛇","马","羊","猴","鸡","狗","猪"}
+                    local mm_str = string.format("%02d", mm)
+                    local dd_str = string.format("%02d", dd)
+                    local date_str = yr .. mm_str .. dd_str .. "01"
+                    local lunar = QueryLunarInfo(env, date_str)
 
-                for _, candidate in ipairs(lunar) do
-                    local text = candidate[1]
-                    -- 只处理不含数字的行
-                    if not text:match("%d") then
-                        -- 去掉括号里的生肖信息（若有）
-                        if text:find("%b()") then
-                            text = text:gsub("%b()", "")
+                    if #lunar > 0 then
+                        local candidates = {
+                            { string.format("%d月%d日", mm, dd), "" },
+                            { string.format("%02d月%02d日", mm, dd), "" }
+                        }
+                        local zodiacs = {"鼠","牛","虎","兔","龙","蛇","马","羊","猴","鸡","狗","猪"}
+                        for _, cand in ipairs(lunar) do
+                            local text = cand[1]
+                            if not text:match("%d") then
+                                if text:find("%b()") then
+                                    text = text:gsub("%b()", "")
+                                end
+                                local processed = text:match("年(.+)") or text
+                                table.insert(candidates, { processed, "" })
+                            end
                         end
-                        -- 取“年”后的内容作为展示（若没有“年”，就原样）
-                        local processed = text:match("年(.+)") or text
-                        table.insert(candidates, { processed, "" })
+                        generate_candidates(input, seg, candidates)
+                        handled = true
+                    end
+                end
+            end
+            -- NYYYY...：以 19/20 开头的年份（N2025 / N20250101 / N2025010101）
+            -- 提示“日期不存在”仅在长度 >= 8（yyyyMMdd）时进行
+            if not handled and (n:match("^20%d%d") or n:match("^19%d%d")) then
+                context:set_property("sequence_adjustment_code", "N")
+
+                if len >= 8 then
+                    local yyyy = tonumber(n:sub(1, 4))
+                    local mm   = tonumber(n:sub(5, 6))
+                    local dd   = tonumber(n:sub(7, 8))
+                    if not DateExists(yyyy, mm, dd) then
+                        set_prompt_if_invalid(context, " 〔日期不存在〕")
                     end
                 end
 
-                generate_candidates(input, seg, candidates)
-            end
-            return
-        end
-
-        -- N2025 或 N20250101 等
-        if n:match("^(20)%d%d") or n:match("^(19)%d%d") then
-            --- 设置手动排序的排序编码，以启用手动排序支持
-            context:set_property("sequence_adjustment_code", "N")
-
-            if #n >= 8 then
-                local yyyy = tonumber(n:sub(1, 4))
-                local mm = tonumber(n:sub(5, 6))
-                local dd = tonumber(n:sub(7, 8))
-                if not DateExists(yyyy, mm, dd) then
-                    set_prompt_if_invalid(context, " 〔日期不存在〕")
-                    return
+                local lunar = QueryLunarInfo(env, n)
+                if #lunar > 0 then
+                    local candidates = {}
+                    for i = 1, #lunar do
+                        candidates[#candidates + 1] = { lunar[i][1], lunar[i][2] }
+                    end
+                    generate_candidates(input, seg, candidates)
+                    handled = true
                 end
             end
-            local lunar = QueryLunarInfo(env, n)
-            local candidates = {}
-            for i = 1, #lunar do
-                table.insert(candidates, { lunar[i][1], lunar[i][2] })
-            end
-            generate_candidates(input, seg, candidates)
-            return
         end
-        segment.tags = segment.tags - Set({ "Ndate" })
+
+        -- 只有当我们确实生成了候选，才结束本 translator。
+        if handled then return end
     end
 
     -- 以下为需要通过 shijian_keys 触发的功能
