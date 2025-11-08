@@ -1720,26 +1720,71 @@ function IsLeap(y)
         return 365
     end
 end
--- 日期格式化函数，用于自定义日期格式。N20150101和/rq使用
-function format_date(today, format_str)
+-- 日期格式化函数，用于自定义日期格式。N20150101和/rq使用，自定义时间/sj /dt
+-- 转义规则：
+--   \X       —— 将 X 按字面量输出（X 为任意单个字符，如 Y/m/d/H/M/S 等）
+--   [[...]]  —— 区块整体按字面量输出
+function format_dt(dt, format_str)
     local result = format_str
-    
-    -- 处理四位年份
-    result = result:gsub("Y", string.format("%04d", today.year))
-    
-    -- 处理两位年份
-    result = result:gsub("y", string.format("%02d", today.year % 100))
-    
-    -- 处理带前导零的月日
-    result = result:gsub("m", string.format("%02d", today.month))
-    result = result:gsub("d", string.format("%02d", today.day))
-    
-    -- 处理不带前导零的月日
-    result = result:gsub("n", tostring(today.month))
-    result = result:gsub("j", tostring(today.day))
-    
+
+    -- 1) 先保护 [[...]] 字面量区块
+    local blocks = {}
+    result = result:gsub("%[%[(.-)%]%]", function(s)
+        table.insert(blocks, s)
+        return "\0BLK" .. #blocks .. "\0"
+    end)
+
+    -- 2) 保护反斜杠转义的单个字符（\X）
+    local escs = {}
+    result = result:gsub("\\(.)", function(c)
+        table.insert(escs, c)
+        return "\0ESC" .. #escs .. "\0"
+    end)
+
+    -- 3) 正常占位符替换
+    -- 日期
+    result = result:gsub("Y", string.format("%04d", dt.year))
+    result = result:gsub("y", string.format("%02d", dt.year % 100))
+    result = result:gsub("m", string.format("%02d", dt.month))
+    result = result:gsub("d", string.format("%02d", dt.day))
+    result = result:gsub("n", tostring(dt.month))
+    result = result:gsub("j", tostring(dt.day))
+
+    -- 时间
+    result = result:gsub("H", string.format("%02d", dt.hour))
+    result = result:gsub("G", tostring(dt.hour))
+
+    local h12 = dt.hour % 12; if h12 == 0 then h12 = 12 end
+    result = result:gsub("I", string.format("%02d", h12))
+    result = result:gsub("l", tostring(h12)) -- 小写 L
+
+    result = result:gsub("M", string.format("%02d", dt.min))
+    result = result:gsub("S", string.format("%02d", dt.sec))
+
+    local ampm = (dt.hour < 12) and "AM" or "PM"
+    result = result:gsub("p", ampm:lower())
+    result = result:gsub("P", ampm)
+
+    -- 时区偏移
+    local raw_tz = os.date("%z") or "+0000"      -- 形如 +0800 / -0430
+    local tz_colon = raw_tz:sub(1,3) .. ":" .. raw_tz:sub(4,5)  -- 变成 +08:00
+
+    result = result:gsub("O", tz_colon)   -- 带冒号
+    result = result:gsub("o", raw_tz)     -- 不带冒号
+
+    -- 4) 还原反斜杠转义字符
+    result = result:gsub("\0ESC(%d+)\0", function(i)
+        return escs[tonumber(i)]
+    end)
+
+    -- 5) 还原 [[...]] 区块
+    result = result:gsub("\0BLK(%d+)\0", function(i)
+        return blocks[tonumber(i)]
+    end)
+
     return result
 end
+
 
 -- 修改后的 QueryLunarInfo 函数
 local function QueryLunarInfo(env, date)
@@ -1793,7 +1838,7 @@ local function QueryLunarInfo(env, date)
                 result = {}
                 for i = 1, custom_formats.size do
                     local format_str = custom_formats:get_value_at(i-1):get_string()
-                    local formatted_date = format_date({year = y, month = m, day = d}, format_str)
+                    local formatted_date = format_dt({year = y, month = m, day = d}, format_str)
                     if formatted_date then
                         table.insert(result, { formatted_date, "" })
                     end
@@ -2476,6 +2521,7 @@ local function translator(input, seg, env)
             generate_candidates(input, seg, candidates)
             return
         end
+        segment.tags = segment.tags - Set({ "Ndate" })
     end
 
     -- 以下为需要通过 shijian_keys 触发的功能
@@ -2517,13 +2563,11 @@ local function translator(input, seg, env)
         local date_variants = {}
         local custom_formats = config:get_list("date_formats")
         
-        if custom_formats then
+        if custom_formats and custom_formats.size > 0 then
             for i = 1, custom_formats.size do
                 local format_str = custom_formats:get_value_at(i-1):get_string()
-                
-                -- 根据格式字符串生成日期
-                local formatted_date = format_date(today, format_str)
-                if formatted_date then
+                local formatted_date = format_dt(today, format_str)
+                if formatted_date and formatted_date ~= "" then
                     table.insert(date_variants, { formatted_date, "" })
                 end
             end
@@ -2569,16 +2613,97 @@ local function translator(input, seg, env)
         --- 设置手动排序的排序编码，以启用手动排序支持
         context:set_property("sequence_adjustment_code", "/sj")
 
+        local now = os.date("*t")
         local time_discrpt = " 〔" .. GetLunarSichen(os.date("%H"), 1) .. "〕"
-        local time_variants = { { os.date("%H:%M"), "" }, --同一个时间首选看到时辰即可
-            { format_Time() .. os.date("%I:%M"), "" },
-            { os.date("%H:%M:%S"), "" },
-            { string.gsub(os.date("%H点%M分%S秒"), "^0", ""), "" } }
+
+        -- 优先读 YAML 里的 time_formats
+        local time_variants = {}
+        local custom_time_formats = config:get_list("time_formats")
+
+        if custom_time_formats and custom_time_formats.size > 0 then
+            for i = 1, custom_time_formats.size do
+                local fmt = custom_time_formats:get_value_at(i - 1):get_string()
+                local formatted = format_dt(now, fmt)
+                if formatted and formatted ~= "" then
+                    table.insert(time_variants, { formatted, "" })
+                end
+            end
+        else
+            -- 没配就走默认
+            time_variants = {
+                { os.date("%H:%M"), "" },
+                { os.date("%H:%M:%S"), "" },
+                { format_Time() .. os.date("%I:%M"), "" },
+                { (string.gsub(os.date("%H点%M分%S秒"), "^0", "")), "" },
+            }
+        end
+
+        -- 时辰
+        table.insert(time_variants, { GetLunarSichen(os.date("%H"), 1), "" })
+
         generate_candidates("time", seg, time_variants)
         set_prompt_if_invalid(context, time_discrpt)
         return
     end
+    -- **日期+时间（/dt，别名）**
+    if (command == "dt") then
+        context:set_property("sequence_adjustment_code", "/dt")
 
+        local now = os.date("*t")
+        local dt_variants = {}
+        local custom_dt_formats = config:get_list("datetime_formats")
+
+        if custom_dt_formats and custom_dt_formats.size > 0 then
+            for i = 1, custom_dt_formats.size do
+                local fmt = custom_dt_formats:get_value_at(i - 1):get_string()
+                local out = format_dt(now, fmt)
+                if out and out ~= "" then
+                    table.insert(dt_variants, { out, "" })
+                end
+            end
+        else
+            dt_variants = {
+                { os.date("%Y-%m-%d %H:%M:%S"), "" },
+                { os.date("%Y-%m-%dT%H:%M:%S"), "" },
+                { os.date("%Y%m%d%H%M%S"),      "" },
+            }
+        end
+
+        generate_candidates("time", seg, dt_variants)
+        return
+    end
+
+    -- **时间戳（/tt）
+    if (command == "tt") then
+        -- 启用手动排序支持
+        context:set_property("sequence_adjustment_code", "/tt")
+
+        -- 当前本地时间表 & 对应 Unix 秒
+        local now = os.date("*t")
+        local epoch_s = os.time{
+            year  = now.year,
+            month = now.month,
+            day   = now.day,
+            hour  = now.hour,
+            min   = now.min,
+            sec   = now.sec,
+            isdst = now.isdst
+        }
+
+        -- 本地时区偏移，转成 +08:00 这种带冒号格式
+        local tz_raw   = os.date("%z") or "+0000"                -- +0800 / -0430
+        local tz_colon = tz_raw:sub(1,3) .. ":" .. tz_raw:sub(4,5) -- +08:00 / -04:30
+
+        local timestamp_variants = {
+            { tostring(epoch_s),                         "〔Unix秒〕" },
+            { tostring(epoch_s * 1000),                  "〔Unix毫秒〕" },
+            { os.date("%Y-%m-%dT%H:%M:%S") .. tz_colon,  "〔RFC3339 本地+偏移〕" },
+            { os.date("%Y%m%d%H%M%S"),                   "〔YYYYMMDDHHMMSS〕" },
+        }
+
+        generate_candidates("time", seg, timestamp_variants)
+        return
+    end
     -- **农历候选项**
     if (command == "nl") then
         --- 设置手动排序的排序编码，以启用手动排序支持
@@ -2666,30 +2791,6 @@ local function translator(input, seg, env)
             end
         end
         generate_candidates("ojq", seg, jq_variants)
-        return
-    end
-
-    -- **时间戳**
-    if (command == "tt") then
-        --- 设置手动排序的排序编码，以启用手动排序支持
-        context:set_property("sequence_adjustment_code", "/tt")
-
-        local current_time = os.time()
-        local timestamp_variants = { { string.format('%d', current_time), "〔时间戳〕" } }
-        generate_candidates("time", seg, timestamp_variants)
-        return
-    end
-
-    -- **日期+时间**
-    if (command == "rs") then
-        --- 设置手动排序的排序编码，以启用手动排序支持
-        context:set_property("sequence_adjustment_code", "/rs")
-
-        local current_time = os.time()
-        local time_variants = { { os.date('%Y-%m-%d %H:%M:%S', current_time), "〔年-月-日 时:分:秒〕" },
-            { os.date('%Y-%m-%dT%H:%M:%S+08:00', current_time), "〔年-月-日T时:分:秒+时区〕" },
-            { os.date('%Y%m%d%H%M%S', current_time), "〔年月日时分秒〕" } }
-        generate_candidates("time", seg, time_variants)
         return
     end
 
