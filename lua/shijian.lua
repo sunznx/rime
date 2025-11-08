@@ -1725,66 +1725,68 @@ end
 --   \X       —— 将 X 按字面量输出（X 为任意单个字符，如 Y/m/d/H/M/S 等）
 --   [[...]]  —— 区块整体按字面量输出
 function format_dt(dt, format_str)
-    local result = format_str
+    -- ---- 兜底，避免 string.format(nil) 报错 ----
+    dt = dt or {}
+    dt.year = tonumber(dt.year) or 0
+    dt.month = tonumber(dt.month) or 1
+    dt.day = tonumber(dt.day) or 1
+    dt.hour = tonumber(dt.hour) or 0
+    dt.min  = tonumber(dt.min)  or 0
+    dt.sec  = tonumber(dt.sec)  or 0
 
-    -- 1) 先保护 [[...]] 字面量区块
+    local s = format_str or ""
+
+    -- 1) 保护 [[...]] 字面量区块
     local blocks = {}
-    result = result:gsub("%[%[(.-)%]%]", function(s)
-        table.insert(blocks, s)
+    s = s:gsub("%[%[(.-)%]%]", function(txt)
+        blocks[#blocks+1] = txt
         return "\0BLK" .. #blocks .. "\0"
     end)
 
-    -- 2) 保护反斜杠转义的单个字符（\X）
+    -- 2) 保护 \X（单字符转义）
     local escs = {}
-    result = result:gsub("\\(.)", function(c)
-        table.insert(escs, c)
+    s = s:gsub("\\(.)", function(c)
+        escs[#escs+1] = c
         return "\0ESC" .. #escs .. "\0"
     end)
 
-    -- 3) 正常占位符替换
+    -- 3) 占位符替换（先长再短，避免相互影响）
     -- 日期
-    result = result:gsub("Y", string.format("%04d", dt.year))
-    result = result:gsub("y", string.format("%02d", dt.year % 100))
-    result = result:gsub("m", string.format("%02d", dt.month))
-    result = result:gsub("d", string.format("%02d", dt.day))
-    result = result:gsub("n", tostring(dt.month))
-    result = result:gsub("j", tostring(dt.day))
+    s = s:gsub("Y", string.format("%04d", dt.year))
+    s = s:gsub("y", string.format("%02d", dt.year % 100))
+    s = s:gsub("m", string.format("%02d", dt.month))
+    s = s:gsub("d", string.format("%02d", dt.day))
+    s = s:gsub("n", tostring(dt.month))
+    s = s:gsub("j", tostring(dt.day))
 
     -- 时间
-    result = result:gsub("H", string.format("%02d", dt.hour))
-    result = result:gsub("G", tostring(dt.hour))
-
+    s = s:gsub("H", string.format("%02d", dt.hour))
+    s = s:gsub("G", tostring(dt.hour))
     local h12 = dt.hour % 12; if h12 == 0 then h12 = 12 end
-    result = result:gsub("I", string.format("%02d", h12))
-    result = result:gsub("l", tostring(h12)) -- 小写 L
+    s = s:gsub("I", string.format("%02d", h12))
+    s = s:gsub("l", tostring(h12))
 
-    result = result:gsub("M", string.format("%02d", dt.min))
-    result = result:gsub("S", string.format("%02d", dt.sec))
+    s = s:gsub("M", string.format("%02d", dt.min))
+    s = s:gsub("S", string.format("%02d", dt.sec))
 
     local ampm = (dt.hour < 12) and "AM" or "PM"
-    result = result:gsub("p", ampm:lower())
-    result = result:gsub("P", ampm)
+    s = s:gsub("p", ampm:lower())
+    s = s:gsub("P", ampm)
 
-    -- 时区偏移
-    local raw_tz = os.date("%z") or "+0000"      -- 形如 +0800 / -0430
-    local tz_colon = raw_tz:sub(1,3) .. ":" .. raw_tz:sub(4,5)  -- 变成 +08:00
+    -- 时区
+    local raw_tz = os.date("%z") or "+0000"         -- 形如 +0800
+    local tz_colon = raw_tz:sub(1,3) .. ":" .. raw_tz:sub(4,5)  -- +08:00
+    s = s:gsub("O", tz_colon)
+    s = s:gsub("o", raw_tz)
 
-    result = result:gsub("O", tz_colon)   -- 带冒号
-    result = result:gsub("o", raw_tz)     -- 不带冒号
+    -- 4) 还原 \X
+    s = s:gsub("\0ESC(%d+)\0", function(i) return escs[tonumber(i)] or "" end)
 
-    -- 4) 还原反斜杠转义字符
-    result = result:gsub("\0ESC(%d+)\0", function(i)
-        return escs[tonumber(i)]
-    end)
+    -- 5) 还原 [[...]]
+    s = s:gsub("\0BLK(%d+)\0", function(i) return blocks[tonumber(i)] or "" end)
 
-    -- 5) 还原 [[...]] 区块
-    result = result:gsub("\0BLK(%d+)\0", function(i)
-        return blocks[tonumber(i)]
-    end)
-
-    return result
+    return s
 end
-
 
 -- 修改后的 QueryLunarInfo 函数
 local function QueryLunarInfo(env, date)
@@ -2439,64 +2441,53 @@ local function translator(input, seg, env)
 
             local mm = tonumber(n:sub(1, 2))
             local dd = tonumber(n:sub(3, 4))
-            if mm and dd and mm >= 1 and mm <= 12 and dd >= 1 and dd <= 31 then
-                local display_year = " 〔" .. yr .. "年" .. "〕"
 
-                if not DateExists(yr, mm, dd) then
-                    set_prompt_if_invalid(context, " 〔日期不存在〕")
-                    return
-                end
-                
-                set_prompt_if_invalid(context, display_year)
-                local mm_str = string.format("%02d", mm)
-                local dd_str = string.format("%02d", dd)
-                local date_str = yr .. mm_str .. dd_str .. "01"
-                local lunar = QueryLunarInfo(env, date_str)
-                
-                if #lunar > 0 then
-                    local candidates = {
-                        { string.format("%d月%d日", mm, dd), "" },
-                        { string.format("%02d月%02d日", mm, dd), "" }
-                    }
-                    
-                    -- 生肖列表
-                    local zodiacs = {"鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪"}
-                    
-                    -- 遍历所有候选项
-                    for i, candidate in ipairs(lunar) do
-                        local text = candidate[1]
-                        
-                        -- 如果文本不包含数字，使用正则表达式处理
-                        if not text:match("%d") then
-                            -- 检查是否包含生肖
-                            local has_zodiac = false
-                            for _, zodiac in ipairs(zodiacs) do
-                                if text:match(zodiac) then
-                                    has_zodiac = true
-                                    break
-                                end
-                            end
-                            
-                            -- 如果包含生肖，去掉生肖部分
-                            if has_zodiac then
-                                text = text:gsub("%(.*%)", "")  -- 去掉括号及括号内的内容
-                            end
-                            
-                            -- 提取"年"字后面的内容
-                            local processed_text = text:gsub(".*%)", "")
-                            if processed_text == text then
-                                processed_text = text:gsub("^.-年", ""):gsub("^.-%)", "")
-                            end
-                            
-                            table.insert(candidates, { processed_text, "" })
-                        end
-                        -- 如果文本包含数字，则丢弃（不做任何处理）
-                    end
-                    
-                    generate_candidates(input, seg, candidates)
-                end
+            -- 先做范围校验：01–12 / 01–31（不通过直接提示并返回）
+            if not (mm and dd and mm >= 1 and mm <= 12 and dd >= 1 and dd <= 31) then
+                set_prompt_if_invalid(context, " 〔日期不存在〕")
                 return
             end
+
+            -- 真实存在性（闰年、大小月等）
+            if not DateExists(yr, mm, dd) then
+                set_prompt_if_invalid(context, " 〔日期不存在〕")
+                return
+            end
+
+            -- 合法：继续原逻辑
+            local display_year = " 〔" .. yr .. "年" .. "〕"
+            set_prompt_if_invalid(context, display_year)
+
+            local mm_str = string.format("%02d", mm)
+            local dd_str = string.format("%02d", dd)
+            local date_str = yr .. mm_str .. dd_str .. "01"
+            local lunar = QueryLunarInfo(env, date_str)
+
+            if #lunar > 0 then
+                local candidates = {
+                    { string.format("%d月%d日", mm, dd), "" },
+                    { string.format("%02d月%02d日", mm, dd), "" }
+                }
+
+                local zodiacs = {"鼠","牛","虎","兔","龙","蛇","马","羊","猴","鸡","狗","猪"}
+
+                for _, candidate in ipairs(lunar) do
+                    local text = candidate[1]
+                    -- 只处理不含数字的行
+                    if not text:match("%d") then
+                        -- 去掉括号里的生肖信息（若有）
+                        if text:find("%b()") then
+                            text = text:gsub("%b()", "")
+                        end
+                        -- 取“年”后的内容作为展示（若没有“年”，就原样）
+                        local processed = text:match("年(.+)") or text
+                        table.insert(candidates, { processed, "" })
+                    end
+                end
+
+                generate_candidates(input, seg, candidates)
+            end
+            return
         end
 
         -- N2025 或 N20250101 等
