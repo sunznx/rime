@@ -15350,7 +15350,7 @@
 熮	;hp;hp;hl,hp;ce;on;;gz
 鐂	;jt;jt;jl;zq;qg;;jh
 鷚	;xn;xn;nl,np;zx;nw;;zp
-㐬	;si;wv;wi;bo;yc;;
+㐬	;wi;wv;wi;bo;yc;;
 㙀	;tj;tj;tj;gk;fp;;
 㨨	;ft;ft;fl;uq;rq;;
 㶯	;he;he;hm;cb;oq;;
