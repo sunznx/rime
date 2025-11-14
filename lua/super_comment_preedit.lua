@@ -345,27 +345,35 @@ function AP.is_chinese_only(text)
     return true
 end
 
-
 local SV = {}
--- 这个模块主要用于将滤镜阶段未修改前的注释或者preedit在有需要的时候存于上下文变量里能在按键处理阶段使用
--- update_notifier封装保证一致性
+
+-- 工具：取光标前的编码（安全处理 caret 越界）
+local function front_input(ctx)
+    if not ctx then return "" end
+    local raw_full = ctx.input or ""
+    local caret    = ctx.caret_pos or #raw_full
+    if caret < 0 then
+        caret = 0
+    elseif caret > #raw_full then
+        caret = #raw_full
+    end
+    return raw_full:sub(1, caret)
+end
+
+-- 这个模块主要用于将滤镜阶段未修改前的注释或者 preedit
+-- 存到上下文变量里，按键处理阶段使用；update_notifier 保证一致性
 function SV.init(env)
-    env._sv_seq_sig   = ""
-    env._sv_last_pre  = ""   -- 最近一次循环中遍历拿到的 preedit
+    env._sv_seq_sig          = ""
+    env._sv_last_pre         = ""   -- 最近一次要写入的 preedit
+    env._saved_input_for_seq = ""   -- 上次对应的 raw_in（光标前编码）
+
     local ctx = env.engine.context
 
     env._sv_ctx_conn = ctx.update_notifier:connect(function(c)
-        -- 1) 只取光标前的编码作为 key
-        local raw_full = c.input or ""
-        local caret    = c.caret_pos or #raw_full
-        if caret < 0 then caret = 0 end
-        if caret > #raw_full then caret = #raw_full end
-        local raw_in   = raw_full:sub(1, caret)
+        local raw_in = front_input(c)
 
-        -- preedit 不用 get_script_text，这个是最终转换后的，而是用外部通过 SV.update_preedit 这份是与编码相同的preedit未修改前
         local pre = env._sv_last_pre or ""
-        -- 如果你不想在 pre 为空时写，可以直接 return 掉
-        if pre == "" then
+        if pre == "" or raw_in == "" then
             return
         end
 
@@ -381,20 +389,34 @@ function SV.init(env)
     end)
 end
 
--- 收尾：断开 notifier，清理状态
+-- 断开 notifier，清理状态
 function SV.fini(env)
     if env._sv_ctx_conn then
         env._sv_ctx_conn:disconnect()
         env._sv_ctx_conn = nil
     end
-    env._sv_seq_sig  = nil
-    env._sv_last_pre = nil
+    env._sv_seq_sig          = nil
+    env._sv_last_pre         = nil
+    env._saved_input_for_seq = nil
 end
 
+-- 限制更新范围：同一个 raw_in 只记第一次的 preedit
 function SV.update_preedit(env, preedit)
-    env._sv_last_pre = preedit or ""
-end
+    local ctx = env.engine.context
+    if not ctx then return end
 
+    local raw_in = front_input(ctx)
+    preedit = preedit or ""
+
+    if raw_in == "" or preedit == "" then
+        return
+    end
+
+    if env._saved_input_for_seq ~= raw_in then
+        env._saved_input_for_seq = raw_in
+        env._sv_last_pre         = preedit
+    end
+end
 -- ----------------------
 -- 主函数：根据优先级处理候选词的注释和preedit
 -- ----------------------
