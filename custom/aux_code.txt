@@ -15123,7 +15123,7 @@
 𠓮	;rk;rk;rm;jb;ty;;
 𡃦	;kv;kf;kl,kv;du;ku;;
 𡬜	;bd;bd;bh,hh;ww;pf;;
-𡰚	;my;my;ly,my,yi;po;oq;;
+𡰚	;my;my;ly;po;oq;;
 𡳞	;uf;ul;ul,ui;cv;no;;
 𡶱	;us;es;us;vk;mq;;
 𡹇	;um;em;ul;ve;ms;;
@@ -15131,8 +15131,8 @@
 𡿠	;uf;el;ul;vv;mq;;
 𣇰	;om;om;ol;oe;js;;
 𤂶	;dv;df;dl,dv;ku;iu;;
-𤌎	;eh;ah;hv,hm,yh;mc;fu;;
-𤎭	;hk;hk;yl,hh,yh;cd;oo;;
+𤌎	;eh;ah;yh;mc;fu;;
+𤎭	;hk;hk;yh;cd;oo;;
 𤗷	;pf;pl;pl;av;th;;
 𥓆	;uu;uu;uu;mm;dc;;
 𥳞	;vf;vl;vi;rv;to;;
@@ -15153,7 +15153,7 @@
 𩣖	;mk;mk;ml;nd;cy;;
 𩱬	;jg;pl;gj;pn;wf;;
 𩴠	;gf;gl;gl,gi;av;rq;;
-𩻜	;ly;la;yy,yq,ly;ew;sw;;
+𩻜	;ly;la;yq;ew;sw;;
 霊	;yy;yy;yy;tc;ff;;hh
 淩	;dw;dw;dl;kh;if;;at
 綾	;sw;yw;sl;ih;xf;;it
@@ -15246,14 +15246,14 @@
 𠄖	;rd;rd;ld;ja;wy;;
 𠏡	;rs;rs;rl,ra;jk;wf;;
 𠟨	;yd;yd;ld;tp;fw;;
-𠠢	;yd;yd;dl,yd,dk;tp;fk;;
+𠠢	;yd;yd;yd;tp;fk;;
 𠡭	;tl;tl;ll;gs;fw;;
 𠱠	;kk;kk;kk;dd;kk;;
 𠻠	;ks;ks;kl;dk;kb;;
 𠻱	;kw;kw;kl;dh;kb;;
 𠾥	;ks;ds;gl;zk;sk;;
 𡈍	;tr;kr;kc;qj;lw;;
-𡕮	;qw;tw;ql,we,qw;gh;fc;;
+𡕮	;qw;tw;ql;gh;fc;;
 𡿡	;ur;er;ul;vj;mf;;
 𢌔	;gr;gr;gl;xj;yf;;
 𢔁	;rw;iw;xl,xw;wh;tf;;
@@ -15310,7 +15310,7 @@
 𩇎	;yt;yt;yt;tg;fk;;
 𩊂	;gs;gs;gl;tk;af;;
 𩑊	;lr;lr;yl;xj;uj;;
-𩖊	;yy;yb;yl,yy,yk;tw;fk;;
+𩖊	;yy;yb;yy;tw;fk;;
 𩖵	;fs;js;fl;ok;mt;;
 𩚹	;us;rs;ul;qk;wy;;
 𩜁	;uw;rw;ul;qh;wy;;
@@ -15400,7 +15400,7 @@
 𠪐	;it;it;il;xq;dq;;
 𢏭	;gi;gv;gl,ge;bo;xy;;
 𢔲	;rt;iv;xl;wq;tg;;
-𢞭	;px;pt;xl,xm,lx;bh;qt;;
+𢞭	;px;pt;lx;bh;qt;;
 𢣠	;ox;ox;xl,ox;vh;eq;;
 𢤐	;px;px;xl,lx;bh;qy;;
 𢷶	;fd;fd;fl;up;rq;;
@@ -15448,7 +15448,7 @@
 竜	;ld;lv;ld,lg;tl;uj;;dz
 龍	;lv;lv;dg,lg;tl;ue;;dh
 垅	;tl;tl;tl;gt;fd;tb;th
-滝	;dd;dv;dd,dg,dl;kt;iu;;ad
+滝	;dd;dv;dd;kt;iu;;ad
 鑨	;jl;jv;jl;zt;qu;;jd
 瀧	;dl;dv;dl;kt;iu;;ad
 尨	;lp;ud;ap,lp;oe;dn;ap;hd
@@ -15464,7 +15464,7 @@
 巃	;ul;ev;ul;vt;mu;;sh
 曨	;ol;ov;ol;ot;ju;;ed
 矓	;ol;ov;ol;qt;hu;;sd
-篭	;vd;vv;vd,vg,vl;rt;tu;;fz
+篭	;vd;vv;vd;rt;tu;;fz
 聾	;le;le;el;tq;ue;;dh
 贚	;bl;ov;bl;ot;mu;;sd
 躘	;zl;zv;zl;pt;kh;;qd
