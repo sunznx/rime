@@ -479,7 +479,7 @@ key_binder:
   # Lua 配置: shijian.lua 的引导符，涉及：日期、时间、节日、节气、生日、问候模板等功能
   shijian_keys: ["/", "o"]
   # Lua 配置: 超级tips上屏按键
-  tips_key: "period"   #修改时候去default找
+  tips_key: "comma"   #修改时候去default找
   bindings:             # 也可以再增加方案专有的
 # 通过按下/发送/+1节约一个按键，不冲突的时候可以开启
     #- { match: "[a-z]{1,4}", accept: "/",  send_sequence: "/1" }
