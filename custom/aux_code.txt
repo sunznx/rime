@@ -62,7 +62,7 @@
 塧	;tm;tm;ty;ga;fu;;td
 壒	;tm;tm;tg,tm;ga;fa;;tc
 嵦	;ub;ea;ud,uq;vz;mm;;ss
-敱	;uy;ey;pd,ud,uq,uy;vh;mg;;ss
+敱	;uy;ey;uq;vh;mg;;ss
 璦	;ww;ww;wa;nh;ge;;wp
 皚	;bb;ba;bd,bq;uz;rm;;ps
 皧	;bw;bw;ba;uh;re;;pp
@@ -40489,7 +40489,7 @@
 𨱔	;jc;jc;jz;zk;qu;jc;jd
 做	;rw;rw;rg;jh;wd;rw;rh
 作	;rv;rv;rv;jw;wt;rv;rp
-坐	;tr;rt;tc,tr,rt;jg;ww;rt;rt
+坐	;tr;rt;tc;jg;ww;rt;rt
 左	;ug;ug;gu,ug;nu;da;ag;hh
 座	;gr;gt;gz;xg;yw;gt;dt
 佐	;rg;rg;rz;ju;wd;rg;rh
