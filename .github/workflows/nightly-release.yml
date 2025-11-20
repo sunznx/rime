@@ -93,7 +93,7 @@ jobs:
                 cp -f dicts/en.dict.yaml      "$dict_dir/" || true
                 cp -f "dicts/cn&en.dict.yaml" "$dict_dir/" || true
                 cp -f dicts/chengyu.txt       "$dict_dir/" || true
-                cp -f dicts/people.dict.yaml   "$dict_dir/" || true
+                cp -f dicts/人名.dict.yaml   "$dict_dir/" || true
               fi
 
               zip_name="${dict_dir}.zip"
