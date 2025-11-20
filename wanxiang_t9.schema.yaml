@@ -331,7 +331,7 @@ speller:
     - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
     - xform/^(.*);.*$/$1/
     - derive/^ng$/eng/
-    - xform/^n/en/
+    - xform/^n$/en/
     - xform/^m$/me/
     - abbrev/^([a-z]).+$/$1/
     - abbrev/^([zcs]h).+$/$1/
