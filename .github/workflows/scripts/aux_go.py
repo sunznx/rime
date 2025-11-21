@@ -171,14 +171,14 @@ if __name__ == '__main__':
 
     # 仅处理这些文件
     FILES = [
-        "基础词库.dict.yaml",
-        "单字表.dict.yaml",
-        "读音兼容.dict.yaml",
-        "错音错字.dict.yaml",
-        "行政区划.dict.yaml",
-        "诗词文.dict.yaml",
-        "联想词库.dict.yaml",
-        "生物.dict.yaml",
+        "jichu.dict.yaml",
+        "zi.dict.yaml",
+        "duoyin.dict.yaml",
+        "cuoyin.dict.yaml",
+        "diming.dict.yaml",
+        "shici.dict.yaml",
+        "lianxiang.dict.yaml",
+        "shengwu.dict.yaml",
     ]
 
     # 输出文件在第一个点前插这个后缀（如 ".pro"；设为空串则不加）
