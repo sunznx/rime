@@ -9,13 +9,18 @@ sort: original  #字典初始排序，可選original或by_weight
 88vip	88vip
 我的ip	wǒ'de'ip
 你的ip	nǐ'de'ip
+α粒子	a'ěr'fǎ'lì'zǐ
+α粒子	Alpha'lì'zǐ
+β粒子	Beta'lì'zǐ
+β粒子	bèi'tǎ'lì'zǐ
+θ粒子	Theta'lì'zǐ
+θ粒子	sāi'ta'lì'zǐ
 A站	A'zhàn
 AC号	AC'hào
 AV号	AV'hào
 BV号	BV'hào
 K记	K'jì
 M记	M'jì
-θ粒子	sāi ta lì zǐ
 叠buff呢	dié'buff'ne
 叠buff	dié'buff
 IT之家	IT'zhī'jiā
@@ -1006,7 +1011,7 @@ iPhone XS	IPhoneXS
 iPhone 3GS	IPhone3GS
 iPhone 17	IPhone17
 iPhone Air	IPhoneAir
-iPhone 17 Pro	IPhone17 Pro
+iPhone 17 Pro	IPhone17Pro
 iPhone 17 Pro Max	IPhone17ProMax
 iPhone 17	IPhone
 iPhone 17 Pro	IPhone
@@ -1383,8 +1388,8 @@ B话	B'huà
 B话多	B'huà'duō
 B话榜	B'huà'bǎng
 B话真多	B'huà'zhēn'duō
-出Bug	chū;bug
-出Bug了	chū;bug'le
+出Bug	chū'bug
+出Bug了	chū'bug'le
 mp3	Mp3
 mp4	Mp4
 H.264	H264
