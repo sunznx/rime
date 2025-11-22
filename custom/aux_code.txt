@@ -19241,7 +19241,7 @@
 錡	;jk;jk;jq;zz;qd;;jh
 騎	;mk;mk;mq;nz;cd;;hh
 旂	;fj;fj;fj;lt;yt;;dp
-棄	;sm;wm;wd,wm;be;yc;;dm
+棄	;wm;wm;wd,wm;be;yc;;dm
 噐	;kk;kk;gk,kk;dd;kk;;kk
 訖	;yv;wq;yq;sa;yt;;ap
 啟	;hw;hw;wq;mh;yn;;dp
