@@ -1,5 +1,6 @@
 #用户自定义优先级高，相同键可以替换默认show所提供的
 翻译： 雾凇（颗粒状的霜晶）	rime
+翻译：区域全面经济伙伴关系协定	rcep
 翻译：%	pct
 翻译：'damned'等的委婉代用语	jiggered
 翻译：(DOS)"DOS外壳程序"	dosshell
