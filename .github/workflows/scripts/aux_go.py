@@ -178,7 +178,11 @@ if __name__ == '__main__':
         "diming.dict.yaml",
         "shici.dict.yaml",
         "lianxiang.dict.yaml",
-        "shengwu.dict.yaml",
+        "renming.dict.yaml",
+        "wuzhong.dict.yaml",
+        "shuxue.dict.yaml",
+        "dikuang.dict.yaml",
+        "wu-hua-sheng-yi-yao.dict.yaml",
     ]
 
     # 输出文件在第一个点前插这个后缀（如 ".pro"；设为空串则不加）
