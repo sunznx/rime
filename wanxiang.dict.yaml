@@ -23,6 +23,6 @@ import_tables:
   - dicts/diming        #地名
   - dicts/wu-hua-sheng-yi-yao #物化生医药
   - dicts/shuxue        #数学
-  - dicts/wuzhong       #物种多样性
-  - dicts/dikuang       #地质矿物
+  #- dicts/wuzhong       #物种多样性
+  #- dicts/dikuang       #地质矿物
 ...
