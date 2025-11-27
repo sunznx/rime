@@ -298,9 +298,9 @@ sort: by_weight
 乙胺	yǐ àn	307
 乙苯	yǐ běn	338
 乙醇	yǐ chún	573
+乙腈	yǐ jīng	399
 已腈	yǐ jīng	201
 异腈	yì jīng	201
-乙腈	yǐ jīng	399
 乙脒	yǐ mǐ	201
 乙嗪	yǐ qín	201
 乙烯	yǐ xī	669
@@ -627,8 +627,8 @@ sort: by_weight
 并五苯	bìng wǔ běn	120
 丙硒醇	bǐng xī chún	92
 丙烯醇	bǐng xī chún	76
-丙稀腈	bǐng xī jīng	73
 丙烯腈	bǐng xī jīng	176
+丙稀腈	bǐng xī jīng	73
 丙烯酮	bǐng xī tóng	111
 丙矽烷	bǐng xī wán	78
 丙酰胺	bǐng xiān àn	89
@@ -1005,8 +1005,8 @@ sort: by_weight
 二甲膦	èr jiǎ lìn	80
 二甲酮	èr jiǎ tóng	93
 二苦胺	èr kǔ àn	80
-二膦酸	èr lìn suān	86
 二磷酸	èr lín suān	186
+二膦酸	èr lìn suān	86
 二膦烷	èr lìn wán	84
 二磷烷	èr lín wán	70
 二卤苯	èr lǔ běn	66
@@ -1698,15 +1698,15 @@ sort: by_weight
 磷酸铜	lín suān tóng	56
 磷酸钍	lín suān tǔ	79
 磷酸锌	lín suān xīn	108
-膦酸盐	lìn suān yán	79
 磷酸盐	lín suān yán	287
+膦酸盐	lìn suān yán	79
 磷酸钇	lín suān yǐ	60
 磷酸镱	lín suān yì	46
 磷酸银	lín suān yín	66
 磷酸铕	lín suān yǒu	69
 磷酸原	lín suān yuán	142
-膦酸酯	lìn suān zhǐ	119
 磷酸酯	lín suān zhǐ	190
+膦酸酯	lìn suān zhǐ	119
 磷醯氯	lín xī lǜ	45
 磷酰胺	lín xiān àn	111
 磷酰氟	lín xiān fú	41
@@ -2645,8 +2645,8 @@ sort: by_weight
 腺垂体	xiàn chuí tǐ	140
 酰辅酶	xiān fǔ méi	150
 腺苷基	xiàn gān jī	66
-腺甘酸	xiàn gān suān	72
 腺苷酸	xiàn gān suān	138
+腺甘酸	xiàn gān suān	72
 纤精酮	xiān jīng tóng	72
 腺嘌呤	xiàn piào lìng	233
 纤溶酶	xiān róng méi	152
