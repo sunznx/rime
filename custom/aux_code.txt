@@ -32928,7 +32928,7 @@
 𩛠	;ur;rt;uz;qg;wy;;
 𪎇	;yw;yw;ym,mu;ch;og;;
 𪎲	;ym;ym;ym,mu;cz;og;;
-啊	;kk;kk;ka;dz;kb;kk;kz
+啊	;kk;kk;ka;dz;kb;kk;kv
 阿	;ek;ek;ek;tz;bs;ek;vh
 吖	;ky;ky;ky;dg;ku;ky;kd
 锕	;jk;jk;ja;zz;qb;jk;jv
