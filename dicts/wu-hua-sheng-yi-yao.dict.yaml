@@ -764,8 +764,8 @@ sort: by_weight
 多种酶	duō zhǒng méi	200
 𫫇噻烷	ě sāi wán	98
 莪术酮	é shù tóng	64
-𫫇唑啉	ě zuò lín	61
 恶唑啉	è zuò lín	112
+𫫇唑啉	ě zuò lín	61
 恶唑烷	è zuò wán	102
 𫫇唑烷	ě zuò wán	60
 蒽二酮	ēn èr tóng	61
@@ -1260,6 +1260,7 @@ sort: by_weight
 喹草烯	kuí cǎo xī	69
 喹㗁啉	kuí è lín	70
 喹恶啉	kuí è lín	86
+喹㗁啉	kuí è lín	70
 喹啉基	kuí lín jī	90
 喹啉类	kuí lín lèi	79
 喹啉酸	kuí lín suān	99
@@ -1519,9 +1520,8 @@ sort: by_weight
 氯乙苯	lǜ yǐ běn	100
 氯乙烷	lǜ yǐ wán	136
 氯乙烯	lǜ yǐ xī	196
-氯吲哚	lǜ yǐn duǒ	82
-吗叮啉	ma dīng lín	57
 吗丁啉	ma dīng lín	248
+吗叮啉	ma dīng lín	57
 吗啡酮	mǎ fēi tóng	90
 吗啡烷	mǎ fēi wán	82
 吗啉胍	ma lín guā	126
@@ -1721,8 +1721,8 @@ sort: by_weight
 噻普酮	sāi pǔ tóng	60
 噻嗪类	sāi qín lèi	172
 噻唑胺	sāi zuò àn	73
-噻唑啉	sāi zuò lín	65
 噻唑磷	sāi zuò lín	82
+噻唑啉	sāi zuò lín	65
 噻唑烷	sāi zuò wán	131
 三氨基	sān ān jī	60
 三苯胺	sān běn àn	68
@@ -2350,8 +2350,8 @@ sort: by_weight
 阿苯达唑	ā běn dá zuò	27
 阿地唑仑	ā dì zuò lún	13
 阿伏苯宗	ā fú běn zōng	24
-阿呋唑嗪	ā fū zuò qín	7
 阿夫唑嗪	ā fū zuò qín	11
+阿呋唑嗪	ā fū zuò qín	7
 锕化合物	ā huà hé wù	4
 阿加糖酶	ā jiā táng méi	8
 阿立哌唑	ā lì pài zuò	31
@@ -2781,8 +2781,8 @@ sort: by_weight
 吡拉西坦	bǐ lā xī tǎn	26
 吡拉酰胺	bǐ lā xiān àn	5
 吡硫霉净	bǐ liú méi jìng	4
-吡硫𬭩锌	bǐ liú wēng xīn	4
 吡硫翁锌	bǐ liú wēng xīn	16
+吡硫𬭩锌	bǐ liú wēng xīn	4
 吡仑帕奈	bǐ lún pà nài	4
 吡罗昔布	bǐ luó xī bù	9
 吡罗昔康	bǐ luó xī kāng	21
@@ -4866,8 +4866,8 @@ sort: by_weight
 羟基乙烷	qiǎng jī yǐ wán	8
 羟基吲哚	qiǎng jī yǐn duǒ	19
 羟甲烟胺	qiǎng jiǎ yān àn	5
-羟甲唑林	qiǎng jiǎ zuò lín	7
 羟甲唑啉	qiǎng jiǎ zuò lín	21
+羟甲唑林	qiǎng jiǎ zuò lín	7
 羟赖氨酸	qiǎng lài ān suān	14
 羟吗啡酮	qiǎng mǎ fēi tóng	9
 羟脯氨酸	qiǎng pú ān suān	32
@@ -6122,8 +6122,8 @@ sort: by_weight
 左美丙嗪	zuǒ měi bǐng qín	19
 唑嘧磺隆	zuò mì huáng lóng	5
 唑尼沙胺	zuò ní shā àn	20
-左旋米唑	zuǒ xuán mǐ zuò	23
 左旋咪唑	zuǒ xuán mǐ zuò	36
+左旋米唑	zuǒ xuán mǐ zuò	23
 吖啶盐酸盐	ā dìng yán suān yán	1
 阿仑膦酸钠	ā lún lìn suān nà	1
 阿糖酸内酯	ā táng suān nèi zhǐ	1
