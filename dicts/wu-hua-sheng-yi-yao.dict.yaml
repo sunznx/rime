@@ -129,17 +129,17 @@ sort: by_weight
 癸胺	guǐ àn	201
 癸苯	guǐ běn	201
 癸醇	guǐ chún	201
-桂酸	guì suān	201
-癸酸	guǐ suān	280
 硅酸	guī suān	359
+癸酸	guǐ suān	280
+桂酸	guì suān	201
 硅酮	guī tóng	334
 癸酮	guǐ tóng	201
 过醇	guò chún	201
 过氧	guò yǎng	393
 海胺	hǎi àn	201
 含氯	hán lǜ	405
-核酶	hé méi	293
 合酶	hé méi	366
+核酶	hé méi	293
 环酸	huán suān	201
 环酮	huán tóng	301
 磺胺	huáng àn	412
@@ -278,8 +278,8 @@ sort: by_weight
 色胺	sè àn	383
 色酮	sè tóng	201
 沙啉	shā lín	201
-胂酸	shèn suān	201
 砷酸	shēn suān	345
+胂酸	shèn suān	201
 生酮	shēng tóng	474
 尸胺	shī àn	201
 叔胺	shū àn	201
@@ -307,8 +307,8 @@ sort: by_weight
 铜酶	tóng méi	199
 酮式	tóng shì	201
 酮尸	tóng shī	201
-桐酸	tóng suān	201
 酮酸	tóng suān	353
+桐酸	tóng suān	201
 酮糖	tóng táng	277
 酮体	tóng tǐ	438
 酮肟	tóng wò	201
@@ -322,17 +322,17 @@ sort: by_weight
 芴醇	wù chún	201
 戊腈	wù jīng	201
 五氯	wǔ lǜ	201
-钨酸	wū suān	297
 戊酸	wù suān	336
+钨酸	wū suān	297
 戊酮	wù tóng	201
 芴酮	wù tóng	201
 烯胺	xī àn	201
 洗氨	xǐ ān	201
 醯胺	xī àn	199
 烯醇	xī chún	411
+矽酸	xī suān	398
 锡酸	xī suān	201
 硒酸	xī suān	201
-矽酸	xī suān	398
 烯酮	xī tóng	373
 酰胺	xiān àn	460
 酰氯	xiān lǜ	383
@@ -990,8 +990,8 @@ sort: by_weight
 碘酸钴	diǎn suān gǔ	93
 碘酸铪	diǎn suān hā	59
 碘酸钬	diǎn suān huǒ	98
-碘酸镓	diǎn suān jiā	81
 碘酸钾	diǎn suān jiǎ	150
+碘酸镓	diǎn suān jiā	81
 碘酸钪	diǎn suān kàng	95
 碘酸镧	diǎn suān lán	96
 碘酸镭	diǎn suān léi	98
@@ -1000,8 +1000,8 @@ sort: by_weight
 碘酸铝	diǎn suān lǚ	89
 碘酸镁	diǎn suān měi	95
 碘酸锰	diǎn suān měng	61
-碘酸镎	diǎn suān ná	81
 碘酸钠	diǎn suān nà	100
+碘酸镎	diǎn suān ná	81
 碘酸镍	diǎn suān niè	66
 碘酸钕	diǎn suān nǚ	91
 碘酸钷	diǎn suān pǒ	86
@@ -1016,10 +1016,10 @@ sort: by_weight
 碘酸锡	diǎn suān xī	83
 碘酸锌	diǎn suān xīn	85
 碘酸盐	diǎn suān yán	126
-碘酸钇	diǎn suān yǐ	59
 碘酸镱	diǎn suān yì	78
-碘酸银	diǎn suān yín	94
+碘酸钇	diǎn suān yǐ	59
 碘酸铟	diǎn suān yīn	95
+碘酸银	diǎn suān yín	94
 碘酸铕	diǎn suān yǒu	97
 碘戊烷	diǎn wù wán	77
 碘酰氟	diǎn xiān fú	59
@@ -2329,8 +2329,8 @@ sort: by_weight
 钼酸钐	mù suān shān	82
 钼酸锌	mù suān xīn	74
 钼酸盐	mù suān yán	112
-钼酸银	mù suān yín	87
 钼酸铟	mù suān yīn	90
+钼酸银	mù suān yín	87
 木糖醇	mù táng chún	230
 木酮糖	mù tóng táng	88
 纳洛醇	nà luò chún	90
@@ -2663,8 +2663,8 @@ sort: by_weight
 砷酸铽	shēn suān tè	65
 砷酸铜	shēn suān tóng	90
 砷酸盐	shēn suān yán	140
-砷酸钇	shēn suān yǐ	56
 砷酸镱	shēn suān yì	92
+砷酸钇	shēn suān yǐ	56
 砷酸银	shēn suān yín	94
 砷酸铕	shēn suān yǒu	67
 砷酸酯	shēn suān zhǐ	96
@@ -2893,8 +2893,8 @@ sort: by_weight
 戊硼烷	wù péng wán	91
 戊三酮	wù sān tóng	79
 五十烷	wǔ shí wán	92
-戊酸铵	wù suān ǎn	65
 钨酸铵	wū suān ǎn	108
+戊酸铵	wù suān ǎn	65
 钨酸钡	wū suān bèi	85
 钨酸钙	wū suān gài	76
 钨酸锆	wū suān gào	91
@@ -2903,8 +2903,8 @@ sort: by_weight
 钨酸钴	wū suān gǔ	84
 钨酸钾	wū suān jiǎ	93
 钨酸镧	wū suān lán	69
-钨酸锂	wū suān lǐ	72
 戊酸锂	wù suān lǐ	94
+钨酸锂	wū suān lǐ	72
 钨酸锰	wū suān měng	61
 钨酸钠	wū suān nà	106
 钨酸镍	wū suān niè	88
@@ -2915,8 +2915,8 @@ sort: by_weight
 钨酸铜	wū suān tóng	61
 钨酸锌	wū suān xīn	86
 钨酸盐	wū suān yán	116
-钨酸铟	wū suān yīn	83
 钨酸银	wū suān yín	87
+钨酸铟	wū suān yīn	83
 戊酸酯	wù suān zhǐ	93
 乌索烷	wū suǒ wán	93
 戊酮糖	wù tóng táng	81
@@ -2953,14 +2953,14 @@ sort: by_weight
 硒酸镉	xī suān gé	87
 硒酸铪	xī suān hā	96
 硒酸钬	xī suān huǒ	70
-硒酸钾	xī suān jiǎ	56
 硒酸镓	xī suān jiā	57
+硒酸钾	xī suān jiǎ	56
 硒酸金	xī suān jīn	89
 硒酸镥	xī suān lǔ	90
 硒酸铝	xī suān lǚ	97
-锡酸钠	xī suān nà	56
-矽酸钠	xī suān nà	87
 硒酸钠	xī suān nà	90
+矽酸钠	xī suān nà	87
+锡酸钠	xī suān nà	56
 硒酸镍	xī suān niè	67
 硒酸铅	xī suān qiān	86
 硒酸铯	xī suān sè	59
@@ -2969,9 +2969,9 @@ sort: by_weight
 硒酸铜	xī suān tóng	99
 硒酸钍	xī suān tǔ	97
 硒酸锌	xī suān xīn	88
-矽酸盐	xī suān yán	1
-锡酸盐	xī suān yán	79
 硒酸盐	xī suān yán	118
+锡酸盐	xī suān yán	79
+矽酸盐	xī suān yán	1
 硒酸镱	xī suān yì	83
 硒酸银	xī suān yín	78
 西汀氟	xī tīng fú	62
@@ -5170,9 +5170,9 @@ sort: by_weight
 硅酸钙钠	guī suān gài nà	5
 癸酸睾酮	guǐ suān gāo tóng	5
 硅酸钾钠	guī suān jiǎ nà	6
-桂酸甲酯	guì suān jiǎ zhǐ	7
 癸酸甲酯	guǐ suān jiǎ zhǐ	10
 硅酸甲酯	guī suān jiǎ zhǐ	9
+桂酸甲酯	guì suān jiǎ zhǐ	7
 硅酸铝板	guī suān lǚ bǎn	1
 硅酸铝锂	guī suān lǚ lǐ	5
 硅酸铝镁	guī suān lǚ měi	10
@@ -5188,9 +5188,9 @@ sort: by_weight
 硅酸盐板	guī suān yán bǎn	15
 硅酸盐类	guī suān yán lèi	22
 硅酸盐砖	guī suān yán zhuān	9
-桂酸乙酯	guì suān yǐ zhǐ	6
 癸酸乙酯	guǐ suān yǐ zhǐ	16
 硅酸乙酯	guī suān yǐ zhǐ	7
+桂酸乙酯	guì suān yǐ zhǐ	6
 硅酮橡胶	guī tóng xiàng jiāo	5
 硅烷交联	guī wán jiāo lián	12
 硅钨酸钠	guī wū suān nà	6
@@ -8028,8 +8028,8 @@ sort: by_weight
 亚氰酸钾	yà qíng suān jiǎ	7
 亚砷酸钡	yà shēn suān bèi	9
 亚砷酸钙	yà shēn suān gài	5
-亚胂酸酐	yà shèn suān gān	6
 亚砷酸酐	yà shēn suān gān	13
+亚胂酸酐	yà shèn suān gān	6
 亚砷酸钾	yà shēn suān jiǎ	26
 亚砷酸钠	yà shēn suān nà	26
 亚砷酸铅	yà shēn suān qiān	8
