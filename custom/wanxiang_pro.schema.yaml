@@ -46,7 +46,8 @@ switches:
     states: [ 简体, 通繁, 港繁, 臺繁 ]
   - name: char_priority                #多体现在编码重合但候选有单字或者多字的情况`引导的辅码查词时是否单字优先，全拼常见，类似于特定编码情况下、反查状态下的调序能力。归属：super_lookup.lua
     states: [词组先, 单字先]
-
+  - options: [ mixed, zh_only, en_only ]
+    states: [ 混合输入, 仅中文, 仅英文 ]
 
 # 输入引擎
 engine:
@@ -515,6 +516,8 @@ key_binder:
     - { when: has_menu, accept: "Control+t", toggle: super_tips }
 # 通过快捷键Control+g开启字符集过滤
     - { when: has_menu, accept: "Control+g", toggle: charset_filter }
+#通过快捷键Control+q切换中文、英文、混合模式
+    - { when: composing, accept: "Control+q", toggle: zh_only }
 # 使用 tab 在不同音节之间跳转
     - { when: has_menu, accept: "Tab", send: "Control+Right" }
     - { when: composing, accept: "Tab", send: "Control+Right" }
