@@ -100,9 +100,10 @@ engine:
     - simplifier@s2tw                               #简繁切换台繁
     - simplifier@s2hk                               #简繁切换港繁
     - simplifier@chinese_english                    #中英翻译滤镜
-    - lua_filter@*super_lookup                      #字词输入中反查辅助筛选
-    - lua_filter@*super_sequence*F                  #手动排序放在assist_sort 后面，高亮候选 ctrl+j左移动 ctrl+k 右移动 ctrl+0 移除位移
-    - lua_filter@*text_formatting_promote           #给自定义用户词扩展一个换行:\n, 制表符：\t, 回车符：\r, 空格：\s ，并对简码位置提升到第二位，同时保证英文前置避免无效派生干扰
+    - lua_filter@*auto_phrase                       #无感造词，关闭调频的时候将汉字写入次翻译器，当没有英文候选的时候追加\上屏可完成英文造词
+    - lua_filter@*super_sequence*F                  #手动排序，对高亮候选 ctrl+j左移动 ctrl+k 右移动 ctrl+0 移除位移
+    - lua_filter@*text_formatting_promote           #给自定义用户词格式化、英文候选格式化、排序、首选包裹成对符号，功能太多详见Lua文件
+    - lua_filter@*super_comment_preedit             #超级注释模块，支持错词提示、辅助码显示，部件组字读音注释，支持个性化配置和关闭相应的功能，详情搜索super_comment进行详细配置
     - uniquifier                                    # 去重
 
 grammar:
@@ -383,7 +384,7 @@ chengyu:
 # 中文、英文、数字、符号等混合词汇
 wanxiang_mixedcode:
   dictionary: wanxiang_mixedcode
-  db_class: stabledb
+  user_dict: en
   enable_completion: true
   enable_sentence: false
   initial_quality: 2
