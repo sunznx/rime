@@ -418,7 +418,7 @@ local function codepoint_in_charset(env, codepoint)
     return ok
 end
 
--- 整个 text 是否通过“字符集过滤”
+--[[ 整个 text 是否通过“字符集过滤”
 -- 规则：只检查「汉字」，非汉字（英文/符号）直接视为通过；
 --      只要出现一个不在 charset 的汉字，就整条候选丢弃。
 local function in_charset(env, text)
@@ -434,6 +434,31 @@ local function in_charset(env, text)
         end
     end
     return true
+end]]--
+-- 整个 text 是否通过“字符集过滤”
+-- 现在只对【单个汉字】做过滤，多字词/非汉字候选都直接通过
+local function in_charset(env, text)
+    if not env or not env.charset or not text or text == "" then
+        return true
+    end
+    -- 统计码点数，只要不是恰好 1 个码点，就不做过滤
+    local cp, count = nil, 0
+    for _, c in utf8.codes(text) do
+        cp = c
+        count = count + 1
+        if count > 1 then
+            return true    -- 多字词：直接通过
+        end
+    end
+    if count ~= 1 or not cp then
+        return true
+    end
+    local ch = utf8.char(cp)
+    if not wanxiang.IsChineseCharacter(ch) then
+        return true       -- 单个但不是汉字：直接通过
+    end
+    -- 单个汉字：按 charset + 黑白名单过滤
+    return codepoint_in_charset(env, cp)
 end
 -- 当前 composition 的最后一个 seg 是否属于「反查/造词/标点」之类
 local function is_reverse_lookup_segment(env)
