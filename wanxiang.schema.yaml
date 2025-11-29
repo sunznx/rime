@@ -520,7 +520,7 @@ key_binder:
 #通过快捷键Control+g开启字符集过滤
     - { when: has_menu, accept: "Control+g", toggle: charset_filter }
 #通过快捷键Control+q切换中文、英文、混合模式
-    - { when: composing, accept: "Control+q", toggle: zh_only }
+    - { when: has_menu, accept: "Control+q", toggle: zh_only }
 # 使用 tab 在不同音节之间跳转
     - { when: has_menu, accept: "Tab", send: "Control+Right" }
     - { when: composing, accept: "Tab", send: "Control+Right" }
