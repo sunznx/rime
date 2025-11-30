@@ -86,7 +86,130 @@
 
 郑重说明：模型是一个优秀的大数据遍历能力的模块，他能方便的扩展词库数据的不足，非100%外显，它只消耗一些cpu的算力，占用极少的内存，而且他是不增大的固定的二进制数据，请区别于小而美的热加载数据看待。
 
-#### ②进阶custom patch法（已经尽量为你简化）强烈推荐，适用于长期稳定使用：
+#### ②东风破plum：  
+
+安装环境可用plum命令简单安装与更新，在保证安装小狼毫、中州韵、鼠须管等前端的前提下
+
+```
+macOS / Linux	已内置 bash，无需处理
+Windows	需要 Git Bash（安装 Git for Windows 时自动提供）
+```
+注意：  
+Windows 的 PowerShell / CMD 不能直接运行东风破，必须用 Git Bash。  
+
+<details> <summary><strong>点击展开 / 收起 万象全部安装命令（可一键复制）</strong></summary>
+
+#### 🌟 全家桶安装
+
+##### 全家桶（所有方案 + 词库）
+```bash
+bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-all-full
+```
+
+##### 全家桶（仅词库）
+```bash
+bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-all-dicts
+```
+
+#### 🔷 基础版（base）
+
+##### 基础版（完整）
+```bash
+bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-base-full
+```
+
+##### 基础版（仅词库）
+```bash
+bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-base-dicts
+```
+
+#### 🔷 自然码辅助版（zrm-fuzhu）
+
+##### 自然码辅助版（完整）
+```bash
+bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-zrm-fuzhu-full
+```
+
+##### 自然码辅助版（仅词库）
+```bash
+bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-zrm-fuzhu-dicts
+```
+
+#### 🔷 墨奇辅助版（moqi-fuzhu）
+
+##### 墨奇辅助版（完整）
+```bash
+bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-moqi-fuzhu-full
+```
+
+##### 墨奇辅助版（仅词库）
+```bash
+bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-moqi-fuzhu-dicts
+```
+
+#### 🔷 小鹤辅助版（flypy-fuzhu）
+
+##### 小鹤辅助版（完整）
+```bash
+bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-flypy-fuzhu-full
+```
+
+##### 小鹤辅助版（仅词库）
+```bash
+bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-flypy-fuzhu-dicts
+```
+
+#### 🔷 虎码辅助版（tiger-fuzhu）
+
+##### 虎码辅助版（完整）
+```bash
+bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-tiger-fuzhu-full
+```
+
+##### 虎码辅助版（仅词库）
+```bash
+bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-tiger-fuzhu-dicts
+```
+
+#### 🔷 五笔辅助版（wubi-fuzhu）
+
+##### 五笔辅助版（完整）
+```bash
+bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-wubi-fuzhu-full
+```
+
+##### 五笔辅助版（仅词库）
+```bash
+bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-wubi-fuzhu-dicts
+```
+
+#### 🔷 汉心辅助版（hanxin-fuzhu）
+
+#### 汉心辅助版（完整）
+```bash
+bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-hanxin-fuzhu-full
+```
+
+##### 汉心辅助版（仅词库）
+```bash
+bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-hanxin-fuzhu-dicts
+```
+
+#### 🔷 首右辅助版（shouyou-fuzhu）
+
+##### 首右辅助版（完整）
+```bash
+bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-shouyou-fuzhu-full
+```
+
+##### 首右辅助版（仅词库）
+```bash
+bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-shouyou-fuzhu-dicts
+```
+
+</details>
+
+**③进阶custom patch法（已经尽量为你简化）强烈推荐，适用于长期稳定使用：**
 
 其实快速运行中我们已经完成了custom patch的部署，里面还预设了一些示例，这些例子只是例子，请务必详细阅读每一行，保留有用的删除无用的，千万不要改完双拼就万事大吉了，每一行详细查阅、理解、修改。custom是对对应方案文件的最后一道补丁，是真正属于你自己的配置文件，他不会被升级所覆盖。
 
@@ -104,7 +227,7 @@ schema,default,weasel,squirrel
 
 更详细参照：[🚀 Rime 万象拼音输入方案 新手安装配置指南](https://docs.qq.com/doc/DQ0FqSXBmYVpWVFpy?rtkey=)
 
-**③脚本更新：**
+**④第三方脚本更新：**
 
 脚本的下载地址 [万象方案更新脚本](https://github.com/rimeinn/rime-wanxiang-update-tools)。这里以win版本的小狼毫为例，如果你是**中文系统**请下载更新脚本的 powershell **非utf-8版本**，具体文件名：`rime-wanxiang-update-windows.ps1` 。在使用万象之前，请安装小狼毫，安装小狼毫的过程中，请一切保持默认即可，等你熟悉之后可以自定义。本入门最终会带你一步步设置使用**小鹤双拼+墨奇辅助码**的方案。
 
@@ -116,17 +239,13 @@ schema,default,weasel,squirrel
 
 4. 在使用脚本更新之前，务必使用进阶custom patch法维护好你的配置，更新不会覆盖custom.yaml类文件
 
-④**自定义数据获取：**
+**⑤自定义数据获取：**
 
 在线custom目录随有三个数据源提供，按自己需求自行整理取用，这部分数据没有随zip方案包一起供应，需在线下载。
 
-- jm_flypy.txt 用于提供小鹤类型的简码，下载后复制到根目录custom_phrase.txt自定义库即可使用；
+- jm_flypy.txt 用于提供小鹤类型的简码，下载后复制到根目录custom_phrase.txt自定义库即可使用；  
 
-  
-
-- jm_zrm.txt 用于提供自然码类型的简码，下载后复制到根目录custom_phrase.txt自定义库即可使用；
-
-  
+- jm_zrm.txt 用于提供自然码类型的简码，下载后复制到根目录custom_phrase.txt自定义库即可使用；  
 
 - tips_user.txt tips用到的“翻译”类型的数据，下载后放置于lua/tips里面重新部署。
 

@@ -430,5 +430,3 @@ jobs:
             || echo "Nothing to commit."
 
           git push -f origin release
-
-
