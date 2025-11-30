@@ -1,0 +1,434 @@
+name: Build release branch snapshot
+
+on:
+  workflow_dispatch: # 手动触发
+  push:
+    branches:
+      - wanxiang
+
+concurrency:
+  group: release-branch
+  cancel-in-progress: true
+
+jobs:
+  build-release:
+    runs-on: ubuntu-22.04
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Release build
+        run: bash .github/workflows/scripts/release-build.sh
+
+      # 1. 用 dist/ 里的产物拼出 snapshot 目录
+      - name: Prepare snapshot tree from dist
+        run: |
+          set -euo pipefail
+
+          rm -rf snapshot
+          mkdir -p snapshot
+
+          # 使用 dist/ 里的目录构建 snapshot
+          if ls dist/rime-wanxiang-* 1> /dev/null 2>&1; then
+            for d in dist/rime-wanxiang-*; do
+              [ -d "$d" ] || continue
+              name="$(basename "$d")"
+              echo "Copying directory $d -> snapshot/$name"
+              mkdir -p "snapshot/$name"
+              cp -a "$d"/. "snapshot/$name"/
+            done
+          else
+            echo "Error: no dist/rime-wanxiang-* directories found."
+            exit 1
+          fi
+
+          echo "Snapshot tree after prepare:"
+          ls -R snapshot || true
+
+      # 2. 在 snapshot/plum/ 目录下写所有东风破配方
+      - name: Write plum recipes for wanxiang
+        run: |
+          set -euo pipefail
+          mkdir -p snapshot/plum
+
+          ################################
+          # 全家桶：所有方案 + 对应 dicts #
+          ################################
+          cat > snapshot/plum/wanxiang-all-full.recipe.yaml << 'EOF'
+          # Wanxiang 全家桶安装（所有方案 + 对应 dicts）
+          # 用法：
+          #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-all-full
+          recipe:
+            name: wanxiang-all-full
+            description: "万象拼音：所有方案 + 对应词库（release 分支快照）"
+            install_files:
+              - rime-wanxiang-base/**
+              - rime-wanxiang-shouyou-fuzhu/**
+              - rime-wanxiang-zrm-fuzhu/**
+              - rime-wanxiang-tiger-fuzhu/**
+              - rime-wanxiang-moqi-fuzhu/**
+              - rime-wanxiang-flypy-fuzhu/**
+              - rime-wanxiang-wubi-fuzhu/**
+              - rime-wanxiang-hanxin-fuzhu/**
+          EOF
+
+          ##########################
+          # 全家桶：仅安装/更新词库 #
+          ##########################
+          cat > snapshot/plum/wanxiang-all-dicts.recipe.yaml << 'EOF'
+          # Wanxiang 仅词库安装（所有方案的 dicts/）
+          # 用法：
+          #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-all-dicts
+          recipe:
+            name: wanxiang-all-dicts
+            description: "万象拼音：仅更新/安装全部方案的词库（dicts-only）"
+            install_files:
+              - rime-wanxiang-base/dicts/**
+              - rime-wanxiang-shouyou-fuzhu/dicts/**
+              - rime-wanxiang-zrm-fuzhu/dicts/**
+              - rime-wanxiang-tiger-fuzhu/dicts/**
+              - rime-wanxiang-moqi-fuzhu/dicts/**
+              - rime-wanxiang-flypy-fuzhu/dicts/**
+              - rime-wanxiang-wubi-fuzhu/dicts/**
+              - rime-wanxiang-hanxin-fuzhu/dicts/**
+          EOF
+
+          ########################
+          # 单方案：基础版 base   #
+          ########################
+          cat > snapshot/plum/wanxiang-base-full.recipe.yaml << 'EOF'
+          # 基础版：方案 + lua + dicts
+          # 用法：
+          #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-base-full
+          recipe:
+            name: wanxiang-base-full
+            description: "万象拼音：基础版（整个方案目录）"
+            install_files:
+              - rime-wanxiang-base/**
+          EOF
+
+          cat > snapshot/plum/wanxiang-base-dicts.recipe.yaml << 'EOF'
+          # 基础版：仅词库
+          # 用法：
+          #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-base-dicts
+          recipe:
+            name: wanxiang-base-dicts
+            description: "万象拼音：基础版，仅词库（dicts-only）"
+            install_files:
+              - rime-wanxiang-base/dicts/**
+          EOF
+
+          ############################
+          # 单方案：首右辅助版 shouyou #
+          ############################
+          cat > snapshot/plum/wanxiang-shouyou-fuzhu-full.recipe.yaml << 'EOF'
+          # 首右辅助版：方案 + lua + dicts
+          # 用法：
+          #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-shouyou-fuzhu-full
+          recipe:
+            name: wanxiang-shouyou-fuzhu-full
+            description: "万象拼音：首右辅助版（整个方案目录）"
+            install_files:
+              - rime-wanxiang-shouyou-fuzhu/**
+          EOF
+
+          cat > snapshot/plum/wanxiang-shouyou-fuzhu-dicts.recipe.yaml << 'EOF'
+          # 首右辅助版：仅词库
+          # 用法：
+          #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-shouyou-fuzhu-dicts
+          recipe:
+            name: wanxiang-shouyou-fuzhu-dicts
+            description: "万象拼音：首右辅助版，仅词库（dicts-only）"
+            install_files:
+              - rime-wanxiang-shouyou-fuzhu/dicts/**
+          EOF
+
+          ############################
+          # 单方案：自然码辅助版 zrm   #
+          ############################
+          cat > snapshot/plum/wanxiang-zrm-fuzhu-full.recipe.yaml << 'EOF'
+          # 自然码辅助版：方案 + lua + dicts
+          # 用法：
+          #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-zrm-fuzhu-full
+          recipe:
+            name: wanxiang-zrm-fuzhu-full
+            description: "万象拼音：自然码辅助版（整个方案目录）"
+            install_files:
+              - rime-wanxiang-zrm-fuzhu/**
+          EOF
+
+          cat > snapshot/plum/wanxiang-zrm-fuzhu-dicts.recipe.yaml << 'EOF'
+          # 自然码辅助版：仅词库
+          # 用法：
+          #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-zrm-fuzhu-dicts
+          recipe:
+            name: wanxiang-zrm-fuzhu-dicts
+            description: "万象拼音：自然码辅助版，仅词库（dicts-only）"
+            install_files:
+              - rime-wanxiang-zrm-fuzhu/dicts/**
+          EOF
+
+          ############################
+          # 单方案：虎码辅助版 tiger   #
+          ############################
+          cat > snapshot/plum/wanxiang-tiger-fuzhu-full.recipe.yaml << 'EOF'
+          # 虎码辅助版：方案 + lua + dicts
+          # 用法：
+          #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-tiger-fuzhu-full
+          recipe:
+            name: wanxiang-tiger-fuzhu-full
+            description: "万象拼音：虎码辅助版（整个方案目录）"
+            install_files:
+              - rime-wanxiang-tiger-fuzhu/**
+          EOF
+
+          cat > snapshot/plum/wanxiang-tiger-fuzhu-dicts.recipe.yaml << 'EOF'
+          # 虎码辅助版：仅词库
+          # 用法：
+          #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-tiger-fuzhu-dicts
+          recipe:
+            name: wanxiang-tiger-fuzhu-dicts
+            description: "万象拼音：虎码辅助版，仅词库（dicts-only）"
+            install_files:
+              - rime-wanxiang-tiger-fuzhu/dicts/**
+          EOF
+
+          ############################
+          # 单方案：墨奇辅助版 moqi    #
+          ############################
+          cat > snapshot/plum/wanxiang-moqi-fuzhu-full.recipe.yaml << 'EOF'
+          # 墨奇辅助版：方案 + lua + dicts
+          # 用法：
+          #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-moqi-fuzhu-full
+          recipe:
+            name: wanxiang-moqi-fuzhu-full
+            description: "万象拼音：墨奇辅助版（整个方案目录）"
+            install_files:
+              - rime-wanxiang-moqi-fuzhu/**
+          EOF
+
+          cat > snapshot/plum/wanxiang-moqi-fuzhu-dicts.recipe.yaml << 'EOF'
+          # 墨奇辅助版：仅词库
+          # 用法：
+          #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-moqi-fuzhu-dicts
+          recipe:
+            name: wanxiang-moqi-fuzhu-dicts
+            description: "万象拼音：墨奇辅助版，仅词库（dicts-only）"
+            install_files:
+              - rime-wanxiang-moqi-fuzhu/dicts/**
+          EOF
+
+          ############################
+          # 单方案：小鹤辅助版 flypy   #
+          ############################
+          cat > snapshot/plum/wanxiang-flypy-fuzhu-full.recipe.yaml << 'EOF'
+          # 小鹤辅助版：方案 + lua + dicts
+          # 用法：
+          #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-flypy-fuzhu-full
+          recipe:
+            name: wanxiang-flypy-fuzhu-full
+            description: "万象拼音：小鹤辅助版（整个方案目录）"
+            install_files:
+              - rime-wanxiang-flypy-fuzhu/**
+          EOF
+
+          cat > snapshot/plum/wanxiang-flypy-fuzhu-dicts.recipe.yaml << 'EOF'
+          # 小鹤辅助版：仅词库
+          # 用法：
+          #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-flypy-fuzhu-dicts
+          recipe:
+            name: wanxiang-flypy-fuzhu-dicts
+            description: "万象拼音：小鹤辅助版，仅词库（dicts-only）"
+            install_files:
+              - rime-wanxiang-flypy-fuzhu/dicts/**
+          EOF
+
+          ############################
+          # 单方案：五笔辅助版 wubi    #
+          ############################
+          cat > snapshot/plum/wanxiang-wubi-fuzhu-full.recipe.yaml << 'EOF'
+          # 五笔辅助版：方案 + lua + dicts
+          # 用法：
+          #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-wubi-fuzhu-full
+          recipe:
+            name: wanxiang-wubi-fuzhu-full
+            description: "万象拼音：五笔辅助版（整个方案目录）"
+            install_files:
+              - rime-wanxiang-wubi-fuzhu/**
+          EOF
+
+          cat > snapshot/plum/wanxiang-wubi-fuzhu-dicts.recipe.yaml << 'EOF'
+          # 五笔辅助版：仅词库
+          # 用法：
+          #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-wubi-fuzhu-dicts
+          recipe:
+            name: wanxiang-wubi-fuzhu-dicts
+            description: "万象拼音：五笔辅助版，仅词库（dicts-only）"
+            install_files:
+              - rime-wanxiang-wubi-fuzhu/dicts/**
+          EOF
+
+          ############################
+          # 单方案：汉心辅助版 hanxin   #
+          ############################
+          cat > snapshot/plum/wanxiang-hanxin-fuzhu-full.recipe.yaml << 'EOF'
+          # 汉心辅助版：方案 + lua + dicts
+          # 用法：
+          #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-hanxin-fuzhu-full
+          recipe:
+            name: wanxiang-hanxin-fuzhu-full
+            description: "万象拼音：汉心辅助版（整个方案目录）"
+            install_files:
+              - rime-wanxiang-hanxin-fuzhu/**
+          EOF
+
+          cat > snapshot/plum/wanxiang-hanxin-fuzhu-dicts.recipe.yaml << 'EOF'
+          # 汉心辅助版：仅词库
+          # 用法：
+          #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-hanxin-fuzhu-dicts
+          recipe:
+            name: wanxiang-hanxin-fuzhu-dicts
+            description: "万象拼音：汉心辅助版，仅词库（dicts-only）"
+            install_files:
+              - rime-wanxiang-hanxin-fuzhu/dicts/**
+          EOF
+      # 3. 从 dist 中打出每夜词库 zip（不套文件夹，只打 dicts/**）
+      - name: Pack nightly dict zips
+        run: |
+          set -euo pipefail
+
+          mkdir -p dist
+
+          pack_dict() {
+            local src="$1"
+            local zip_name="$2"
+            if [[ -d "$src" ]]; then
+              echo "Packing $src -> dist/${zip_name}"
+              (cd "$src" && zip -r -q "../../${zip_name}" .)
+            else
+              echo "Warning: $src does not exist, skipped."
+            fi
+          }
+
+          pack_dict "dist/rime-wanxiang-moqi-fuzhu/dicts"   "pro-moqi-fuzhu-dicts.zip"
+          pack_dict "dist/rime-wanxiang-flypy-fuzhu/dicts"  "pro-flypy-fuzhu-dicts.zip"
+          pack_dict "dist/rime-wanxiang-zrm-fuzhu/dicts"    "pro-zrm-fuzhu-dicts.zip"
+          pack_dict "dist/rime-wanxiang-tiger-fuzhu/dicts"  "pro-tiger-fuzhu-dicts.zip"
+          pack_dict "dist/rime-wanxiang-wubi-fuzhu/dicts"   "pro-wubi-fuzhu-dicts.zip"
+          pack_dict "dist/rime-wanxiang-hanxin-fuzhu/dicts" "pro-hanxin-fuzhu-dicts.zip"
+          pack_dict "dist/rime-wanxiang-shouyou-fuzhu/dicts" "pro-shouyou-fuzhu-dicts.zip"
+          pack_dict "dist/rime-wanxiang-base/dicts"         "base-dicts.zip"
+
+          echo "Nightly dict zips in dist/:"
+          ls -1 dist/*.zip || true
+
+      # 4. 删除旧的 Nightly Release 和 Tag
+      - name: Delete existing Nightly Release and Tag
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const tag = "dict-nightly";
+            try {
+              const releases = await github.rest.repos.listReleases({
+                owner: context.repo.owner,
+                repo: context.repo.repo
+              });
+              const existingRelease = releases.data.find(r => r.tag_name === tag);
+              if (existingRelease) {
+                console.log(`Deleting existing Release with ID: ${existingRelease.id}`);
+                await github.rest.repos.deleteRelease({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  release_id: existingRelease.id
+                });
+              }
+
+              console.log(`Deleting tag: ${tag}`);
+              await github.rest.git.deleteRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: `tags/${tag}`
+              });
+            } catch (error) {
+              console.log(`Error deleting Release or Tag: ${error.message}`);
+            }
+
+      - name: Wait for cleanup
+        run: sleep 10
+
+      # 5. 创建新的 Nightly Release，上传词库 zips
+      - name: Create dict-nightly Release
+        uses: softprops/action-gh-release@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: dict-nightly
+          name: "实时提交的词库更新"
+          body: |
+            - **base-dicts.zip**：最新的标准版原始中文词库文件
+            - **pro-moqi-fuzhu-dicts.zip**：携带了墨奇辅助码的词库文件
+            - **pro-flypy-fuzhu-dicts.zip**：携带了小鹤辅助码的词库文件
+            - **pro-zrm-fuzhu-dicts.zip**：携带了自然码辅助码的词库文件
+            - **pro-tiger-fuzhu-dicts.zip**：携带了虎码辅助码的词库文件
+            - **pro-wubi-fuzhu-dicts.zip**：携带了五笔辅助码的词库文件
+            - **pro-hanxin-fuzhu-dicts.zip**：携带了汉心辅助码的词库文件
+            - **pro-shouyou-fuzhu-dicts.zip**：携带了首右辅助码的词库文件
+            - **[wanxiang-lts-zh-hans.gram](https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram)**：与词库同步更新的语法模型
+          files: |
+            dist/pro-moqi-fuzhu-dicts.zip
+            dist/pro-flypy-fuzhu-dicts.zip
+            dist/pro-zrm-fuzhu-dicts.zip
+            dist/pro-tiger-fuzhu-dicts.zip
+            dist/pro-wubi-fuzhu-dicts.zip
+            dist/pro-hanxin-fuzhu-dicts.zip
+            dist/pro-shouyou-fuzhu-dicts.zip
+            dist/base-dicts.zip
+          draft: false
+          prerelease: false
+          make_latest: true
+      # 6. 切到 release 分支，用 snapshot 覆盖根目录并强推
+      - name: Commit and force push release
+        env:
+          GIT_AUTHOR_NAME: ci-bot
+          GIT_AUTHOR_EMAIL: ci@example.com
+          GIT_COMMITTER_NAME: ci-bot
+          GIT_COMMITTER_EMAIL: ci@example.com
+        run: |
+          set -euo pipefail
+
+          # 先检查 release 分支是否存在
+          if git show-ref --verify --quiet refs/heads/release; then
+            git checkout release
+          else
+            git checkout --orphan release
+          fi
+
+          # 清空当前工作区（仅保留 .git 和 snapshot）
+          find . -mindepth 1 -maxdepth 1 ! -name ".git" ! -name "snapshot" -exec rm -rf {} +
+
+          # 把 snapshot 里的内容拷到根目录
+          cp -a snapshot/. .
+
+          # 不要把 snapshot 目录本身提交进去
+          rm -rf snapshot
+
+          git status
+
+          tag_name="${{ github.event_name == 'release' && github.event.release.tag_name || 'manual-build' }}"
+
+          git add .
+          git commit -m "chore(release-branch): snapshot for ${tag_name}" \
+            || echo "Nothing to commit."
+
+          git push -f origin release
+
+
