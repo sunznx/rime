@@ -64,243 +64,316 @@ jobs:
           # 全家桶：所有方案 + 对应 dicts #
           ################################
           cat > snapshot/plum/wanxiang-all-full.recipe.yaml << 'EOF'
+          # encoding: utf-8
+          ---
           # Wanxiang 全家桶安装（所有方案 + 对应 dicts）
           # 用法：
           #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-all-full
           recipe:
-            name: wanxiang-all-full
-            description: "万象拼音：所有方案 + 对应词库（release 分支快照）"
-            install_files:
-              - rime-wanxiang-base/**
-              - rime-wanxiang-shouyou-fuzhu/**
-              - rime-wanxiang-zrm-fuzhu/**
-              - rime-wanxiang-tiger-fuzhu/**
-              - rime-wanxiang-moqi-fuzhu/**
-              - rime-wanxiang-flypy-fuzhu/**
-              - rime-wanxiang-wubi-fuzhu/**
-              - rime-wanxiang-hanxin-fuzhu/**
+            Rx: plum/wanxiang-all-full
+            args:
+            description: >-
+              万象拼音：所有方案 + 对应词库（release 分支快照）
+          install_files: >-
+            rime-wanxiang-base/**
+            rime-wanxiang-shouyou-fuzhu/**
+            rime-wanxiang-zrm-fuzhu/**
+            rime-wanxiang-tiger-fuzhu/**
+            rime-wanxiang-moqi-fuzhu/**
+            rime-wanxiang-flypy-fuzhu/**
+            rime-wanxiang-wubi-fuzhu/**
+            rime-wanxiang-hanxin-fuzhu/**
           EOF
 
           ##########################
           # 全家桶：仅安装/更新词库 #
           ##########################
           cat > snapshot/plum/wanxiang-all-dicts.recipe.yaml << 'EOF'
+          # encoding: utf-8
+          ---
           # Wanxiang 仅词库安装（所有方案的 dicts/）
           # 用法：
           #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-all-dicts
           recipe:
-            name: wanxiang-all-dicts
-            description: "万象拼音：仅更新/安装全部方案的词库（dicts-only）"
-            install_files:
-              - rime-wanxiang-base/dicts/**
-              - rime-wanxiang-shouyou-fuzhu/dicts/**
-              - rime-wanxiang-zrm-fuzhu/dicts/**
-              - rime-wanxiang-tiger-fuzhu/dicts/**
-              - rime-wanxiang-moqi-fuzhu/dicts/**
-              - rime-wanxiang-flypy-fuzhu/dicts/**
-              - rime-wanxiang-wubi-fuzhu/dicts/**
-              - rime-wanxiang-hanxin-fuzhu/dicts/**
+            Rx: plum/wanxiang-all-dicts
+            args:
+            description: >-
+              万象拼音：仅更新/安装全部方案的词库（dicts-only）
+          install_files: >-
+            rime-wanxiang-base/dicts/**
+            rime-wanxiang-shouyou-fuzhu/dicts/**
+            rime-wanxiang-zrm-fuzhu/dicts/**
+            rime-wanxiang-tiger-fuzhu/dicts/**
+            rime-wanxiang-moqi-fuzhu/dicts/**
+            rime-wanxiang-flypy-fuzhu/dicts/**
+            rime-wanxiang-wubi-fuzhu/dicts/**
+            rime-wanxiang-hanxin-fuzhu/dicts/**
           EOF
 
           ########################
           # 单方案：基础版 base   #
           ########################
           cat > snapshot/plum/wanxiang-base-full.recipe.yaml << 'EOF'
+          # encoding: utf-8
+          ---
           # 基础版：方案 + lua + dicts
           # 用法：
           #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-base-full
           recipe:
-            name: wanxiang-base-full
-            description: "万象拼音：基础版（整个方案目录）"
-            install_files:
-              - rime-wanxiang-base/**
+            Rx: plum/wanxiang-base-full
+            args:
+            description: >-
+              万象拼音：基础版（整个方案目录）
+          install_files: >-
+            rime-wanxiang-base/**
           EOF
 
           cat > snapshot/plum/wanxiang-base-dicts.recipe.yaml << 'EOF'
+          # encoding: utf-8
+          ---
           # 基础版：仅词库
           # 用法：
           #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-base-dicts
           recipe:
-            name: wanxiang-base-dicts
-            description: "万象拼音：基础版，仅词库（dicts-only）"
-            install_files:
-              - rime-wanxiang-base/dicts/**
+            Rx: plum/wanxiang-base-dicts
+            args:
+            description: >-
+              万象拼音：基础版，仅词库（dicts-only）
+          install_files: >-
+            rime-wanxiang-base/dicts/**
           EOF
 
           ############################
           # 单方案：首右辅助版 shouyou #
           ############################
           cat > snapshot/plum/wanxiang-shouyou-fuzhu-full.recipe.yaml << 'EOF'
+          # encoding: utf-8
+          ---
           # 首右辅助版：方案 + lua + dicts
           # 用法：
           #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-shouyou-fuzhu-full
           recipe:
-            name: wanxiang-shouyou-fuzhu-full
-            description: "万象拼音：首右辅助版（整个方案目录）"
-            install_files:
-              - rime-wanxiang-shouyou-fuzhu/**
+            Rx: plum/wanxiang-shouyou-fuzhu-full
+            args:
+            description: >-
+              万象拼音：首右辅助版（整个方案目录）
+          install_files: >-
+            rime-wanxiang-shouyou-fuzhu/**
           EOF
 
           cat > snapshot/plum/wanxiang-shouyou-fuzhu-dicts.recipe.yaml << 'EOF'
+          # encoding: utf-8
+          ---
           # 首右辅助版：仅词库
           # 用法：
           #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-shouyou-fuzhu-dicts
           recipe:
-            name: wanxiang-shouyou-fuzhu-dicts
-            description: "万象拼音：首右辅助版，仅词库（dicts-only）"
-            install_files:
-              - rime-wanxiang-shouyou-fuzhu/dicts/**
+            Rx: plum/wanxiang-shouyou-fuzhu-dicts
+            args:
+            description: >-
+              万象拼音：首右辅助版，仅词库（dicts-only）
+          install_files: >-
+            rime-wanxiang-shouyou-fuzhu/dicts/**
           EOF
 
           ############################
           # 单方案：自然码辅助版 zrm   #
           ############################
           cat > snapshot/plum/wanxiang-zrm-fuzhu-full.recipe.yaml << 'EOF'
+          # encoding: utf-8
+          ---
           # 自然码辅助版：方案 + lua + dicts
           # 用法：
           #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-zrm-fuzhu-full
           recipe:
-            name: wanxiang-zrm-fuzhu-full
-            description: "万象拼音：自然码辅助版（整个方案目录）"
-            install_files:
-              - rime-wanxiang-zrm-fuzhu/**
+            Rx: plum/wanxiang-zrm-fuzhu-full
+            args:
+            description: >-
+              万象拼音：自然码辅助版（整个方案目录）
+          install_files: >-
+            rime-wanxiang-zrm-fuzhu/**
           EOF
 
           cat > snapshot/plum/wanxiang-zrm-fuzhu-dicts.recipe.yaml << 'EOF'
+          # encoding: utf-8
+          ---
           # 自然码辅助版：仅词库
           # 用法：
           #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-zrm-fuzhu-dicts
           recipe:
-            name: wanxiang-zrm-fuzhu-dicts
-            description: "万象拼音：自然码辅助版，仅词库（dicts-only）"
-            install_files:
-              - rime-wanxiang-zrm-fuzhu/dicts/**
+            Rx: plum/wanxiang-zrm-fuzhu-dicts
+            args:
+            description: >-
+              万象拼音：自然码辅助版，仅词库（dicts-only）
+          install_files: >-
+            rime-wanxiang-zrm-fuzhu/dicts/**
           EOF
 
           ############################
           # 单方案：虎码辅助版 tiger   #
           ############################
           cat > snapshot/plum/wanxiang-tiger-fuzhu-full.recipe.yaml << 'EOF'
+          # encoding: utf-8
+          ---
           # 虎码辅助版：方案 + lua + dicts
           # 用法：
           #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-tiger-fuzhu-full
           recipe:
-            name: wanxiang-tiger-fuzhu-full
-            description: "万象拼音：虎码辅助版（整个方案目录）"
-            install_files:
-              - rime-wanxiang-tiger-fuzhu/**
+            Rx: plum/wanxiang-tiger-fuzhu-full
+            args:
+            description: >-
+              万象拼音：虎码辅助版（整个方案目录）
+          install_files: >-
+            rime-wanxiang-tiger-fuzhu/**
           EOF
 
           cat > snapshot/plum/wanxiang-tiger-fuzhu-dicts.recipe.yaml << 'EOF'
+          # encoding: utf-8
+          ---
           # 虎码辅助版：仅词库
           # 用法：
           #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-tiger-fuzhu-dicts
           recipe:
-            name: wanxiang-tiger-fuzhu-dicts
-            description: "万象拼音：虎码辅助版，仅词库（dicts-only）"
-            install_files:
-              - rime-wanxiang-tiger-fuzhu/dicts/**
+            Rx: plum/wanxiang-tiger-fuzhu-dicts
+            args:
+            description: >-
+              万象拼音：虎码辅助版，仅词库（dicts-only）
+          install_files: >-
+            rime-wanxiang-tiger-fuzhu/dicts/**
           EOF
 
           ############################
           # 单方案：墨奇辅助版 moqi    #
           ############################
           cat > snapshot/plum/wanxiang-moqi-fuzhu-full.recipe.yaml << 'EOF'
+          # encoding: utf-8
+          ---
           # 墨奇辅助版：方案 + lua + dicts
           # 用法：
           #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-moqi-fuzhu-full
           recipe:
-            name: wanxiang-moqi-fuzhu-full
-            description: "万象拼音：墨奇辅助版（整个方案目录）"
-            install_files:
-              - rime-wanxiang-moqi-fuzhu/**
+            Rx: plum/wanxiang-moqi-fuzhu-full
+            args:
+            description: >-
+              万象拼音：墨奇辅助版（整个方案目录）
+          install_files: >-
+            rime-wanxiang-moqi-fuzhu/**
           EOF
 
           cat > snapshot/plum/wanxiang-moqi-fuzhu-dicts.recipe.yaml << 'EOF'
+          # encoding: utf-8
+          ---
           # 墨奇辅助版：仅词库
           # 用法：
           #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-moqi-fuzhu-dicts
           recipe:
-            name: wanxiang-moqi-fuzhu-dicts
-            description: "万象拼音：墨奇辅助版，仅词库（dicts-only）"
-            install_files:
-              - rime-wanxiang-moqi-fuzhu/dicts/**
+            Rx: plum/wanxiang-moqi-fuzhu-dicts
+            args:
+            description: >-
+              万象拼音：墨奇辅助版，仅词库（dicts-only）
+          install_files: >-
+            rime-wanxiang-moqi-fuzhu/dicts/**
           EOF
 
           ############################
           # 单方案：小鹤辅助版 flypy   #
           ############################
           cat > snapshot/plum/wanxiang-flypy-fuzhu-full.recipe.yaml << 'EOF'
+          # encoding: utf-8
+          ---
           # 小鹤辅助版：方案 + lua + dicts
           # 用法：
           #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-flypy-fuzhu-full
           recipe:
-            name: wanxiang-flypy-fuzhu-full
-            description: "万象拼音：小鹤辅助版（整个方案目录）"
-            install_files:
-              - rime-wanxiang-flypy-fuzhu/**
+            Rx: plum/wanxiang-flypy-fuzhu-full
+            args:
+            description: >-
+              万象拼音：小鹤辅助版（整个方案目录）
+          install_files: >-
+            rime-wanxiang-flypy-fuzhu/**
           EOF
 
           cat > snapshot/plum/wanxiang-flypy-fuzhu-dicts.recipe.yaml << 'EOF'
+          # encoding: utf-8
+          ---
           # 小鹤辅助版：仅词库
           # 用法：
           #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-flypy-fuzhu-dicts
           recipe:
-            name: wanxiang-flypy-fuzhu-dicts
-            description: "万象拼音：小鹤辅助版，仅词库（dicts-only）"
-            install_files:
-              - rime-wanxiang-flypy-fuzhu/dicts/**
+            Rx: plum/wanxiang-flypy-fuzhu-dicts
+            args:
+            description: >-
+              万象拼音：小鹤辅助版，仅词库（dicts-only）
+          install_files: >-
+            rime-wanxiang-flypy-fuzhu/dicts/**
           EOF
 
           ############################
           # 单方案：五笔辅助版 wubi    #
           ############################
           cat > snapshot/plum/wanxiang-wubi-fuzhu-full.recipe.yaml << 'EOF'
+          # encoding: utf-8
+          ---
           # 五笔辅助版：方案 + lua + dicts
           # 用法：
           #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-wubi-fuzhu-full
           recipe:
-            name: wanxiang-wubi-fuzhu-full
-            description: "万象拼音：五笔辅助版（整个方案目录）"
-            install_files:
-              - rime-wanxiang-wubi-fuzhu/**
+            Rx: plum/wanxiang-wubi-fuzhu-full
+            args:
+            description: >-
+              万象拼音：五笔辅助版（整个方案目录）
+          install_files: >-
+            rime-wanxiang-wubi-fuzhu/**
           EOF
 
           cat > snapshot/plum/wanxiang-wubi-fuzhu-dicts.recipe.yaml << 'EOF'
+          # encoding: utf-8
+          ---
           # 五笔辅助版：仅词库
           # 用法：
           #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-wubi-fuzhu-dicts
           recipe:
-            name: wanxiang-wubi-fuzhu-dicts
-            description: "万象拼音：五笔辅助版，仅词库（dicts-only）"
-            install_files:
-              - rime-wanxiang-wubi-fuzhu/dicts/**
+            Rx: plum/wanxiang-wubi-fuzhu-dicts
+            args:
+            description: >-
+              万象拼音：五笔辅助版，仅词库（dicts-only）
+          install_files: >-
+            rime-wanxiang-wubi-fuzhu/dicts/**
           EOF
 
           ############################
           # 单方案：汉心辅助版 hanxin   #
           ############################
           cat > snapshot/plum/wanxiang-hanxin-fuzhu-full.recipe.yaml << 'EOF'
+          # encoding: utf-8
+          ---
           # 汉心辅助版：方案 + lua + dicts
           # 用法：
           #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-hanxin-fuzhu-full
           recipe:
-            name: wanxiang-hanxin-fuzhu-full
-            description: "万象拼音：汉心辅助版（整个方案目录）"
-            install_files:
-              - rime-wanxiang-hanxin-fuzhu/**
+            Rx: plum/wanxiang-hanxin-fuzhu-full
+            args:
+            description: >-
+              万象拼音：汉心辅助版（整个方案目录）
+          install_files: >-
+            rime-wanxiang-hanxin-fuzhu/**
           EOF
 
           cat > snapshot/plum/wanxiang-hanxin-fuzhu-dicts.recipe.yaml << 'EOF'
+          # encoding: utf-8
+          ---
           # 汉心辅助版：仅词库
           # 用法：
           #   bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-hanxin-fuzhu-dicts
           recipe:
-            name: wanxiang-hanxin-fuzhu-dicts
-            description: "万象拼音：汉心辅助版，仅词库（dicts-only）"
-            install_files:
-              - rime-wanxiang-hanxin-fuzhu/dicts/**
+            Rx: plum/wanxiang-hanxin-fuzhu-dicts
+            args:
+            description: >-
+              万象拼音：汉心辅助版，仅词库（dicts-only）
+          install_files: >-
+            rime-wanxiang-hanxin-fuzhu/dicts/**
           EOF
+
       # 3. 从 dist 中打出每夜词库 zip（不套文件夹，只打 dicts/**）
       - name: Pack nightly dict zips
         run: |
