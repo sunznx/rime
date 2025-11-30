@@ -23,6 +23,9 @@
 --   - ctx:get_option("zh_only") == true → 仅中文：丢弃英文候选
 --   - 两者都 false → 混合模式：中英都输出
 -- 功能F 字符集过滤，默认8105+𰻝𰻝，可以在方案中定义黑白名单来实现用户自己的范围微调charsetlist: []和charsetblacklist: [𰻝, 𰻞]
+-- 功能G 由于在混输场景中输入comment commit等等之类的英文时候，由于直接辅助码的派生能力，会将三个好不想干的单字组合在一起，这会造成不好的体验
+--      因此在首选已经是英文的时候，且type=completion且大于等于4个字符，这个时候后面如果有type=sentence的派生词则直接干掉，这个还要依赖，表翻译器
+--      权重设置与主翻译器不可相差太大
 local wanxiang = require("wanxiang")
 local M = {}
 
@@ -598,12 +601,19 @@ local function emit_with_pipeline(cand, ctxs)
         return
     end
 
-    -- ③ 镜像抑制
+    -- **③ 若需抑制句子候选：删掉所有 type 为 sentence 的候选（除了首候选本身不会被标记）**
+    if ctxs.drop_sentence_after_completion then
+        if fast_type(cand) == "sentence" then
+            return
+        end
+    end
+
+    -- ④ 镜像抑制
     if ctxs.suppress_mirror and ctxs.suppress_set and ctxs.suppress_set[cand.text] then
         return
     end
 
-    -- ④ 格式化 + 大写 + span 对齐
+    -- ⑤ 格式化 + 大写 + span 对齐
     cand = format_and_autocap(cand, ctxs.code_ctx)
     cand = ctxs.unify_tail_span(cand)
     yield(cand)
@@ -724,6 +734,7 @@ function M.func(input, env)
         zh_only         = zh_only,
         is_english      = is_english_candidate,
         charset_strict  = charset_strict,
+        drop_sentence_after_completion = false,
     }
 
     -- 生成包裹候选（统一写法）
@@ -804,6 +815,13 @@ function M.func(input, env)
             end
 
             if idx == 1 then
+                -- 判定：第一候选是否为表内英文，长度 >= 4
+                if not emit_ctx.drop_sentence_after_completion then
+                    local txt = cand.text or ""
+                    if is_table_type(cand) and #txt >= 4 and has_english_token_fast(txt) then
+                        emit_ctx.drop_sentence_after_completion = true
+                    end
+                end
                 -- 仅锁定：置顶缓存，保留尾长（吞掉 \suffix）
                 if env.locked and (not wrap_key) and env.cache then
                     local start_pos = (last_seg and last_seg.start) or 0
@@ -863,8 +881,15 @@ function M.func(input, env)
         end
 
         if idx2 == 1 then
-            local emitted = false
+            if not emit_ctx.drop_sentence_after_completion then
+                local t = fast_type(cand)
+                local txt = cand.text or ""
+                if t == "table" and #txt >= 4 and has_english_token_fast(txt) then
+                    emit_ctx.drop_sentence_after_completion = true
+                end
+            end
 
+            local emitted = false
             -- 仅锁定：置顶缓存，保留尾长
             if env.locked and (not wrap_key) and env.cache then
                 local start_pos = (last_seg and last_seg.start) or 0
