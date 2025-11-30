@@ -25,7 +25,7 @@ jobs:
       - name: Check if dicts or wanxiang-lts-zh-hans.gram has changes
         id: check_changes
         run: |
-          if git diff --quiet HEAD HEAD~1 -- dicts wanxiang-lts-zh-hans.gram; then
+          if git diff --quiet HEAD HEAD~1 -- dicts; then
             echo "SKIP=true" >> $GITHUB_ENV
           else
             echo "SKIP=false" >> $GITHUB_ENV
