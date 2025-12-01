@@ -83,9 +83,6 @@ end
 ---@param key KeyEvent
 ---@param env Env
 ---@return ProcessResult
----@param key KeyEvent
----@param env Env
----@return ProcessResult
 function P.func(key, env)
   -- 移动端：当脚本不存在，直接 Noop
   if env.disabled then
@@ -106,7 +103,25 @@ function P.func(key, env)
   local has_menu     = env.has_menu
 
   ----------------------------------------------------------------------
-  -- 1) 小键盘数字：auto / compose
+  -- 1) 功能模式：R+数字 / U+... / 计算器 / 时间日期 等
+  --    在这些模式下，数字只能作为“输入键”，不能当“上屏键/选词键”
+  ----------------------------------------------------------------------
+  local in_function_mode = false
+  if wanxiang.is_function_mode_active then
+    -- 加一层 pcall 防御，避免异常导致崩溃
+    local ok, res = pcall(wanxiang.is_function_mode_active, context)
+    if ok and res then
+      in_function_mode = true
+    end
+  end
+
+  if in_function_mode then
+    -- 不做任何特殊处理，交给后续 processor（如 ascii_composer）按正常输入处理
+    return wanxiang.RIME_PROCESS_RESULTS.kNoop
+  end
+
+  ----------------------------------------------------------------------
+  -- 2) 小键盘数字：auto / compose
   ----------------------------------------------------------------------
   local kp_num = KP[key.keycode]
   if kp_num ~= nil then
@@ -136,7 +151,7 @@ function P.func(key, env)
   end
 
   ----------------------------------------------------------------------
-  -- 1.5) 主键盘数字：非输入状态下，直接上屏数字
+  -- 3) 主键盘数字：非输入状态下，直接上屏数字
   ----------------------------------------------------------------------
   if not is_composing then
     local r = key:repr() or ""
@@ -149,7 +164,7 @@ function P.func(key, env)
   end
 
   ----------------------------------------------------------------------
-  -- 2) 主键盘数字：有候选菜单时，用来选第 n 个候选
+  -- 4) 主键盘数字：有候选菜单时，用来选第 n 个候选
   ----------------------------------------------------------------------
   if has_menu then
     local r = key:repr()
@@ -167,6 +182,5 @@ function P.func(key, env)
 
   return wanxiang.RIME_PROCESS_RESULTS.kNoop
 end
-
 
 return P
