@@ -99,64 +99,52 @@ Windows 的 PowerShell / CMD 不能直接运行东风破，必须用 Git Bash。
 
 <details> <summary><strong>点击展开 / 收起 万象全部安装命令（可一键复制）</strong></summary>
 
-#### 🌟 全家桶安装
-
-##### 全家桶（所有方案 + 词库）
-```bash
-bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-all-full
-```
-
-##### 全家桶（仅词库）
-```bash
-bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-all-dicts
-```
-
 #### 🔷 基础版（base）
 
 ##### 基础版（完整）
 ```bash
-bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-base-full
+bash rime-install weasel amzxyz/rime_wanxiang@wanxiang-base:plum/full
 ```
 
 ##### 基础版（仅词库）
 ```bash
-bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-base-dicts
+bash rime-install weasel amzxyz/rime_wanxiang@wanxiang-base:plum/dicts
 ```
 
 #### 🔷 自然码辅助版（zrm-fuzhu）
 
 ##### 自然码辅助版（完整）
 ```bash
-bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-zrm-fuzhu-full
+bash rime-install weasel amzxyz/rime_wanxiang@wanxiang-zrm-fuzhu:plum/full
 ```
 
 ##### 自然码辅助版（仅词库）
 ```bash
-bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-zrm-fuzhu-dicts
+bash rime-install weasel amzxyz/rime_wanxiang@wanxiang-zrm-fuzhu:plum/dicts
 ```
 
 #### 🔷 墨奇辅助版（moqi-fuzhu）
 
 ##### 墨奇辅助版（完整）
 ```bash
-bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-moqi-fuzhu-full
+bash rime-install weasel amzxyz/rime_wanxiang@wanxiang-moqi-fuzhu:plum/full
 ```
 
 ##### 墨奇辅助版（仅词库）
 ```bash
-bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-moqi-fuzhu-dicts
+bash rime-install weasel amzxyz/rime_wanxiang@wanxiang-moqi-fuzhu:plum/dicts
 ```
 
 #### 🔷 小鹤辅助版（flypy-fuzhu）
 
 ##### 小鹤辅助版（完整）
 ```bash
-bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-flypy-fuzhu-full
+bash rime-install weasel amzxyz/rime_wanxiang@wanxiang-flypy-fuzhu:plum/full
 ```
 
 ##### 小鹤辅助版（仅词库）
 ```bash
-bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-flypy-fuzhu-dicts
+bash rime-install weasel amzxyz/rime_wanxiang@wanxiang-flypy-fuzhu:plum/dicts
 ```
 
 #### 🔷 虎码辅助版（tiger-fuzhu）

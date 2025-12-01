@@ -585,7 +585,7 @@ add_user_dict:
   user_dict: zc
   enable_completion: true # 提前显示尚未输入完整码的字〔仅 table_translator 有效〕
   enable_user_dict: false
-  enable_auto_phrase: true    # lua造词功能，在custom开启，相关功能位于super_filter.lua，开启后：模型能造的句子不造词，现有的词不造词，只造词库没有的，选词可造词
+  enable_auto_phrase: true    # lua造词功能，在custom开启，相关功能位于auto_phrase.lua，开启后：模型能造的句子不造词，现有的词不造词，只造词库没有的，选词可造词
   spelling_hints: 50
   comment_format:
   prefix: "``"

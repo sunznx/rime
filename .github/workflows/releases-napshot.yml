@@ -20,7 +20,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
+        with:
+          fetch-depth: 2
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
@@ -54,69 +55,7 @@ jobs:
           echo "Snapshot tree after prepare:"
           ls -R snapshot || true
 
-      # 2. 在 snapshot/plum/ 目录下写所有东风破配方
-      - name: Write plum recipes for wanxiang
-        run: |
-          set -euo pipefail
-          mkdir -p snapshot/plum
-
-          # 定义共用的文件列表模板（相对于“方案目录”的路径）
-          COMMON_FILES="dicts/*.*
-          opencc/*.*
-          custom/*.*
-          lua/*.*
-          lua/lib/*.*
-          lua/tips/*.*
-          default.yaml
-          weasel.yaml
-          wanxiang*.yaml
-          README.md
-          简纯+.trime.yaml
-          custom_phrase.txt"
-
-          # 定义配方生成函数
-          generate_recipe() {
-            local rx_name="$1"
-            local description="$2"
-            local install_files="$3"
-            
-            cat > "snapshot/plum/${rx_name}.recipe.yaml" << EOF
-          # encoding: utf-8
-          ---
-          recipe:
-            Rx: plum/${rx_name}
-            args:
-            description: ${description}
-          install_files: >-
-          ${install_files}
-          EOF
-          }
-
-          # 定义方案列表（对应 rime-wanxiang-<scheme> 目录）
-          schemes=("base" "shouyou-fuzhu" "zrm-fuzhu" "tiger-fuzhu" "moqi-fuzhu" "flypy-fuzhu" "wubi-fuzhu" "hanxin-fuzhu")
-
-          # 为每个方案生成配方
-          for scheme in "${schemes[@]}"; do
-            # 每个方案自己的目录前缀
-            scheme_dir="rime-wanxiang-${scheme}"
-
-            # 1) 完整版：COMMON_FILES 前面加上方案目录
-            scheme_files="$(printf '%s\n' "$COMMON_FILES" | sed "s#^#  ${scheme_dir}/#")"
-
-            generate_recipe "wanxiang-${scheme}-full" \
-              "万象拼音：${scheme}版（整个方案目录）" \
-              "$scheme_files"
-            
-            # 2) 仅词库：dicts 前面也加上方案目录
-            generate_recipe "wanxiang-${scheme}-dicts" \
-              "万象拼音：${scheme}版，仅词库（dicts-only）" \
-              "  ${scheme_dir}/dicts/*.*"
-          done
-
-          echo "生成的配方文件："
-          ls -la snapshot/plum/
-
-      # 2.5 检查这次提交是否修改了 dicts 相关文件
+      # 2. 检查这次提交是否修改了 dicts 相关文件（控制 3/4/5 是否执行）
       - name: Check if dicts changed
         id: dicts_changed
         run: |
@@ -165,14 +104,14 @@ jobs:
             fi
           }
 
-          pack_dict "dist/rime-wanxiang-moqi-fuzhu/dicts"   "pro-moqi-fuzhu-dicts.zip"
-          pack_dict "dist/rime-wanxiang-flypy-fuzhu/dicts"  "pro-flypy-fuzhu-dicts.zip"
-          pack_dict "dist/rime-wanxiang-zrm-fuzhu/dicts"    "pro-zrm-fuzhu-dicts.zip"
-          pack_dict "dist/rime-wanxiang-tiger-fuzhu/dicts"  "pro-tiger-fuzhu-dicts.zip"
-          pack_dict "dist/rime-wanxiang-wubi-fuzhu/dicts"   "pro-wubi-fuzhu-dicts.zip"
-          pack_dict "dist/rime-wanxiang-hanxin-fuzhu/dicts" "pro-hanxin-fuzhu-dicts.zip"
+          pack_dict "dist/rime-wanxiang-moqi-fuzhu/dicts"    "pro-moqi-fuzhu-dicts.zip"
+          pack_dict "dist/rime-wanxiang-flypy-fuzhu/dicts"   "pro-flypy-fuzhu-dicts.zip"
+          pack_dict "dist/rime-wanxiang-zrm-fuzhu/dicts"     "pro-zrm-fuzhu-dicts.zip"
+          pack_dict "dist/rime-wanxiang-tiger-fuzhu/dicts"   "pro-tiger-fuzhu-dicts.zip"
+          pack_dict "dist/rime-wanxiang-wubi-fuzhu/dicts"    "pro-wubi-fuzhu-dicts.zip"
+          pack_dict "dist/rime-wanxiang-hanxin-fuzhu/dicts"  "pro-hanxin-fuzhu-dicts.zip"
           pack_dict "dist/rime-wanxiang-shouyou-fuzhu/dicts" "pro-shouyou-fuzhu-dicts.zip"
-          pack_dict "dist/rime-wanxiang-base/dicts"         "base-dicts.zip"
+          pack_dict "dist/rime-wanxiang-base/dicts"          "base-dicts.zip"
 
           echo "Nightly dict zips in dist/:"
           ls -1 dist/*.zip || true
@@ -211,6 +150,7 @@ jobs:
             }
 
       - name: Wait for cleanup
+        if: steps.dicts_changed.outputs.changed == 'true'
         run: sleep 10
 
       # 5. 创建新的 Nightly Release，上传词库 zips
@@ -243,8 +183,9 @@ jobs:
           draft: false
           prerelease: false
           make_latest: true
-      # 6. 切到 release 分支，用 snapshot 覆盖根目录并强推
-      - name: Commit and force push release
+
+      # 6. 为每个方案生成独立分支：wanxiang-base / wanxiang-moqi-fuzhu / ...
+      - name: Commit and force push per-scheme snapshots
         env:
           GIT_AUTHOR_NAME: ci-bot
           GIT_AUTHOR_EMAIL: ci@example.com
@@ -253,28 +194,102 @@ jobs:
         run: |
           set -euo pipefail
 
-          # 先检查 release 分支是否存在
-          if git show-ref --verify --quiet refs/heads/release; then
-            git checkout release
-          else
-            git checkout --orphan release
-          fi
+          # 当前开发分支（通常是 wanxiang）
+          ORIG_BRANCH="$(git rev-parse --abbrev-ref HEAD || echo 'wanxiang')"
 
-          # 清空当前工作区（仅保留 .git 和 snapshot）
-          find . -mindepth 1 -maxdepth 1 ! -name ".git" ! -name "snapshot" -exec rm -rf {} +
+          # 方案列表
+          schemes=("base" "shouyou-fuzhu" "zrm-fuzhu" "tiger-fuzhu" "moqi-fuzhu" "flypy-fuzhu" "wubi-fuzhu" "hanxin-fuzhu")
 
-          # 把 snapshot 里的内容拷到根目录
-          cp -a snapshot/. .
+          # 每个方案公共文件清单（在分支根目录使用）
+          COMMON_FILES=(
+            "dicts/*.*"
+            "opencc/*.*"
+            "custom/*.*"
+            "lua/*.*"
+            "lua/lib/*.*"
+            "lua/tips/*.*"
+            "default.yaml"
+            "weasel.yaml"
+            "wanxiang*.*yaml"
+            "README.md"
+            "简纯+.trime.yaml"
+            "custom_phrase.txt"
+          )
 
-          # 不要把 snapshot 目录本身提交进去
+          TAG_NAME="${{ github.event_name == 'release' && github.event.release.tag_name || 'manual-build' }}"
+
+          for scheme in "${schemes[@]}"; do
+            branch="wanxiang-${scheme}"                   # 分支名：wanxiang-moqi-fuzhu
+            src_dir="snapshot/rime-wanxiang-${scheme}"    # 每个方案的源码目录（来自 snapshot）
+
+            echo "=== Building branch ${branch} from ${src_dir} ==="
+
+            if [ ! -d "${src_dir}" ]; then
+              echo "Warning: ${src_dir} not found, skip ${branch}."
+              continue
+            fi
+
+            # 切换/创建分支
+            if git show-ref --verify --quiet "refs/heads/${branch}"; then
+              git checkout "${branch}"
+            else
+              git checkout --orphan "${branch}"
+            fi
+
+            # 清空当前工作区（仅保留 .git 和 snapshot）
+            find . -mindepth 1 -maxdepth 1 ! -name ".git" ! -name "snapshot" -exec rm -rf {} +
+
+            # 把这个方案的内容「拍扁」到分支根目录（不保留 rime-wanxiang-xxx 那一层）
+            cp -a "${src_dir}"/. .
+
+            # 在这个分支里生成自己的 plum 配方
+            mkdir -p plum
+
+            #################################
+            # 生成 plum/full.recipe.yaml
+            #################################
+            {
+              echo "# encoding: utf-8"
+              echo "---"
+              echo "recipe:"
+              echo "  Rx: plum/full"
+              echo "  args:"
+              echo "  description: >-"
+              echo "    万象拼音 ${scheme} 版（整个方案目录）- 分支 ${branch}"
+              echo "install_files: >-"
+              for path in "${COMMON_FILES[@]}"; do
+                echo "  ${path}"
+              done
+            } > "plum/full.recipe.yaml"
+
+            #################################
+            # 生成 plum/dicts.recipe.yaml
+            #################################
+            {
+              echo "# encoding: utf-8"
+              echo "---"
+              echo "recipe:"
+              echo "  Rx: plum/dicts"
+              echo "  args:"
+              echo "  description: >-"
+              echo "    万象拼音 ${scheme} 版，仅词库（dicts-only）- 分支 ${branch}"
+              echo "install_files: >-"
+              echo "  dicts/*.*"
+            } > "plum/dicts.recipe.yaml"
+
+            git status
+
+            # 注意：不要把 snapshot/ 提交进去
+            git add .
+            git reset snapshot || true
+            git rm -r --cached snapshot 2>/dev/null || true
+
+            git commit -m "chore(${branch}): snapshot for ${TAG_NAME}" \
+              || echo "Nothing to commit for ${branch}."
+
+            git push -f origin "${branch}"
+          done
+
+          # 回到原来的开发分支，并清掉 snapshot（只删 CI 本地）
+          git checkout "${ORIG_BRANCH}" || true
           rm -rf snapshot
-
-          git status
-
-          tag_name="${{ github.event_name == 'release' && github.event.release.tag_name || 'manual-build' }}"
-
-          git add .
-          git commit -m "chore(release-branch): snapshot for ${tag_name}" \
-            || echo "Nothing to commit."
-
-          git push -f origin release
