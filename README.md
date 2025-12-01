@@ -92,107 +92,106 @@
 
 ```
 macOS / Linux	已内置 bash，无需处理
-Windows	需要 Git Bash（安装 Git for Windows 时自动提供）
+Windows	需要 Git Bash（安装 Git for Windows 时自动提供，）
 ```
 注意：  
 Windows 的 PowerShell / CMD 不能直接运行东风破，必须用 Git Bash。  
 
 <details> <summary><strong>点击展开 / 收起 万象全部安装命令（可一键复制）</strong></summary>
 
-#### 🔷 基础版（base）
+
+1. 先安装plum，这是维护在万象仓库plum分支的版本，去掉了默认方案，修改了默认路径，直接复制2个命令粘贴终端直接执行，打开终端的目录由你决定  
+```base
+git clone -b plum --depth 1 https://github.com/amzxyz/rime_wanxiang.git
+cd plum
+```
+2. 配置用户目录变量，检查状态是否正常：  
+对于小狼毫、鼠须管、Fcitx5已经默认配置了变量  
+```base
+export rime_frontend='rime/weasel'
+export rime_frontend='rime/squirrel'
+export rime_frontend='fcitx5/fcitx5-rime'
+```
+但对于Linux、Mac使用ibus、fcitx前端就需要自己设置变量，这个变量可以终端执行，但最好直接写入~/.zshrc  
+```base
+export rime_frontend=rime/ibus-rime
+export rime_frontend=fcitx/fcitx-rime
+```
+3. 有了上面的工具后你可以切换到刚刚拉取下来的脚本所在目录，执行以下对应的安装目录，即可实现安装和更新
 
 ##### 基础版（完整）
 ```bash
-bash rime-install weasel amzxyz/rime_wanxiang@wanxiang-base:plum/full
+bash rime-install amzxyz/rime_wanxiang@wanxiang-base:plum/full
 ```
 
 ##### 基础版（仅词库）
 ```bash
-bash rime-install weasel amzxyz/rime_wanxiang@wanxiang-base:plum/dicts
+bash rime-install amzxyz/rime_wanxiang@wanxiang-base:plum/dicts
 ```
-
-#### 🔷 自然码辅助版（zrm-fuzhu）
-
 ##### 自然码辅助版（完整）
 ```bash
-bash rime-install weasel amzxyz/rime_wanxiang@wanxiang-zrm-fuzhu:plum/full
+bash rime-install amzxyz/rime_wanxiang@wanxiang-zrm-fuzhu:plum/full
 ```
 
 ##### 自然码辅助版（仅词库）
 ```bash
-bash rime-install weasel amzxyz/rime_wanxiang@wanxiang-zrm-fuzhu:plum/dicts
+bash rime-install amzxyz/rime_wanxiang@wanxiang-zrm-fuzhu:plum/dicts
 ```
-
-#### 🔷 墨奇辅助版（moqi-fuzhu）
-
 ##### 墨奇辅助版（完整）
 ```bash
-bash rime-install weasel amzxyz/rime_wanxiang@wanxiang-moqi-fuzhu:plum/full
+bash rime-install amzxyz/rime_wanxiang@wanxiang-moqi-fuzhu:plum/full
 ```
 
 ##### 墨奇辅助版（仅词库）
 ```bash
-bash rime-install weasel amzxyz/rime_wanxiang@wanxiang-moqi-fuzhu:plum/dicts
+bash rime-install amzxyz/rime_wanxiang@wanxiang-moqi-fuzhu:plum/dicts
 ```
-
-#### 🔷 小鹤辅助版（flypy-fuzhu）
-
 ##### 小鹤辅助版（完整）
 ```bash
-bash rime-install weasel amzxyz/rime_wanxiang@wanxiang-flypy-fuzhu:plum/full
+bash rime-install amzxyz/rime_wanxiang@wanxiang-flypy-fuzhu:plum/full
 ```
 
 ##### 小鹤辅助版（仅词库）
 ```bash
-bash rime-install weasel amzxyz/rime_wanxiang@wanxiang-flypy-fuzhu:plum/dicts
+bash rime-install amzxyz/rime_wanxiang@wanxiang-flypy-fuzhu:plum/dicts
 ```
-
-#### 🔷 虎码辅助版（tiger-fuzhu）
 
 ##### 虎码辅助版（完整）
 ```bash
-bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-tiger-fuzhu-full
+bash rime-install amzxyz/rime_wanxiang@wanxiang-tiger-fuzhu:plum/full
 ```
 
 ##### 虎码辅助版（仅词库）
 ```bash
-bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-tiger-fuzhu-dicts
+bash rime-install amzxyz/rime_wanxiang@wanxiang-tiger-fuzhu:plum/dicts
 ```
-
-#### 🔷 五笔辅助版（wubi-fuzhu）
 
 ##### 五笔辅助版（完整）
 ```bash
-bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-wubi-fuzhu-full
+bash rime-install amzxyz/rime_wanxiang@wanxiang-wubi-fuzhu:plum/full
 ```
 
 ##### 五笔辅助版（仅词库）
 ```bash
-bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-wubi-fuzhu-dicts
+bash rime-install amzxyz/rime_wanxiang@wanxiang-wubi-fuzhu:plum/dicts
 ```
-
-#### 🔷 汉心辅助版（hanxin-fuzhu）
-
 #### 汉心辅助版（完整）
 ```bash
-bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-hanxin-fuzhu-full
+bash rime-install amzxyz/rime_wanxiang@wanxiang-hanxin-fuzhu:plum/full
 ```
 
 ##### 汉心辅助版（仅词库）
 ```bash
-bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-hanxin-fuzhu-dicts
+bash rime-install amzxyz/rime_wanxiang@wanxiang-hanxin-fuzhu:plum/dicts
 ```
-
-#### 🔷 首右辅助版（shouyou-fuzhu）
-
 ##### 首右辅助版（完整）
 ```bash
-bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-shouyou-fuzhu-full
+bash rime-install amzxyz/rime_wanxiang@wanxiang-shouyou-fuzhu:plum/full
 ```
 
 ##### 首右辅助版（仅词库）
 ```bash
-bash rime-install amzxyz/rime_wanxiang@release:plum/wanxiang-shouyou-fuzhu-dicts
+bash rime-install amzxyz/rime_wanxiang@wanxiang-shouyou-fuzhu:plum/dicts
 ```
 
 </details>
