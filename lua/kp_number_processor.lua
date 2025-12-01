@@ -6,7 +6,7 @@
 -- 用法示例（schema.yaml）：
 --   engine:
 --     processors:
---       - lua_processor@*kp_number
+--       - lua_processor@*kp_number_processor
 --   # 小键盘模式（可省略，默认 auto）
 --   # auto    : 空闲时直接上屏，输入中参与编码
 --   # compose : 无论是否在输入中，小键盘都参与编码（不直接上屏）
