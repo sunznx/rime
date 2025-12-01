@@ -83,6 +83,9 @@ end
 ---@param key KeyEvent
 ---@param env Env
 ---@return ProcessResult
+---@param key KeyEvent
+---@param env Env
+---@return ProcessResult
 function P.func(key, env)
   -- 移动端：当脚本不存在，直接 Noop
   if env.disabled then
@@ -133,6 +136,19 @@ function P.func(key, env)
   end
 
   ----------------------------------------------------------------------
+  -- 1.5) 主键盘数字：非输入状态下，直接上屏数字
+  ----------------------------------------------------------------------
+  if not is_composing then
+    local r = key:repr() or ""
+    -- 只处理 0–9 这类数字键
+    if r:match("^[0-9]$") then
+      engine:commit_text(r)
+      return wanxiang.RIME_PROCESS_RESULTS.kAccepted
+    end
+    -- 非数字键就继续往下走（交给其它 processor）
+  end
+
+  ----------------------------------------------------------------------
   -- 2) 主键盘数字：有候选菜单时，用来选第 n 个候选
   ----------------------------------------------------------------------
   if has_menu then
@@ -151,5 +167,6 @@ function P.func(key, env)
 
   return wanxiang.RIME_PROCESS_RESULTS.kNoop
 end
+
 
 return P
