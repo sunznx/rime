@@ -58,6 +58,7 @@ engine:
     - lua_processor@*super_sequence*P           #手动排序，高亮候选 ctrl+j左移动 ctrl+k 右移动 ctrl+l 移除位移  ctrl+p 置顶
     - lua_processor@*limit_repeated             #用于限制最大候选长度以及最大重复输入声母编码长度，避免性能异常
     - lua_processor@*backspace_limit            #防止连续 Backspace 在编码为空时删除已上屏内容
+    - lua_processor@*kp_number_processor        #管理小键盘的处理逻辑，有输入中数字不上屏和数字一直不上屏设置可选
     - ascii_composer                            #处理英文模式及中英文切换
     - recognizer                                #与 matcher 搭配，处理符合特定规则的输入码，如网址、反查等 tags
     - key_binder                                #在特定条件下将按键绑定到其他按键，如重定义逗号、句号为候选翻页、开关快捷键等
@@ -128,6 +129,11 @@ tips:
 #在8105基础上你可以通过黑白名单微调你自己的字符集过滤清单，主数据库位于lua/charset.bin不可编辑
 charsetlist: []
 charsetblacklist: []
+
+#小键盘数字处理逻辑
+#  "compose" : 小键盘数字始终参与编码
+#  "auto"    : 输入中 push，空闲时 commit（默认）
+kp_number_mode: auto
 
 #shijian:仅仅作为提示使用，编码已经写死，引导键可以在key_binder下修改前缀
 #时间：osj 或者 /sj
@@ -552,9 +558,9 @@ speller:
 #  auto_select: true
 #  auto_select_pattern: ^[a-z]+/|^[a-df-zA-DF-Z]\w{3}|^e\w{4}
   # 如果不想让什么标点直接上屏，可以加在 alphabet，或者编辑标点符号为两个及以上的映射，alphabet就是将字符纳入输入编码的范畴
-  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA7890`;/\
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA1234567890`;/\
   # initials 定义仅作为始码的按键，排除 ` 让单个的 ` 可以直接上屏
-  initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA/
+  initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA/1234567890
   delimiter: " '"        # 系统配置，第一位<空格>是拼音之间的分隔符；第二位<'>表示可以手动输入单引号来分割拼音。
   visual_delimiter: " "  # super_preedit.lua配置：是否让分隔符号跟着一起转换，例如nǐ'hǎo 在实际使用中表现出视觉拥挤，我们可以让delimiter平时是'转换为拼音的时候使用空格nǐ hǎo，更符合实际。
   tone_isolate: true     # super_preedit.lua配置：是否将数字声调从转换后拼音中隔离出来（true=隔离， false 直接参与转换）例如：nǐ3
