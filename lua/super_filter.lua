@@ -484,7 +484,17 @@ end
 -- 从 schema 里读取 charsetlist / charsetblacklist
 local function init_charset_filter(env, cfg)
     -- 主字符集（表滤镜）
-    local charsetFile = wanxiang.get_filename_with_fallback("lua/charset.bin") or "lua/charset.bin"
+    local dist = (rime_api.get_distribution_code_name() or ""):lower()
+
+    local charsetFile
+    if dist == "weasel" then
+        -- 小狼毫：直接用相对路径，避免 Win 上绝对路径 + ReverseDb 的兼容问题
+        charsetFile = "lua/charset.bin"
+    else
+        -- 其他前端：正常用 fallback 找到 user/shared 目录里的绝对路径
+        charsetFile = wanxiang.get_filename_with_fallback("lua/charset.bin") or "lua/charset.bin"
+    end
+
     env.charset       = ReverseDb(charsetFile)
     env.charset_memo  = {}
     env.charset_extra = {}  -- 白名单
