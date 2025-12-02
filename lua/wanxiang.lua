@@ -180,8 +180,32 @@ function wanxiang.load_file_with_fallback(filename, mode)
     return file, close, err
 end
 
+local USER_ID_DEFAULT = "unknown"
+---作为「小狼毫」和「仓」 `rime_api.get_user_id()` 的一个 workaround
+---详见：
+---1. https://github.com/rime/weasel/pull/1649
+---2. https://github.com/rime/librime/issues/1038
+---@return string
+function wanxiang.get_user_id()
+    local user_id = rime_api.get_user_id()
+    if user_id ~= USER_ID_DEFAULT then return user_id end
 
+    local user_data_dir = rime_api.get_user_data_dir()
+    local installation_path = user_data_dir .. "/installation.yaml"
+    local installation_file, _ = io.open(installation_path, "r")
+    if not installation_file then return user_id end
 
+    for line in installation_file:lines() do
+        local key, value = line:match('^([^#:]+):%s+"?([^"]%S+[^"])"?')
+        if key == "installation_id" then
+            user_id = value
+            break
+        end
+    end
+
+    installation_file:close()
+    return user_id
+end
 wanxiang.INPUT_METHOD_MARKERS = {
     ["Ⅰ"] = "pinyin", --全拼
     ["Ⅱ"] = "zrm", --自然码双拼
