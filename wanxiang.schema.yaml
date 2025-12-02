@@ -477,6 +477,7 @@ kp_number:
   #  "compose" : 小键盘数字始终参与编码
   #  "auto"    : 输入中 push，空闲时 commit（默认）
   kp_number_mode: auto
+  enable_mobile: false
   patterns:
     # /符号引导模式
     - "^/[0-9]$"
