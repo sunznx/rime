@@ -100,22 +100,6 @@ function P.init(env)
     local config  = engine.schema.config
     local context = engine.context
 
-    env.disabled = false
-    -- 移动端开关：
-    local is_mobile = false
-    local ok, res = pcall(wanxiang.is_mobile_device)
-    if ok and res then
-        is_mobile = true
-    end
-
-    if is_mobile then
-        local enable_mobile = config:get_bool("kp_number/enable_mobile")
-        -- nil 当 false 用
-        if not enable_mobile then
-            env.disabled = true
-            return
-        end
-    end
     -- 读数字选词个数
     env.page_size = config:get_int("menu/page_size") or 6
 
@@ -162,9 +146,7 @@ function P.func(key, env)
     if key:release() then
         return wanxiang.RIME_PROCESS_RESULTS.kNoop
     end
-    if env.disabled then
-        return wanxiang.RIME_PROCESS_RESULTS.kNoop
-    end
+
     local engine  = env.engine
     local context = env.context or engine.context
     local mode    = env.kp_mode or "auto"
