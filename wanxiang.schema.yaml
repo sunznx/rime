@@ -130,11 +130,6 @@ tips:
 charsetlist: []
 charsetblacklist: []
 
-#小键盘数字处理逻辑
-#  "compose" : 小键盘数字始终参与编码
-#  "auto"    : 输入中 push，空闲时 commit（默认）
-kp_number_mode: auto
-
 #shijian:仅仅作为提示使用，编码已经写死，引导键可以在key_binder下修改前缀
 #时间：osj 或者 /sj
 #日期：orq 或者 /rq
@@ -473,6 +468,37 @@ recognizer:
     nyr2: "^N20?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?[0-9]?"
     calculator: "^V.*$"                 # V 作为触发前缀，计算器功能引导
     #add_user_dict: "^ac[A-Za-z/`']*$"      #自造词引导方式
+
+# 给 kp_number_processor 用的“命令模式 Lua 正则集合”
+# 能够细化哪些情况数字是用来当作输入编码的，不在正则范围的将用于上屏
+# 直接加载上面的正则会遇到不符合预期的情况，毕竟Lua正则逻辑与之不同
+kp_number:
+  #小键盘数字处理逻辑
+  #  "compose" : 小键盘数字始终参与编码
+  #  "auto"    : 输入中 push，空闲时 commit（默认）
+  kp_number_mode: auto
+  patterns:
+    # /符号引导模式
+    - "^/[0-9]$"
+    - "^/10$"
+    - "^/[A-Za-z]+$"
+    # U模式
+    - "^U[%da-f]+$"
+    # R模式
+    - "^R[0-9]+%.?[0-9]*$"
+    # N模式
+    # Lua 不支持 {1,8}，改成等价写法：N 后 1~8 个数字
+    - "^N0[1-9]?0?[1-9]?$"
+    - "^N1[02]?0?[1-9]?$"
+    - "^N0[1-9]?[1-2]?[1-9]?$"
+    - "^N1[02]?[1-2]?[1-9]?$"
+    - "^N0[1-9]?3?[01]?$"
+    - "^N1[02]?3?[01]?$"
+    - "^N19?[0-9]?[0-9]?[01]?[0-2]?[0-3]?[0-9]?$"
+    - "^N20?[0-9]?[0-9]?[01]?[0-2]?[0-3]?[0-9]?$"
+    # 计算器模式
+    - "^V.*$"
+
 # 标点符号
 # punctuator 下面有三个子项：
 # 设置为一个映射，就自动上屏；设置为多个映射，如 '/' : [ '/', ÷ ] 则进行复选。
@@ -567,7 +593,7 @@ speller:
   # 如果不想让什么标点直接上屏，可以加在 alphabet，或者编辑标点符号为两个及以上的映射，alphabet就是将字符纳入输入编码的范畴
   alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA1234567890`;/\
   # initials 定义仅作为始码的按键，排除 ` 让单个的 ` 可以直接上屏
-  initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA/1234567890
+  initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA/
   delimiter: " '"        # 系统配置，第一位<空格>是拼音之间的分隔符；第二位<'>表示可以手动输入单引号来分割拼音。
   visual_delimiter: " "  # super_preedit.lua配置：是否让分隔符号跟着一起转换，例如nǐ'hǎo 在实际使用中表现出视觉拥挤，我们可以让delimiter平时是'转换为拼音的时候使用空格nǐ hǎo，更符合实际。
   tone_isolate: true     # super_preedit.lua配置：是否将数字声调从转换后拼音中隔离出来（true=隔离， false 直接参与转换）例如：nǐ3
