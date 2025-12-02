@@ -57,8 +57,14 @@ local function load_function_patterns(config)
             "^``[A-Za-z/`']*$",
             "^U[%da-f]+$",
             "^R[0-9]+%.?[0-9]*$",
-            "^N%d$", "^N%d%d$", "^N%d%d%d$", "^N%d%d%d%d$",
-            "^N%d%d%d%d%d$", "^N%d%d%d%d%d%d$", "^N%d%d%d%d%d%d%d$", "^N%d%d%d%d%d%d%d%d$",
+            "^N0[1-9]?0?[1-9]?$",
+            "^N1[02]?0?[1-9]?$",
+            "^N0[1-9]?[1-2]?[1-9]?$",
+            "^N1[02]?[1-2]?[1-9]?$",
+            "^N0[1-9]?3?[01]?$",
+            "^N1[02]?3?[01]?$",
+            "^N19?[0-9]?[0-9]?[01]?[0-2]?[0-3]?[0-9]?$",
+            "^N20?[0-9]?[0-9]?[01]?[0-2]?[0-3]?[0-9]?$",
             "^V.*$",
         }
     end
@@ -95,12 +101,26 @@ function P.init(env)
     local context = engine.context
 
     env.disabled = false
+    -- 移动端开关：
+    local is_mobile = false
+    local ok, res = pcall(wanxiang.is_mobile_device)
+    if ok and res then
+        is_mobile = true
+    end
 
+    if is_mobile then
+        local enable_mobile = config:get_bool("kp_number/enable_mobile")
+        -- nil 当 false 用
+        if not enable_mobile then
+            env.disabled = true
+            return
+        end
+    end
     -- 读数字选词个数
     env.page_size = config:get_int("menu/page_size") or 6
 
     -- 读小键盘模式：auto / compose，默认 auto
-    local m = config:get_string("kp_number_mode") or "auto"
+    local m = config:get_string("kp_number/kp_number_mode") or "auto"
     if m ~= "auto" and m ~= "compose" then
         m = "auto"
     end
@@ -142,7 +162,9 @@ function P.func(key, env)
     if key:release() then
         return wanxiang.RIME_PROCESS_RESULTS.kNoop
     end
-
+    if env.disabled then
+        return wanxiang.RIME_PROCESS_RESULTS.kNoop
+    end
     local engine  = env.engine
     local context = env.context or engine.context
     local mode    = env.kp_mode or "auto"
@@ -216,28 +238,36 @@ function P.func(key, env)
             return wanxiang.RIME_PROCESS_RESULTS.kAccepted
         end
 
-        -- 有候选菜单时，用数字选第 n 个候选
+        -- 有候选菜单时，用数字选「当前页」的第 n 个候选
         if has_menu then
             local d = tonumber(r)
             if d and d >= 1 and d <= page_sz then
-                if context:select(d - 1) then
-                    context:confirm_current_selection()
-                    return wanxiang.RIME_PROCESS_RESULTS.kAccepted
+                local composition = context and context.composition
+                if composition and not composition:empty() then
+                    local seg  = composition:back()       -- 当前正在编辑的 segment
+                    local menu = seg and seg.menu
+                    if menu and not menu:empty() then
+                        -- 当前高亮候选的全局下标（0 开始）
+                        local sel_index = seg.selected_index or 0
+                        local page_size = page_sz
+                        -- 当前页号 = 高亮索引 / 每页大小
+                        local page_no   = math.floor(sel_index / page_size)
+                        local page_start = page_no * page_size
+                        -- 当前页第 n 个候选的全局下标
+                        local index = page_start + (d - 1)
+
+                        -- 防止越界（最后一页候选不足一整页）
+                        if index < menu:candidate_count() then
+                            if context:select(index) then
+                                return wanxiang.RIME_PROCESS_RESULTS.kAccepted
+                            end
+                        end
+                    end
                 end
             end
             return wanxiang.RIME_PROCESS_RESULTS.kNoop
         end
-
-        -- 非输入状态下，直接上屏数字
-        if not is_composing then
-            engine:commit_text(r)
-            return wanxiang.RIME_PROCESS_RESULTS.kAccepted
-        end
-
-        -- 有编码但没菜单：交给后续 processor（比如 ascii_composer）
-        return wanxiang.RIME_PROCESS_RESULTS.kNoop
     end
-
     return wanxiang.RIME_PROCESS_RESULTS.kNoop
 end
 
