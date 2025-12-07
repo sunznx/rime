@@ -205,6 +205,7 @@ bash rime-install amzxyz/rime_wanxiang@wanxiang-shouyou-fuzhu:plum/dicts
 其实快速运行中我们已经完成了custom patch的部署，里面还预设了一些示例，这些例子只是例子，请务必详细阅读每一行，保留有用的删除无用的，千万不要改完双拼就万事大吉了，每一行详细查阅、理解、修改。custom是对对应方案文件的最后一道补丁，是真正属于你自己的配置文件，他不会被升级所覆盖。
 
 方案提供了custom文件夹，预设了一些文件与教程，请不要删除相关文件，根据文件夹中内容进行相关修改变更：
+⚠️**custom文件生效的位置是用户目录根目录，与schema同级，custom目录只是为了携带方便，且更新不覆盖根目录用户数据，所以不要跑到这里去修改文件，初始化命令就是帮你从custom目录复制到根目录，并改成对应的输入类型，之后任何修改都要在根目录的custom.yaml操作**  
 
 **不要在default.custom写东西,任何patch都要对方案文件进行patch，default.custom留给前端操作请务必悉知！**
 
