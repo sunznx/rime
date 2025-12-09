@@ -3607,7 +3607,7 @@
 磢	;ux;ux;uu;mb;dd;;hh
 牕	;px;px;pc,px;ah;th;;pp
 瘡	;bk;bk;bc;ad;uw;;dk
-窻	;bx;bx;xx,xc,bx,bc;eh;pw;;bx
+窻	;bx;bx;xx;eh;pw;;bx
 㡖	;jv;jv;jv;rd;mh;;
 㵂	;dh;dh;du;kc;iy;;
 㼽	;dw;dw;wu;mr;dq;;
@@ -4526,7 +4526,7 @@
 瓭	;bw;dw;wa,wg,wv,wy;wr;pq;;dh
 癚	;bk;bk;bv,by;as;uq;;di
 皽	;wp;wy;pd;zr;yl;;dv
-窞	;bj;bj;xx,xj,bx,bj;ep;pw;;bh
+窞	;bj;bj;xj;ep;pw;;bh
 聸	;ek;ek;ev,ey;qs;bq;;hp
 腅	;oh;oh;oy;vc;eo;;yq
 蓞	;cj;cj;cy;lp;ae;;
@@ -19902,7 +19902,7 @@
 趫	;tk;tk;zq;pd;fh;;tp
 繰	;sm;yg,ym;sz;ie;xk;;ik
 翹	;tx;tx;yy;gz;ff;;tv
-竅	;bw;bw;xw,xj,bw,bj;eh;pw;;bd
+竅	;bw;bw;xw,xj;eh;pw;;bd
 帩	;jo;jo;jx;rv;mh;;ss
 喿	;km;km;mp;de;kk;;km
 骹	;gf;gx;gj;fb;me;;sd
@@ -23044,7 +23044,7 @@
 珟	;wd;wd;wd,ws;ng;gm;;wp
 璛	;wp;wl;ws;na;gv;;wv
 碿	;uo;uo;ux;mv;dn;;hv
-粛	;ym;vl;aa,ma,vu,ya,zs;bp;vo;;vs
+粛	;ym;vl;aa;bp;vo;;vs
 縤	;sx;yx;ss;ii;xg;;ih
 膆	;ox;ox;os;vi;eg;;yi
 藗	;cq;cz;cq,cs;lu;ag;;cl
@@ -24487,7 +24487,7 @@
 䍾	;kx;kx;yj;fz;ga;;
 䫋	;hy;hb;yw;xw;tv;;
 僓	;rb;rb;rg;jo;wk;;rk
-穨	;hb;hb;gt,hg,tg;xo;tm;;ek
+穨	;hb;hb;gt;xo;tm;;ek
 聉	;ei;ei;ei;qm;bb;;hs
 藬	;cb;cb;cg,ct;lo;ab;;cd
 蘈	;cy;cb;ct;lw;at;;cd
@@ -24690,7 +24690,7 @@
 漥	;dt;dt;dg;kg;ip;;ub
 婠	;nl;nk;ng;bk;vp;ng;nb
 嗢	;km;km;kw;da;kj;;kg
-窪	;bt;bt;xw,xg,bw,bg;eg;pw;;bt
+窪	;bt;bt;xw;eg;pw;;bt
 襪	;pd;pu;ym;ti;pu;;dc
 啘	;kv;kv;kw;dz;kp;;kb
 媧	;nk;nk;ng,nk;bd;vm;;ns
@@ -25338,7 +25338,7 @@
 𩡓	;hx;hx;xw;xz;tj;;
 𩮬	;ex;ax;iw;pz;de;;
 𩰎	;mg;dg,lg;dg;jp;jg;;
-窩	;bk;bk;xk,xg,bk,bg;ed;pw;;bk
+窩	;bk;bk;xk;ed;pw;;bk
 臥	;ir;ir;ir,ri;qj;ah;;hr
 楃	;mt;mt;mw;ey;sn;;mv
 仴	;ro;ro;ro;jv;we;;ry
@@ -29930,7 +29930,7 @@
 粖	;mw;mm;mm;pe;og;;dh
 紆	;sy;yy;sy;in;xg;;ih
 羭	;yd;yd;yy;gp;ud;;dr
-肀	;el;vl;aa,vu,yv;bv;vh;va;vs
+肀	;el;vl;vu;bv;vh;va;vs
 茰	;cn;cn;cg;lb;aj;;cd
 萭	;cy;cy;cy;lv;at;;cd
 萮	;cd;cd;cy;lp;aw;;cs
@@ -32427,7 +32427,7 @@
 槕	;mm;mm;mv;ee;sh;;ms
 琸	;wu;wu;wv;nn;gh;;ws
 硺	;uu;un;ud,ui;mi;de;;hh
-窡	;by;by;xv,xu,bv,bu;er;pw;;bd
+窡	;by;by;xv;er;pw;;bd
 窧	;bu;bu;xv,bv;en;pw;;bs
 籗	;vv;vf;vh;ru;tf;;lh
 蠗	;iv;if;id,iv;cu;jn;;ov
@@ -33308,7 +33308,7 @@
 饼	;uk;uk;ub;ql;qn;uk;pd
 柄	;mn;mb;mb;ej;sg;lb;mh
 丙	;an;an;an;fj;gm;an;hd
-禀	;wu;wx;du,uh,wu;zf;yl;wx;dd
+禀	;wu;wx;uh;zf;yl;wx;dd
 屏	;uk;uk;ub;cl;nu;uk;vc
 秉	;qr;pn;ha,pd;xb;tg;pn;pd
 炳	;hn;hb;hb;cj;og;hb;qh
@@ -35675,7 +35675,7 @@
 局	;uk;uk;uk;cd;nn;uk;vk
 举	;xf;xl;df,xf;ku;iw;ea;ds
 距	;zj;zj;zj;pn;kh;zj;zh
-聚	;eu;en;ed,ey,qd,yq;qk;bc;en;hd
+聚	;eu;en;ey,yq;qk;bc;en;hd
 巨	;kk;ka;kk,aa;nn;an;ka;hv
 居	;ug;uk;ug;cc;nd;uk;vk
 具	;qb;qb;bq;qh;hw;ab;sd
@@ -37287,7 +37287,7 @@
 潽	;do;do;dp;ko;iu;do;ud
 墣	;tf;tn;td,tf,tp;gi;fo;tn;ts
 氆	;mo;mo;mp;vo;tf;mo;pg
-穙	;hf;hn;hd,hf,hp;xi;to;hn;es
+穙	;hf;hn;hp;xi;to;hn;es
 起	;tj;tj;zj;pv;fh;tj;tv
 七	;av;av;ag;rq;ag;av;hv
 气	;pv;pv;py,ry;vq;rn;pv;pv
@@ -38171,7 +38171,7 @@
 粟	;xm;xm;mx,xm;vp;so;xm;hm
 溯	;do;do;do,du,dy;kv;iu;do;ud
 塑	;nt;bt;to,tu;hg;ub;et;dt
-肃	;yb;vd;ad,vd,yd;bh;vi;vd;vd
+肃	;yb;vd;ad;bh;vi;vd;vd
 稣	;yh;ah;yh;wx;qg;eh;pe
 谡	;yw;yw;yj,yw;sh;yl;yw;as
 愫	;xx;xx;xs;hi;ng;xx;xh
@@ -38701,7 +38701,7 @@
 鹟	;gn;bn;nw;hx;wc;bn;pp
 𬭩	;jx;jx;jw;zz;qw;jx;
 我	;ga;pd;pd,pp;tp;tr;pg;pd
-窝	;bn;bn;xn,xg,bn,bg;ej;pw;gn;bd
+窝	;bn;bn;xn,xg;ej;pw;gn;bd
 握	;ft;ft;fw;uy;rn;ft;fv
 沃	;dy;dy;dy;km;it;dy;up
 卧	;ib;ib;bi,ib;qy;ah;kb;hs
