@@ -4,8 +4,6 @@
 -- 维度升级：1, 2, 3, 4, ≥5 字独立统计
 
 local userdb = require("lib/userdb")
-local rime_api = rime_api
-
 -- 1. 初始化数据库
 local db = userdb.LevelDb("lua/stats")
 
@@ -231,8 +229,8 @@ local function format_summary(title, data)
         "※ %s统计 · 效率仪表盘\n" ..
         "───────────────\n" ..
         "📊 综合数据\n" ..
-        "  总字数：%d \t 上屏：%d\n" ..
-        "  峰值速：%d \t 均速：%d\n" ..
+        "  均速：%d\t 上屏：%d\n" ..
+        "  峰速：%d\t 字数：%d\n" ..
         "───────────────\n" ..
         "⚡ 核心效率\n" ..
         "  平均编码：%.2f 键/字\n" ..
@@ -243,13 +241,13 @@ local function format_summary(title, data)
         "  [2] %3d%% %s\n" ..
         "  [3] %3d%% %s\n" ..
         "  [4] %3d%% %s\n" ..
-        "  [≥5] %2d%% %s\n" ..
+        "  [∞] %2d%% %s\n" ..
         "───────────────\n" ..
         "◉ 方案：%s\n" ..
         "◉ 平台：%s %s",
         title, 
-        math.floor(data.len), math.floor(data.cnt),
-        math.floor(data.spd), math.floor(estimated_avg_spd),
+        math.floor(estimated_avg_spd), math.floor(data.cnt),
+        math.floor(data.spd), math.floor(data.len),
         avg_code, phrase_rate,
         math.floor(p1), draw_bar(p1), 
         math.floor(p2), draw_bar(p2), 
