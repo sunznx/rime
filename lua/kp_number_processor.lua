@@ -11,6 +11,14 @@
 --   # auto    : 空闲时直接上屏，输入中参与编码
 --   # compose : 无论是否在输入中，小键盘都参与编码（不直接上屏）
 --   kp_number_mode: auto
+--
+--   # 可选：命令模式 patterns（Lua pattern）
+--   # kp_number:
+--   #   patterns:
+--   #     - "^/[0-9]$"
+--   #     - "^/[A-Za-z]+$"
+--   #     - "^V.*$"
+--   #     ...
 
 local wanxiang = require("wanxiang")
 
