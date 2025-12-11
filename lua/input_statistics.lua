@@ -1,8 +1,7 @@
+-- amzxyz@https://github.com/amzxyz/rime_wanxiang
 -- input_stats.lua
 -- Rime 统计增强版 (LevelDB / 滚动时间窗口 / 效率仪表盘 / 汉字提纯)
 -- 维度升级：1, 2, 3, 4, ≥5 字独立统计
--- UI优化：综合数据田字格布局，峰值与均速分开显示
--- 逻辑更新：增加平台信息清洗函数 (去除 git hash)
 
 local userdb = require("lib/userdb")
 local rime_api = rime_api
@@ -12,22 +11,18 @@ local db = userdb.LevelDb("lua/stats")
 
 -- 硬编码信息
 local schema_name = "万象拼音"
--- 注意：这里只获取原始名称，清洗逻辑下放给 process_platform_info
 local raw_software_name = rime_api.get_distribution_code_name()
 
 -- -----------------------------------------------------------------------------
 -- 平台信息处理中心
--- 在这里添加你所有的字符串清洗/替换逻辑
 -- -----------------------------------------------------------------------------
 local function process_platform_info(name, ver)
     name = name or ""
     ver = ver or ""
-
-    -- 1. 清洗 Trime/Rime 版本号中的 git hash
-    -- 目标：将 "v3.3.7-48-gda909f96" 变为 "v3.3.7-48"
-    -- 逻辑：匹配连字符+g+一串字母数字，并替换为空
+    -- 1. 清洗版本号：去除第二个"-"及其后的内容 (例如 -gda909f96)
     ver = ver:gsub("^(.-%-[^%-]+)%-.*$", "%1")
-    -- 2. 可以在这里修改平台名称
+    
+    -- 2. 平台名称本地化
     if name == "Weasel" then name = "小狼毫" end
     if name == "trime" then name = "同文输入法" end
 
@@ -214,11 +209,11 @@ local function format_summary(title, data)
     local phrase_rate = 0
     if data.len > 0 then phrase_rate = (data.len - data.l1) / data.len * 100 end
 
-    -- 估算均速 (优化算法，防止溢出峰值)
+    -- 估算均速
     local estimated_avg_spd = 0
     if data.cnt > 0 then
         estimated_avg_spd = math.floor(data.len / ((data.cnt * 2) / 60))
-        if estimated_avg_spd > data.spd then estimated_avg_spd = math.floor(data.spd * 0.8) end -- 修正为峰值的80%更合理
+        if estimated_avg_spd > data.spd then estimated_avg_spd = math.floor(data.spd * 0.8) end
         if estimated_avg_spd == 0 and data.len > 0 then estimated_avg_spd = data.len end
     end
 
@@ -228,11 +223,10 @@ local function format_summary(title, data)
     local p4 = (data.l4 / data.cnt) * 100
     local p_gt4 = (data.l_gt4 / data.cnt) * 100
     
-    -- 获取原始版本号
     local raw_ver = rime_api.get_distribution_version() or ""
-    -- 【调用】清洗函数处理平台和版本信息
     local clean_name, clean_ver = process_platform_info(raw_software_name, raw_ver)
 
+    -- 在此处使用 math.floor()，因为 %d 不能接受浮点数
     return string.format(
         "※ %s统计 · 效率仪表盘\n" ..
         "───────────────\n" ..
@@ -253,15 +247,16 @@ local function format_summary(title, data)
         "───────────────\n" ..
         "◉ 方案：%s\n" ..
         "◉ 平台：%s %s",
-        title, data.len, data.cnt, 
-        data.spd, estimated_avg_spd,
+        title, 
+        math.floor(data.len), math.floor(data.cnt),
+        math.floor(data.spd), math.floor(estimated_avg_spd),
         avg_code, phrase_rate,
-        p1, draw_bar(p1), 
-        p2, draw_bar(p2), 
-        p3, draw_bar(p3), 
-        p4, draw_bar(p4), 
-        p_gt4, draw_bar(p_gt4),
-        schema_name, clean_name, clean_ver -- 使用清洗后的变量
+        math.floor(p1), draw_bar(p1), 
+        math.floor(p2), draw_bar(p2), 
+        math.floor(p3), draw_bar(p3), 
+        math.floor(p4), draw_bar(p4), 
+        math.floor(p_gt4), draw_bar(p_gt4),
+        schema_name, clean_name, clean_ver
     )
 end
 
@@ -302,6 +297,7 @@ local function fini(env)
         env.stat_notifier:disconnect() 
         env.stat_notifier = nil
     end
+    -- 重新部署时关闭数据库，释放文件锁
     if db and db:loaded() then
         db:close()
     end
@@ -327,7 +323,7 @@ local function translator(input, seg, env)
     elseif input == "/ztj" then title = "七日"; data = aggregate_stats(7)
     elseif input == "/ytj" then title = "卅日"; data = aggregate_stats(30)
     elseif input == "/ntj" then title = "本年"; data = aggregate_stats(365)
-    elseif input == "/ttj" then title = "生涯"; data = aggregate_stats(0)
+    elseif input == "/tj" then title = "生涯"; data = aggregate_stats(0)
     end
 
     if data then
