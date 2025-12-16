@@ -50,7 +50,7 @@ CHANGES=$(
   echo ""
   echo "✨**下载地址：** [wanxiang-lts-zh-hans.gram](https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram)"
   echo ""
-  echo "## 📘 使用说明(QQ群：11033572 参与讨论)"
+  echo "## 📘 使用说明(QQ群：11033572/11631066 参与讨论)"
   echo ""
   echo "1. **不使用辅助码的用户：**"
   echo ""
