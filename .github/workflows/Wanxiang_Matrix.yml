@@ -1,0 +1,251 @@
+name: Build Wanxiang Matrix APK
+
+on:
+  workflow_dispatch:
+  #push:
+    #tags:
+      #- 'v*'
+
+jobs:
+  build_apks:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        branch:
+          - wanxiang-hanxin-fuzhu
+          - wanxiang-wubi-fuzhu
+          - wanxiang-flypy-fuzhu
+          - wanxiang-moqi-fuzhu
+          - wanxiang-tiger-fuzhu
+          - wanxiang-zrm-fuzhu
+          - wanxiang-shouyou-fuzhu
+          - wanxiang-base
+
+    steps:
+      - name: Checkout Wanxiang Repo
+        uses: actions/checkout@v4
+        with:
+          path: wanxiang_root
+
+      - name: Checkout Trime Source
+        uses: actions/checkout@v4
+        with:
+          repository: osfans/trime
+          submodules: recursive
+          fetch-depth: 0
+          path: trime_src
+
+      # 1. 注入主题 (智能查找文件版)
+      - name: Inject Theme (Jianchun)
+        env:
+          # 【自定义过滤】
+          DELETE_LIST: ".git .github .idea .gitignore README.md *.png preview.jpg"
+        run: |
+          echo ">>> [Debug] 列出仓库前3层文件 (帮助排查):"
+          ls -R wanxiang_root/ | grep ":$" | head -n 20
+          
+          echo ">>> [Theme] 清理 Trime shared 目录..."
+          rm -rf trime_src/app/src/main/assets/shared/*
+          
+          echo ">>> [Theme] 正在查找包含 '简纯' 的 YAML 文件..."
+          TARGET_FILE=$(find wanxiang_root -type f -name "*简纯*.yaml" | head -n 1)
+          
+          if [ -z "$TARGET_FILE" ]; then
+            echo "::error::未找到文件名包含'简纯'的 yaml 文件！"
+            exit 1
+          else
+            echo "✅ 找到目标文件: $TARGET_FILE"
+            THEME_DIR=$(dirname "$TARGET_FILE")
+            echo "✅ 定位主题源目录: $THEME_DIR"
+          fi
+          
+          echo ">>> [Theme] 正在准备文件..."
+          mkdir -p temp_theme_clean
+          cp -r "$THEME_DIR"/* temp_theme_clean/
+          
+          # --- 执行清理函数 ---
+          cd temp_theme_clean
+          echo "正在删除无关文件: ${{ env.DELETE_LIST }}"
+          for pattern in ${{ env.DELETE_LIST }}; do
+            rm -rf $pattern || true
+          done
+          cd ..
+          # -------------------
+
+          echo ">>> [Theme] 注入到 Trime..."
+          cp -r temp_theme_clean/* trime_src/app/src/main/assets/shared/
+          rm -rf temp_theme_clean
+          
+          echo ">>> [Theme] 注入完成，检查结果："
+          ls -1 trime_src/app/src/main/assets/shared/ | head -n 5
+
+      # 2. 注入方案 (修复了 cp 找不到目录的问题)
+      - name: Inject Scheme (${{ matrix.branch }})
+        env:
+          # 【自定义过滤】
+          DELETE_LIST: ".git .github .gitignore *.md version.txt wanxiang_t9.schema.yaml weasel.yaml LICENSE *.png *.jpg unused_folder update_log.txt"
+        run: |
+          echo ">>> [Scheme] 重置 Trime rime 目录..."
+          rm -rf trime_src/app/src/main/assets/rime
+          # 【关键修复】手动重建该目录
+          mkdir -p trime_src/app/src/main/assets/rime/
+          
+          echo ">>> [Scheme] 拉取分支: ${{ matrix.branch }} ..."
+          git clone -b ${{ matrix.branch }} --single-branch --depth 1 https://github.com/${{ github.repository }}.git temp_scheme
+          
+          # --- 执行清理函数 ---
+          echo ">>> [Scheme] 执行自定义过滤..."
+          cd temp_scheme
+          echo "正在删除: ${{ env.DELETE_LIST }}"
+          for pattern in ${{ env.DELETE_LIST }}; do
+             rm -rf $pattern || true
+          done
+          cd ..
+          # -------------------
+          
+          echo ">>> [Scheme] 注入 Trime..."
+          cp -r temp_scheme/* trime_src/app/src/main/assets/rime/
+          rm -rf temp_scheme
+          
+          echo ">>> [Scheme] 注入完成，文件列表："
+          ls -1 trime_src/app/src/main/assets/rime/ | head -n 5
+
+# ----------------------------------------------------------------
+      # 编译环境准备 (终极修复版：物理删除 NDK 28)
+      # ----------------------------------------------------------------
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: 17
+          cache: 'gradle'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install NDK 25 and Remove NDK 28
+        run: |
+          echo ">>> 1. 安装 NDK 25.2.9519653 ..."
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --install "ndk;25.2.9519653" "cmake;3.22.1"
+          
+          echo ">>> 2. 【核弹操作】物理删除系统预装的 NDK 28 ..."
+          # 这一步是关键！删掉 NDK 28，让 Gradle 别无选择
+          if [ -d "$ANDROID_HOME/ndk/28.0.13004108" ]; then
+            sudo rm -rf $ANDROID_HOME/ndk/28.0.13004108
+            echo "✅ 已删除 NDK 28"
+          else
+            echo "ℹ️ 未发现 NDK 28，跳过"
+          fi
+          
+          echo ">>> 3. 验证当前 NDK 版本 ..."
+          ls -l $ANDROID_HOME/ndk/
+
+      - name: Setup Keystore
+        working-directory: trime_src
+        run: |
+          echo "${{ secrets.SIGNING_KEY }}" | base64 -d > trime.jks
+          cat << EOF > keystore.properties
+          storeFile=$(pwd)/trime.jks
+          storePassword=${{ secrets.KEY_STORE_PASSWORD }}
+          keyAlias=${{ secrets.ALIAS }}
+          keyPassword=${{ secrets.KEY_PASSWORD }}
+          EOF
+
+# 7. 编译打包 (Release) - 【修复版本冲突版】
+      - name: Build Release APK
+        working-directory: trime_src
+        run: |
+          echo ">>> 1. 准备 NDK 环境..."
+          # 查找 NDK 25 路径
+          NDK_PATH=$(find $ANDROID_HOME/ndk -maxdepth 1 -name "25*" | head -n 1)
+          if [ -z "$NDK_PATH" ]; then
+             echo "❌ 错误：未找到 NDK 25，尝试使用系统默认..."
+          else
+             echo "✅ 锁定 NDK 路径: $NDK_PATH"
+             # 写入 local.properties 告诉 Gradle NDK 在哪
+             echo "ndk.dir=$NDK_PATH" >> local.properties
+          fi
+
+          echo ">>> 2. 【核心修复】修改 build.gradle.kts 强制使用 NDK 25..."
+          
+          # 步骤 A: 无论原来源码里写的版本是多少，先删掉那一行，防止冲突
+          sed -i '/ndkVersion/d' app/build.gradle.kts
+          
+          # 步骤 B: 在 android { 块的开头插入我们要的版本
+          sed -i 's/android {/android { \n    ndkVersion = "25.2.9519653"/' app/build.gradle.kts
+
+          echo ">>> 3. 注入版本号信息..."
+          # 提取官方版本号
+          TRIME_VERSION=$(grep -oE "[0-9]+\.[0-9]+\.[0-9]+" CHANGELOG.md | head -n 1)
+          if [ -z "$TRIME_VERSION" ]; then TRIME_VERSION="3.3.x"; fi
+          
+          # 获取 Commit ID
+          COMMIT_ID=$(git rev-parse --short HEAD || echo "custom")
+          echo "捕获版本: $TRIME_VERSION ($COMMIT_ID)"
+
+          # 替换动态变量 (防止 Git 报错)
+          sed -i 's/buildConfigField("String", "BUILDER", .*)/buildConfigField("String", "BUILDER", "\\"GitHub Actions\\"")/g' app/build.gradle.kts
+          sed -i 's/buildConfigField("long", "BUILD_TIMESTAMP", .*)/buildConfigField("long", "BUILD_TIMESTAMP", "0L")/g' app/build.gradle.kts
+          sed -i 's/buildConfigField("String", "BUILD_COMMIT_HASH", .*)/buildConfigField("String", "BUILD_COMMIT_HASH", "\\"'${COMMIT_ID}'\\"")/g' app/build.gradle.kts
+          sed -i 's/buildConfigField("String", "BUILD_GIT_REPO", .*)/buildConfigField("String", "BUILD_GIT_REPO", "\\"Wanxiang\\"")/g' app/build.gradle.kts
+          sed -i 's/buildConfigField("String", "BUILD_VERSION_NAME", .*)/buildConfigField("String", "BUILD_VERSION_NAME", "\\"v'${TRIME_VERSION}-${COMMIT_ID}'\\"")/g' app/build.gradle.kts
+
+          # 配置 Git 安全目录
+          git config --global --add safe.directory "*"
+
+          echo ">>> 4. 开始编译..."
+          chmod +x gradlew
+          ./gradlew :app:assembleRelease --stacktrace
+      # 8. 重命名逻辑
+      - name: Rename APK
+        working-directory: trime_src/app/build/outputs/apk/release/
+        run: |
+          # 1. 找到原始生成的 APK
+          ORIGINAL_APK=$(ls *arm64-v8a*release*.apk | head -n 1)
+          
+          # 2. 定义新名字
+          NEW_NAME="trime-${{ matrix.branch }}-armv8.apk"
+          
+          # 3. 执行重命名
+          echo ">>> 重命名操作: 将 $ORIGINAL_APK 改为 $NEW_NAME"
+          mv "$ORIGINAL_APK" "$NEW_NAME"
+
+      # 9. 上传路径指向新名字
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: APK-${{ matrix.branch }}
+          path: trime_src/app/build/outputs/apk/release/trime-${{ matrix.branch }}-armv8.apk
+
+  release_all:
+    needs: build_apks
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    permissions:
+      contents: write
+    steps:
+      - name: Download All Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: all_apks
+          merge-multiple: true
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: all_apks/*.apk
+          name: Trime 万象版 ${{ github.ref_name }}
+          body: |
+            ## 🎉 更新说明
+            万象输入法自动构建版本。
+            
+            ### 包含分支：
+            - 所有万象变体 (Hanxin, Wubi, Flypy, Moqi, Tiger, ZRM, Shouyou, Base)
+            
+            ### 特性：
+            - 集成“简纯”主题
+            - 跟随每夜同文
+            - Release 签名 (Arm64-v8a)
+          draft: false
+          prerelease: false
