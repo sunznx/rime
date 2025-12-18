@@ -92,6 +92,22 @@ jobs:
              echo "🎨 锁定默认主题: $THEME_FILE -> trime.yaml"
              mv -f "$THEME_FILE" "trime.yaml"
           fi
+          echo ">>> [Cleanup] 正在执行多目录深度清理..."
+          
+          # 清理 custom 目录 (例如图片、多余文本)
+          if [ -d "custom" ]; then
+             rm -rf custom/*.jpg custom/*.png custom/*.md 2>/dev/null || true
+          fi
+
+          # 清理 opencc 目录 (例如转换后的冗余 txt)
+          if [ -d "opencc" ]; then
+             rm -rf opencc/*.txt 2>/dev/null || true
+          fi
+
+          # 清理 dicts 目录 (例如文档、说明文件)
+          if [ -d "dicts" ]; then
+             rm -rf dicts/wuzhong.dict.yaml 2>/dev/null || true
+          fi
           # 修改源码 DataManager.kt
           echo ">>> [Source] 正在修改 DataManager.kt ..."
           if [ -f "$DM_PATH" ]; then
