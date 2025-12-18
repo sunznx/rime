@@ -56,6 +56,7 @@ jobs:
           RIME_DEST="$GITHUB_WORKSPACE/trime_src/app/src/main/assets/rime"
           SHARED_DEST="$GITHUB_WORKSPACE/trime_src/app/src/main/assets/shared"
           SCRIPT_PATH="$GITHUB_WORKSPACE/wanxiang_root/.github/workflows/scripts/openccset.py"
+          DM_PATH="$GITHUB_WORKSPACE/trime_src/app/src/main/java/com/osfans/trime/data/base/DataManager.kt"
           # === 1. 彻底删除官方 rime 目录 (纯净模式) ===
           rm -rf "$RIME_DEST"
           rm -rf "$SHARED_DEST"
