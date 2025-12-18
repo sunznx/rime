@@ -21,7 +21,6 @@ sort: by_weight
 𠼞	ā	1
 𥥩	ā	1
 𨉚	ā	1
-嘬	chuài	23
 哎	āi	820
 唉	āi	816
 爱	ài	813
@@ -57,6 +56,7 @@ sort: by_weight
 僾	ài	182
 嬡	ài	182
 敳	ái	181
+乂	aì	175
 藹	ǎi	171
 靄	ǎi	168
 壒	ài	166
@@ -5002,6 +5002,7 @@ sort: by_weight
 膪	chuài	124
 膗	chuái	97
 揣	chuài	68
+嘬	chuài	23
 䦷	chuài	1
 欼	chuài	1
 㪓	chuái	1
@@ -10225,8 +10226,8 @@ sort: by_weight
 𣬫	gà	1
 𪜃	gā	1
 戛	gā	1
-该	gāi	788
 改	gǎi	808
+该	gāi	788
 概	gài	729
 盖	gài	708
 钙	gài	608
@@ -12991,6 +12992,7 @@ sort: by_weight
 姮	héng	301
 鑅	héng	209
 烆	héng	119
+行	héng	110
 鴴	héng	109
 啈	hēng	101
 鵆	héng	97
@@ -13027,7 +13029,6 @@ sort: by_weight
 𪏓	héng	1
 𫰟	héng	1
 堼	hèng	1
-行	héng	110
 红	hóng	769
 洪	hóng	655
 宏	hóng	654
@@ -20116,8 +20117,8 @@ sort: by_weight
 𫓳	lǎi	1
 𫝫	lái	1
 𪮶	lài	1
-兰	lán	705
 蓝	lán	744
+兰	lán	705
 览	lǎn	678
 篮	lán	660
 烂	làn	657
@@ -43682,6 +43683,7 @@ sort: by_weight
 邑	yì	538
 沂	yí	531
 倚	yǐ	526
+羿	yì	524
 驿	yì	522
 翌	yì	517
 懿	yì	516
@@ -43703,7 +43705,6 @@ sort: by_weight
 佚	yì	448
 議	yì	441
 醫	yī	439
-羿	yì	524
 旖	yǐ	429
 咿	yī	427
 苡	yǐ	424
@@ -43721,7 +43722,6 @@ sort: by_weight
 刈	yì	394
 迤	yí	393
 乂	yì	391
-乂	aì	175
 铱	yī	388
 黟	yī	387
 诒	yí	377
@@ -45586,13 +45586,13 @@ sort: by_weight
 语	yǔ	808
 预	yù	778
 雨	yǔ	776
+玉	yù	774
 育	yù	764
 域	yù	757
 鱼	yú	756
 遇	yù	730
 余	yú	720
 与	yù	700
-玉	yù	774
 娱	yú	687
 予	yǔ	683
 宇	yǔ	676
@@ -50283,8 +50283,8 @@ sort: by_weight
 𩲃	zhuó	1
 𩷹	zhuó	1
 𪟣	zhuó	1
-自	zì	838
 字	zì	863
+自	zì	838
 子	zǐ	780
 资	zī	778
 咨	zī	676

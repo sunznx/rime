@@ -36,84 +36,90 @@ jobs:
           fetch-depth: 0
           path: trime_src
 
-      # 1. 注入主题 (智能查找文件版)
-      - name: Inject Theme (Jianchun)
-        env:
-          # 【自定义过滤】
-          DELETE_LIST: ".git .github .idea .gitignore README.md *.png preview.jpg"
+      - name: Download Shared Gram Model
         run: |
-          echo ">>> [Debug] 列出仓库前3层文件 (帮助排查):"
-          ls -R wanxiang_root/ | grep ":$" | head -n 20
-          
-          echo ">>> [Theme] 清理 Trime shared 目录..."
-          rm -rf trime_src/app/src/main/assets/shared/*
-          
-          echo ">>> [Theme] 正在查找包含 '简纯' 的 YAML 文件..."
-          TARGET_FILE=$(find wanxiang_root -type f -name "*简纯*.yaml" | head -n 1)
-          
-          if [ -z "$TARGET_FILE" ]; then
-            echo "::error::未找到文件名包含'简纯'的 yaml 文件！"
-            exit 1
-          else
-            echo "✅ 找到目标文件: $TARGET_FILE"
-            THEME_DIR=$(dirname "$TARGET_FILE")
-            echo "✅ 定位主题源目录: $THEME_DIR"
-          fi
-          
-          echo ">>> [Theme] 正在准备文件..."
-          mkdir -p temp_theme_clean
-          cp -r "$THEME_DIR"/* temp_theme_clean/
-          
-          # --- 执行清理函数 ---
-          cd temp_theme_clean
-          echo "正在删除无关文件: ${{ env.DELETE_LIST }}"
-          for pattern in ${{ env.DELETE_LIST }}; do
-            rm -rf $pattern || true
-          done
-          cd ..
-          # -------------------
-
-          echo ">>> [Theme] 注入到 Trime..."
-          cp -r temp_theme_clean/* trime_src/app/src/main/assets/shared/
-          rm -rf temp_theme_clean
-          
-          echo ">>> [Theme] 注入完成，检查结果："
-          ls -1 trime_src/app/src/main/assets/shared/ | head -n 5
-
-      # 2. 注入方案 (修复了 cp 找不到目录的问题)
-      - name: Inject Scheme (${{ matrix.branch }})
+          mkdir -p "$GITHUB_WORKSPACE/common_assets"
+          curl -L "https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram" \
+               -o "$GITHUB_WORKSPACE/common_assets/wanxiang-lts-zh-hans.gram"
+      # 2. 注入方案 (核弹模式 + 智能分流)
+      - name: Inject Scheme & Smart Sync
         env:
-          # 【自定义过滤】
-          DELETE_LIST: ".git .github .gitignore *.md version.txt wanxiang_t9.schema.yaml weasel.yaml LICENSE *.png *.jpg unused_folder update_log.txt"
+          # 垃圾文件过滤
+          DELETE_LIST: ".git .github .gitignore *.md plum weasel.yaml version.txt wanxiang_t9.schema.yaml LICENSE *.png *.jpg unused_folder update_log.txt"
         run: |
-          echo ">>> [Scheme] 重置 Trime rime 目录..."
-          rm -rf trime_src/app/src/main/assets/rime
-          # 【关键修复】手动重建该目录
-          mkdir -p trime_src/app/src/main/assets/rime/
-          
+          # === 0. 安装编译工具 ===
+          echo ">>> [System] 安装 OpenCC 工具..."
+          sudo apt-get update
+          sudo apt-get install -y opencc
+
+          echo ">>> [Scheme] 正在执行【核弹级】重置..."
+          RIME_DEST="$GITHUB_WORKSPACE/trime_src/app/src/main/assets/rime"
+          SHARED_DEST="$GITHUB_WORKSPACE/trime_src/app/src/main/assets/shared"
+          SCRIPT_PATH="$GITHUB_WORKSPACE/wanxiang_root/.github/workflows/scripts/openccset.py"
+          # === 1. 彻底删除官方 rime 目录 (纯净模式) ===
+          rm -rf "$RIME_DEST"
+          rm -rf "$SHARED_DEST"
+          mkdir -p "$RIME_DEST"
+          mkdir -p "$SHARED_DEST"
+          # === 2. 拉取你的分支代码 ===
           echo ">>> [Scheme] 拉取分支: ${{ matrix.branch }} ..."
           git clone -b ${{ matrix.branch }} --single-branch --depth 1 https://github.com/${{ github.repository }}.git temp_scheme
-          
-          # --- 执行清理函数 ---
-          echo ">>> [Scheme] 执行自定义过滤..."
+          # === 3. 执行 Python 转换脚本 ===
+          if [ -d "temp_scheme/opencc" ]; then
+            echo ">>> [OpenCC] 发现 opencc 目录，开始预编译..."
+            python3 "$SCRIPT_PATH" "$GITHUB_WORKSPACE/temp_scheme/opencc"
+          else
+            echo ">>> [OpenCC] 未发现 opencc 目录，跳过。"
+          fi
+          # === 4. 清理垃圾 ===
           cd temp_scheme
-          echo "正在删除: ${{ env.DELETE_LIST }}"
           for pattern in ${{ env.DELETE_LIST }}; do
              rm -rf $pattern || true
           done
           cd ..
-          # -------------------
           
-          echo ">>> [Scheme] 注入 Trime..."
-          cp -r temp_scheme/* trime_src/app/src/main/assets/rime/
+          # === 5. 将所有文件注入 rime (Engine Base) ===
+          echo ">>> [Scheme] 全量注入 rime 目录..."
+          cp -rf temp_scheme/* "$SHARED_DEST"/
           rm -rf temp_scheme
-          
-          echo ">>> [Scheme] 注入完成，文件列表："
-          ls -1 trime_src/app/src/main/assets/rime/ | head -n 5
+          # === 注入 Gram 模型 ===
+          echo ">>> [Gram] 注入公共模型到 Shared..."
+          cp -f "$GITHUB_WORKSPACE/common_assets/wanxiang-lts-zh-hans.gram" "$SHARED_DEST/wanxiang-lts-zh-hans.gram"
+          cd "$SHARED_DEST"
+          THEME_FILE=$(find . -maxdepth 1 -name "*简纯*.yaml" | head -n 1)
+          if [ -n "$THEME_FILE" ]; then
+             echo "🎨 锁定默认主题: $THEME_FILE -> trime.yaml"
+             mv -f "$THEME_FILE" "trime.yaml"
+          fi
+          # 修改源码 DataManager.kt
+          echo ">>> [Source] 正在修改 DataManager.kt ..."
+          if [ -f "$DM_PATH" ]; then
+            # (1) 修改默认数据目录 (rime -> wanxiang)
+            sed -i 's/File(Environment.getExternalStorageDirectory(), "rime")/File(Environment.getExternalStorageDirectory(), "wanxiang")/g' "$DM_PATH"
 
-# ----------------------------------------------------------------
-      # 编译环境准备 (终极修复版：物理删除 NDK 28)
-      # ----------------------------------------------------------------
+            # (2) 动态修改默认 Schema List
+            # 判断当前编译的分支
+            if [[ "${{ matrix.branch }}" == "wanxiang-base" ]]; then
+              echo "📝 检测为 Base 包，注入 wanxiang 方案"
+              NEW_SCHEMAS="          - schema: wanxiang"
+            else
+              echo "📝 检测为 Pro 包，注入 wanxiang_pro 方案"
+              NEW_SCHEMAS="          - schema: wanxiang_pro"
+            fi
+
+            # 使用 perl 进行多行精准替换，处理那个包含 luna_pinyin 的段落
+            # 我们直接替换整个 schema_list 部分
+            perl -i -0777 -pe 's/- schema: luna_pinyin\n\s+- schema: luna_pinyin_simp/'"$NEW_SCHEMAS"'/g' "$DM_PATH"
+            
+            echo "✅ DataManager.kt 源码 Patch 完成"
+          fi
+          echo ">>> [Check] 最终状态检查:"
+          echo "--- Shared (只有配置):"
+          ls -1 "$SHARED_DEST"
+          echo "--- Rime (完整数据):"
+          ls -1 "$RIME_DEST" | head -n 10
+
+      # 编译环境准备 (删除 NDK 28)
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
@@ -130,7 +136,6 @@ jobs:
           yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --install "ndk;25.2.9519653" "cmake;3.22.1"
           
           echo ">>> 2. 【核弹操作】物理删除系统预装的 NDK 28 ..."
-          # 这一步是关键！删掉 NDK 28，让 Gradle 别无选择
           if [ -d "$ANDROID_HOME/ndk/28.0.13004108" ]; then
             sudo rm -rf $ANDROID_HOME/ndk/28.0.13004108
             echo "✅ 已删除 NDK 28"
@@ -152,39 +157,35 @@ jobs:
           keyPassword=${{ secrets.KEY_PASSWORD }}
           EOF
 
-# 7. 编译打包 (Release) - 【修复版本冲突版】
+      # 7. 编译打包 (修改包名 + 锁定NDK + 注入版本)
       - name: Build Release APK
         working-directory: trime_src
         run: |
-          echo ">>> 1. 准备 NDK 环境..."
-          # 查找 NDK 25 路径
+
+          echo ">>> 2. 准备 NDK 环境..."
           NDK_PATH=$(find $ANDROID_HOME/ndk -maxdepth 1 -name "25*" | head -n 1)
           if [ -z "$NDK_PATH" ]; then
-             echo "❌ 错误：未找到 NDK 25，尝试使用系统默认..."
+             echo "❌ 错误：未找到 NDK 25"
           else
-             echo "✅ 锁定 NDK 路径: $NDK_PATH"
-             # 写入 local.properties 告诉 Gradle NDK 在哪
              echo "ndk.dir=$NDK_PATH" >> local.properties
           fi
 
-          echo ">>> 2. 【核心修复】修改 build.gradle.kts 强制使用 NDK 25..."
+          echo ">>> 3. 修改 Gradle 脚本..."
           
-          # 步骤 A: 无论原来源码里写的版本是多少，先删掉那一行，防止冲突
+          # --- 【核心修改】修改包名 (Application ID) ---
+          echo ">>> 正在修改包名为 amzxyz.wanxiang.trime ..."
+          sed -i 's/applicationId = "com.osfans.trime"/applicationId = "amzxyz.wanxiang.trime"/g' app/build.gradle.kts
+          
+          # 锁定 NDK 版本
           sed -i '/ndkVersion/d' app/build.gradle.kts
-          
-          # 步骤 B: 在 android { 块的开头插入我们要的版本
           sed -i 's/android {/android { \n    ndkVersion = "25.2.9519653"/' app/build.gradle.kts
 
-          echo ">>> 3. 注入版本号信息..."
-          # 提取官方版本号
+          echo ">>> 4. 注入版本号信息..."
           TRIME_VERSION=$(grep -oE "[0-9]+\.[0-9]+\.[0-9]+" CHANGELOG.md | head -n 1)
           if [ -z "$TRIME_VERSION" ]; then TRIME_VERSION="3.3.x"; fi
-          
-          # 获取 Commit ID
           COMMIT_ID=$(git rev-parse --short HEAD || echo "custom")
-          echo "捕获版本: $TRIME_VERSION ($COMMIT_ID)"
-
-          # 替换动态变量 (防止 Git 报错)
+          
+          # 替换 BuildConfig 变量
           sed -i 's/buildConfigField("String", "BUILDER", .*)/buildConfigField("String", "BUILDER", "\\"GitHub Actions\\"")/g' app/build.gradle.kts
           sed -i 's/buildConfigField("long", "BUILD_TIMESTAMP", .*)/buildConfigField("long", "BUILD_TIMESTAMP", "0L")/g' app/build.gradle.kts
           sed -i 's/buildConfigField("String", "BUILD_COMMIT_HASH", .*)/buildConfigField("String", "BUILD_COMMIT_HASH", "\\"'${COMMIT_ID}'\\"")/g' app/build.gradle.kts
@@ -194,20 +195,16 @@ jobs:
           # 配置 Git 安全目录
           git config --global --add safe.directory "*"
 
-          echo ">>> 4. 开始编译..."
+          echo ">>> 5. 开始编译..."
           chmod +x gradlew
           ./gradlew :app:assembleRelease --stacktrace
+
       # 8. 重命名逻辑
       - name: Rename APK
         working-directory: trime_src/app/build/outputs/apk/release/
         run: |
-          # 1. 找到原始生成的 APK
           ORIGINAL_APK=$(ls *arm64-v8a*release*.apk | head -n 1)
-          
-          # 2. 定义新名字
-          NEW_NAME="trime-${{ matrix.branch }}-armv8.apk"
-          
-          # 3. 执行重命名
+          NEW_NAME="trime-${{ matrix.branch }}-armv8a.apk"
           echo ">>> 重命名操作: 将 $ORIGINAL_APK 改为 $NEW_NAME"
           mv "$ORIGINAL_APK" "$NEW_NAME"
 
@@ -216,36 +213,50 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: APK-${{ matrix.branch }}
-          path: trime_src/app/build/outputs/apk/release/trime-${{ matrix.branch }}-armv8.apk
+          path: trime_src/app/build/outputs/apk/release/trime-${{ matrix.branch }}-armv8a.apk
 
   release_all:
-    needs: build_apks
-    runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/')
-    permissions:
-      contents: write
-    steps:
-      - name: Download All Artifacts
-        uses: actions/download-artifact@v4
-        with:
-          path: all_apks
-          merge-multiple: true
+      needs: build_apks
+      runs-on: ubuntu-latest
+      if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
+      permissions:
+        contents: write
+      steps:
+        - name: Get current date
+          id: date
+          run: echo "date=$(date +'%Y-%m-%d %H:%M')" >> $GITHUB_OUTPUT
 
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: all_apks/*.apk
-          name: Trime 万象版 ${{ github.ref_name }}
-          body: |
-            ## 🎉 更新说明
-            万象输入法自动构建版本。
+        - name: Download All Artifacts
+          uses: actions/download-artifact@v4
+          with:
+            path: all_apks
+            merge-multiple: true
+
+        - name: Delete 'apk' tag and release
+          uses: dev-drprasad/delete-tag-and-release@v1.1
+          if: github.event_name == 'workflow_dispatch'
+          with:
+            delete_release: true
+            tag_name: apk
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+
+        - name: Create GitHub Release
+          uses: softprops/action-gh-release@v2
+          with:
+            files: all_apks/*.apk
+            name: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || '同文万象安卓版本APP下载' }}
+            tag_name: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || 'apk' }}
+            body: |
+              ### 🛠️ 构建信息
+              - **构建时间**: ${{ steps.date.outputs.date }}
+              - **包名**: `amzxyz.wanxiang.trime`
+              - **主题**: 默认集成简纯主题
+              ## 📢 版权与归属声明
             
-            ### 包含分支：
-            - 所有万象变体 (Hanxin, Wubi, Flypy, Moqi, Tiger, ZRM, Shouyou, Base)
-            
-            ### 特性：
-            - 集成“简纯”主题
-            - 跟随每夜同文
-            - Release 签名 (Arm64-v8a)
-          draft: false
-          prerelease: false
+              - **软件内核**：基于 [Trime (同文)](https://github.com/osfans/trime) 编译，归原作者所有。
+              - **输入方案**：归 [万象项目组](https://github.com/${{ github.repository }}) 所有。
+              - **作品性质**：再打包集成版。
+              ---
+              *由 GitHub Actions 自动构建生成。*
+            draft: false
+            prerelease: true
