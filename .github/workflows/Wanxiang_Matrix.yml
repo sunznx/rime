@@ -2,9 +2,9 @@ name: Build Wanxiang Matrix APK
 
 on:
   workflow_dispatch:
-  #push:
-    #tags:
-      #- 'v*'
+  push:
+    tags:
+      - 'v*'
 
 jobs:
   build_apks:
@@ -268,10 +268,11 @@ jobs:
               - **构建时间**: ${{ steps.date.outputs.date }}
               - **包名**: `amzxyz.wanxiang.trime`
               - **主题**: 默认集成简纯主题
+              - **用户目录**: `wanxiang`
               ## 📢 版权与归属声明
             
               - **软件内核**：基于 [Trime (同文)](https://github.com/osfans/trime) 编译，归原作者所有。
-              - **输入方案**：归 [万象项目组](https://github.com/${{ github.repository }}) 所有。
+              - **输入方案**：归 [万象拼音](https://github.com/${{ github.repository }}) 所有。
               - **作品性质**：再打包集成版。
               ---
               *由 GitHub Actions 自动构建生成。*
