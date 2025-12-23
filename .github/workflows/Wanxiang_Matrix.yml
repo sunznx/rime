@@ -147,9 +147,6 @@ jobs:
                 // 2. Backgrounds
                 val bd = java.io.File(userDataDir, "backgrounds").apply { mkdirs() }
                 am.list("shared/backgrounds")?.forEach { try { ResourceUtils.copyFile("shared/backgrounds/$it", java.io.File(bd, it).absolutePath) } catch(e:Exception){} }
-
-                // 3. Config (Last)
-                try { ResourceUtils.copyFile("shared/trime.yaml", java.io.File(userDataDir, "trime.yaml").absolutePath) } catch(e:Exception){}
             } catch(e: Exception) { Timber.e(e, "Assets inject error") }
             Timber.d("Synced!")'
 
