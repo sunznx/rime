@@ -35,10 +35,13 @@ package_schema_base() {
   rsync -av --ignore-existing \
     --exclude='/.*' \
     --exclude='/dist/' \
+    --exclude='/backgrounds' \
+    --exclude='/fonts' \
     --exclude='/release-please-config.json' \
     --exclude='/pro-*-fuzhu-dicts' \
     --exclude='/chaifen' \
     --exclude='/CHANGELOG.md' \
+    --exclude='/简纯+.trime.yaml' \
     --exclude='/custom' \
     --exclude='/LICENSE' \
     --exclude="/$OUT_BASE" \
@@ -96,10 +99,13 @@ package_schema_pro() {
     --exclude='/.*' \
     --exclude='/dist/' \
     --exclude='/dicts' \
+    --exclude='/backgrounds' \
+    --exclude='/fonts' \
     --exclude='release-please-config.json' \
     --exclude='pro-*-fuzhu-dicts' \
     --exclude='wanxiang_t9.schema.yaml' \
     --exclude='CHANGELOG.md' \
+    --exclude='/简纯+.trime.yaml' \
     --exclude='wanxiang.dict.yaml' \
     --exclude='wanxiang.schema.yaml' \
     --exclude='custom' \
