@@ -600,9 +600,20 @@ function M.init(env)
     if env.engine and env.engine.context then
         env.commit_notifier = env.engine.context.commit_notifier:connect(function(ctx)
             local commit_text = ctx:get_commit_text()
-            -- 1. 判断上屏内容是否为英文短语
-            env.prev_commit_is_eng = is_ascii_phrase_fast(commit_text)
-            -- 2. 上屏后，立即清除打断信号
+            -- 判断是不是常规的英文单词
+            local is_eng = is_ascii_phrase_fast(commit_text)
+            -- 如果不是单词，再检查是不是单独的英文标点
+            if not is_eng then
+                -- 去掉末尾可能的空格，防止影响判断
+                local clean = commit_text:gsub("%s+$", "") 
+                -- 如果是 逗号、句号、感叹号、问号，也强行算作英文
+                if clean == "," or clean == "." or clean == "!" or clean == "?" then
+                    is_eng = true
+                end
+            end
+            -- 更新状态
+            env.prev_commit_is_eng = is_eng
+            -- 屏后，立即清除打断信号
             ctx:set_property("english_spacing", "") 
         end)
     end
