@@ -373,4 +373,4 @@ grammar:
   collocation_penalty: -10
   non_collocation_penalty: -20
   weak_collocation_penalty: -45
-  rear_penalty: -5
+  rear_penalty: -12
