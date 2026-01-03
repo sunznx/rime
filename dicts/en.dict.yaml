@@ -50,10 +50,10 @@ abbreviation	abbreviation
 abbreviations	abbreviations
 abbreviator	abbreviator
 abby	abby
-ABC	ABC
 abc	abc
-ABCD	ABCD
+ABC	ABC
 abcd	abcd
+ABCD	ABCD
 abcoulomb	abcoulomb
 abdicate	abdicate
 abdication	abdication
@@ -161,9 +161,9 @@ abrogation	abrogation
 abrupt	abrupt
 abruptly	abruptly
 abruptness	abruptness
+abs	abs
 ABS	ABS
 Anti-lock Braking System	ABS
-abs	abs
 abscess	abscess
 abscessed	abscessed
 abscind	abscind
@@ -271,9 +271,9 @@ accepted	accepted
 accepting	accepting
 acceptor	acceptor
 accepts	accepts
+access	access
+access	access
 Microsoft Access	Access
-access	access
-access	access
 accessary	accessary
 accessed	accessed
 accesses	accesses
@@ -438,8 +438,8 @@ acknowledges	acknowledges
 acknowledging	acknowledging
 acknowledgment	acknowledgment
 acknowledgments	acknowledgments
-ACM	ACM
 acm	acm
+ACM	ACM
 acme	acme
 acne	acne
 acock	acock
@@ -535,8 +535,8 @@ acute	acute
 acutely	acutely
 acuteness	acuteness
 acxiom	acxiom
-AD	AD
 ad	ad
+AD	AD
 ada	ada
 adage	adage
 adagio	adagio
@@ -732,8 +732,8 @@ adrift	adrift
 adroit	adroit
 adroitly	adroitly
 ads	ads
-AdSense	AdSense
 adsense	adsense
+AdSense	AdSense
 ADSL	ADSL
 Asymmetric Digital Subscriber Line	ADSL
 adsmith	adsmith
@@ -1036,8 +1036,8 @@ aggressor	aggressor
 aggrieve	aggrieve
 aggrieved	aggrieved
 aghast	aghast
-AGI	AGI
 artificial general intelligence	agi
+AGI	AGI
 agile	agile
 agility	agility
 aging	aging
@@ -1104,8 +1104,8 @@ ahimsa	ahimsa
 ahmad	ahmad
 ahmed	ahmed
 ahoy	ahoy
-AI	AI
 ai	ai
+AI	AI
 aid	aid
 aide	aide
 aided	aided
@@ -1140,8 +1140,8 @@ airbus	airbus
 aircraft	aircraft
 aircrew	aircrew
 airdrome	airdrome
-AirDrop	AirDrop
 airdrop	airdrop
+AirDrop	AirDrop
 aired	aired
 aires	aires
 airfare	airfare
@@ -1620,8 +1620,8 @@ ambulate	ambulate
 ambulation	ambulation
 ambuscade	ambuscade
 ambush	ambush
-AMD	AMD
 amd	amd
+AMD	AMD
 amd64	amd64
 AMDgpu	AMDgpu
 amelia	amelia
@@ -2042,8 +2042,8 @@ anonymous	anonymous
 anorexia	anorexia
 another	another
 anoxia	anoxia
-ANSI	ANSI
 ansi	ansi
+ANSI	ANSI
 answer	answer
 answerable	answerable
 answered	answered
@@ -2276,8 +2276,8 @@ apices	apices
 apiece	apiece
 APIs	APIs
 apish	apish
-APK	APK
 android application package	apk
+APK	APK
 apkmirror	apkmirror
 APKpure	APKpure
 aplenty	aplenty
@@ -2693,9 +2693,9 @@ arizona	arizona
 ark	ark
 arkansas	arkansas
 arlington	arlington
+arm	arm
 ARM	ARM
 Advanced RISC Machine	ARM
-arm	arm
 arm64	arm64
 armada	armada
 armadillo	armadillo
@@ -2846,9 +2846,9 @@ arweave	arweave
 arXiv	ArXiv
 aryan	aryan
 as	as
-ASAP	ASAP
 asap	asap
 as soon as possible	asap
+ASAP	ASAP
 asbestos	asbestos
 asbestosis	asbestosis
 asc	asc
@@ -2862,8 +2862,8 @@ ascent	ascent
 ascertain	ascertain
 ascetic	ascetic
 asceticism	asceticism
-ASCII	ASCII
 ascii	ascii
+ASCII	ASCII
 asclepius	asclepius
 ascribable	ascribable
 ascribe	ascribe
@@ -2913,8 +2913,8 @@ asks	asks
 aslant	aslant
 asleep	asleep
 aslope	aslope
-ASMR	ASMR
 autonomous sensory meridian response	asmr
+ASMR	ASMR
 asocial	asocial
 asp	asp
 asparagus	asparagus
@@ -3140,8 +3140,8 @@ atlanta	atlanta
 atlantic	atlantic
 atlantis	atlantis
 atlas	atlas
-ATM	ATM
 automated teller machine	atm
+ATM	ATM
 atman	atman
 atmosphere	atmosphere
 atmospheric	atmospheric
@@ -3448,13 +3448,13 @@ autotruck	autotruck
 autoxidation	autoxidation
 autumn	autumn
 autumnal	autumnal
-AUX	AUX
 aux	aux
+AUX	AUX
 auxiliaries	auxiliaries
 auxiliary	auxiliary
 auxin	auxin
-AV	AV
 Adult Video	av
+AV	AV
 avail	avail
 availability	availability
 available	available
@@ -3489,8 +3489,8 @@ aversion	aversion
 avert	avert
 avery	avery
 avg	avg
-AVI	AVI
 avi	avi
+AVI	AVI
 avian	avian
 aviary	aviary
 aviate	aviate
@@ -4192,11 +4192,11 @@ bazooka	bazooka
 bb	bb
 BBC	BBC
 BBDown	BBDown
-BBQ	BBQ
 barbecue	bbq
+BBQ	BBQ
+bbs	bbs
 BBS	BBS
 Bulletin Board System	BBS
-bbs	bbs
 bctv	bctv
 BDSM	BDSM
 be	be
@@ -4721,8 +4721,8 @@ beyond	beyond
 bezel	bezel
 bezique	bezique
 bezoar	bezoar
-BGM	BGM
 background music	bgm
+BGM	BGM
 bhutan	bhutan
 biangular	biangular
 biannual	biannual
@@ -4918,9 +4918,9 @@ bionomy	bionomy
 biophysics	biophysics
 bioplasm	bioplasm
 biopsy	biopsy
+bios	bios
 BIOS	BIOS
 Basic Input/Output System	BIOS
-bios	bios
 biosatellite	biosatellite
 bioscope	bioscope
 biostatics	biostatics
@@ -5034,8 +5034,8 @@ blabbermouth	blabbermouth
 black	black
 blackamoor	blackamoor
 blackball	blackball
-BlackBerry	BlackBerry
 blackberry	blackberry
+BlackBerry	BlackBerry
 blackbird	blackbird
 blackboard	blackboard
 blackburn	blackburn
@@ -5716,8 +5716,8 @@ boysenberry	boysenberry
 bp	bp
 bps	bps
 bra	bra
-Braavos Wallet	Braavos
 braavos	braavos
+Braavos Wallet	Braavos
 brace	brace
 braced	braced
 bracelet	bracelet
@@ -6132,12 +6132,12 @@ BSD	BSD
 Berkeley Software Distribution	BSD
 BT	BT
 btam	btam
-BTC	BTC
 bitcoin	btc
+BTC	BTC
 btitish	btitish
 btrfs	btrfs
-BTW	BTW
 by the way	btw
+BTW	BTW
 bub	bub
 bubble	bubble
 bubbler	bubbler
@@ -7423,8 +7423,8 @@ cc	cc
 CCTV	CCTV
 China Central Television	CCTV
 Closed-Circuit Television	CCTV
-CD	CD
 cd	cd
+CD	CD
 CD-ROM	CD-ROM
 CD-RW	CD-RW
 CDC	CDC
@@ -8258,8 +8258,8 @@ chut	chut
 chute	chute
 chutty	chutty
 chyme	chyme
-CIA	CIA
 cia	cia
+CIA	CIA
 cialis	cialis
 ciao	ciao
 ciara	ciara
@@ -10748,9 +10748,9 @@ cozy	cozy
 cpi	cpi
 C++	CPP
 cps	cps
+cpu	cpu
 CPU	CPU
 Central Processing Unit	CPU
-cpu	cpu
 crab	crab
 crabbed	crabbed
 crabber	crabber
@@ -11034,8 +11034,8 @@ crossing	crossing
 crosslet	crosslet
 crossly	crossly
 crossness	crossness
-CrossOver	CrossOver
 crossover	crossover
+CrossOver	CrossOver
 crosspatch	crosspatch
 crosspiece	crosspiece
 crossroad	crossroad
@@ -11071,9 +11071,9 @@ crucible	crucible
 crucifix	crucifix
 cruciform	cruciform
 crucify	crucify
+crud	crud
 CRUD	CRUD
 Create Read Update Delete	CRUD
-crud	crud
 crude	crude
 crudely	crudely
 crudeness	crudeness
@@ -11143,8 +11143,8 @@ crystallize	crystallize
 crystallography	crystallography
 crystalloid	crystalloid
 crystals	crystals
-CS	CS
 Counter-Strike	Cs
+CS	CS
 CS2	CS2
 Counter-Strike 2	CS2
 CS:GO	CS:GO
@@ -11738,8 +11738,8 @@ dbk	dbk
 DBMesh	DBMesh
 dbms	dbms
 dc	dc
-DDoS	DDoS
 distributed denial-of-service attack	ddos
+DDoS	DDoS
 deaccentuator	deaccentuator
 deacon	deacon
 deaconess	deaconess
@@ -12045,8 +12045,8 @@ DeepL	DeepL
 deeply	deeply
 DeepMind	DeepMind
 deepness	deepness
-DeepSeek	DeepSeek
 DeepSeek	Deepseek
+DeepSeek	DeepSeek
 deepthroat	deepthroat
 deer	deer
 deere	deere
@@ -12864,9 +12864,9 @@ dextrorotatory	dextrorotatory
 dextrose	dextrose
 dfm	dfm
 dharma	dharma
+dhcp	dhcp
 DHCP	DHCP
 Dynamic Host Configuration Protocol	DHCP
-dhcp	dhcp
 dhole	dhole
 dhoti	dhoti
 dhow	dhow
@@ -13753,19 +13753,19 @@ DJ	DJ
 django	django
 djibouti	djibouti
 DjVu	DjVu
-DLC	DLC
 downloadable content	dlc
+DLC	DLC
 DLL	DLL
 DLsite	DLsite
 DMARC	DMARC
 DMCA	DMCA
 Digital Millennium Copyright Act	DMCA
-DNA	DNA
 dna	dna
 deoxyribonucleic acid	dna
-D&D	DND
+DNA	DNA
 DnD	DnD
 Dungeons & Dragons	DnD
+D&D	DND
 DNS	DNS
 Domain Name System	DNS
 dnsmasq	dnsmasq
@@ -13885,8 +13885,8 @@ dolphin	dolphin
 dolphins	dolphins
 dolt	dolt
 doltish	doltish
-DOM	DOM
 dom	dom
+DOM	DOM
 domain	domain
 Domain Name System	DomainNameSystem
 domains	domains
@@ -13986,11 +13986,11 @@ dorsal	dorsal
 dorset	dorset
 dorsetshire	dorsetshire
 dory	dory
-DOS	DOS
-Disk Operating System	DOS
-DoS	DoS
 dos	dos
 denial-of-service attack	dos
+DoS	DoS
+DOS	DOS
+Disk Operating System	DOS
 dosage	dosage
 dose	dose
 doses	doses
@@ -14467,8 +14467,8 @@ duties	duties
 dutiful	dutiful
 duty	duty
 duumvir	duumvir
-DVD	DVD
 dvd	dvd
+DVD	DVD
 DVDs	DVDs
 dwarf	dwarf
 dwarfish	dwarfish
@@ -15242,9 +15242,9 @@ empty	empty
 empurple	empurple
 empyreal	empyreal
 empyrean	empyrean
+ems	ems
 EMS	EMS
 Express Mail Service	EMS
-ems	ems
 emu	emu
 emulate	emulate
 emulation	emulation
@@ -16886,9 +16886,9 @@ fantasticato	fantasticato
 fantasy	fantasy
 fantod	fantod
 fanwise	fanwise
+faq	faq
 FAQ	FAQ
 Frequently Asked Question	FAQ
-faq	faq
 FAQs	FAQs
 far	far
 farad	farad
@@ -17041,9 +17041,9 @@ fay	fay
 fayette	fayette
 fayetteville	fayetteville
 faze	faze
+fbi	fbi
 FBI	FBI
 Federal Bureau of Investigation	FBI
-fbi	fbi
 FBI WARNING	FBIWARNING
 FCC	FCC
 fcitx	fcitx
@@ -17292,8 +17292,8 @@ fiancee	fiancee
 fiancé	fiancé
 fiancée	fiancée
 fiasco	fiasco
-FIAT	FIAT
 fiat	fiat
+FIAT	FIAT
 fib	fib
 fibber	fibber
 fiber	fiber
@@ -18380,8 +18380,8 @@ forwarding	forwarding
 forwardly	forwardly
 forwardness	forwardness
 forwards	forwards
-FOSS	FOSS
 free and open source software	foss
+FOSS	FOSS
 fossa	fossa
 fosse	fosse
 fossil	fossil
@@ -18438,8 +18438,8 @@ foxtail	foxtail
 foxtrot	foxtrot
 foxy	foxy
 foy	foy
-FPGA	FPGA
 field-programmable gate array	fpga
+FPGA	FPGA
 FPS	FPS
 fpu	fpu
 fracas	fracas
@@ -18736,9 +18736,9 @@ frustration	frustration
 frustum	frustum
 fry	fry
 frying	frying
+ftp	ftp
 FTP	FTP
 File Transfer Protocol	FTP
-ftp	ftp
 fubsy	fubsy
 fuchsia	fuchsia
 fuck	fuck
@@ -18902,8 +18902,8 @@ futurology	futurology
 fuzz	fuzz
 fuzzball	fuzzball
 fuzzy	fuzzy
-FYI	FYI
 for your information	fyi
+FYI	FYI
 fylfot	fylfot
 fyne	fyne
 g11n	g11n
@@ -19360,9 +19360,9 @@ genuflection	genuflection
 genuine	genuine
 genuinely	genuinely
 genus	genus
+geo	geo
 GEO	GEO
 Generative Engine Optimization	GEO
-geo	geo
 geobotany	geobotany
 geochemistry	geochemistry
 geode	geode
@@ -19779,14 +19779,14 @@ gnawer	gnawer
 gnawing	gnawing
 gnd	gnd
 gneiss	gneiss
-GNOME	GNOME
 gnome	gnome
+GNOME	GNOME
 gnomic	gnomic
 gnomish	gnomish
 gnosticism	gnosticism
+gnu	gnu
 GNU	GNU
 GNU General Public License	GNU
-gnu	gnu
 go	go
 go	go
 goad	goad
@@ -20007,14 +20007,14 @@ gownsman	gownsman
 goy	goy
 GPIB	GPIB
 GPIO	GPIO
+gpl	gpl
 GPL	GPL
 GNU General Public License	GPL
-gpl	gpl
 GPS	GPS
 GPSR	GPSR
+gpt	gpt
 GPT	GPT
 Generative Pre-trained Transformer	GPT
-gpt	gpt
 GPT-3.5	GPT-3.5
 GPT-4	GPT-4
 GPT-4.1	GPT-4.1
@@ -20484,9 +20484,9 @@ guestbook	guestbook
 guests	guests
 guff	guff
 guffaw	guffaw
+gui	gui
 GUI	GUI
 Graphical User Interface	GUI
-gui	gui
 guiana	guiana
 GUID	GUID
 Globally Unique Identifier	GUID
@@ -21121,8 +21121,8 @@ HB	HB
 HBase	HBase
 HBO	HBO
 HD	HD
-HDD	HDD
 hard disk drive	hdd
+HDD	HDD
 hdlc	hdlc
 HDMI	HDMI
 High Definition Multimedia Interface	HDMI
@@ -21551,8 +21551,8 @@ hexode	hexode
 hey	hey
 heyday	heyday
 HHCLUB	HHCLUB
-HHD	HHD
 hybrid drive	hhd
+HHD	HHD
 HHKB	HHKB
 Happy Hacking Keyboard	HHKB
 hi	hi
@@ -21712,8 +21712,8 @@ hive	hive
 hived	hived
 hives	hives
 hiving	hiving
-HK	HK
 Hong Kong	hk
+HK	HK
 HLS	HLS
 hmm	hmm
 hmmm	hmmm
@@ -22147,9 +22147,9 @@ hoyle	hoyle
 hp	hp
 hpp	hpp
 href	href
+html	html
 HTML	HTML
 HyperText Markup Language	HTML
-html	html
 HTTP	HTTP
 Hypertext Transfer Protocol	HTTP
 HTTPS	HTTPS
@@ -22476,9 +22476,9 @@ ibg	ibg
 ibid	ibid
 ibis	ibis
 ibiza	ibiza
+ibm	ibm
 IBM	IBM
 International Business Machines	IBM
-ibm	ibm
 ibn	ibn
 iBook	IBook
 iBus	IBus
@@ -22529,16 +22529,16 @@ ICQ	ICQ
 ICT	ICT
 ictus	ictus
 icy	icy
-ID	ID
 id	id
 i'd	id
+ID	ID
 idaho	idaho
 idahoan	idahoan
 IDC	IDC
 International Data Corporation	IDC
 ID Card	IDCard
-IDE	IDE
 integrated development environment	ide
+IDE	IDE
 idea	idea
 IDEA Community	IDEACommunity
 ideal	ideal
@@ -22599,10 +22599,10 @@ idolization	idolization
 idolize	idolize
 idolum	idolum
 idyllic	idyllic
-IE	IE
 Internet Explorer	ie
-IEEE	IEEE
+IE	IE
 ieee	ieee
+IEEE	IEEE
 IEN	IEN
 IEPL	IEPL
 International Ethernet Private Line	IEPL
@@ -22706,9 +22706,9 @@ imagism	imagism
 imagist	imagist
 imago	imago
 imam	imam
+imap	imap
 IMAP	IMAP
 Internet Message Access Protocol	IMAP
-imap	imap
 iMazing	IMazing
 IMBA	IMBA
 imbalance	imbalance
@@ -23032,8 +23032,8 @@ imputable	imputable
 imputation	imputation
 impute	impute
 imref	imref
-IN	IN
 in	in
+IN	IN
 inability	inability
 inaccessibility	inaccessibility
 inaccessible	inaccessible
@@ -24482,12 +24482,12 @@ ions	ions
 iOS	IOS
 iota	iota
 iowa	iowa
-IP	IP
 internet protocol	ip
+IP	IP
 IPA	IPA
 iPack	IPack
-IPC	IPC
 ipc	ipc
+IPC	IPC
 IPFS	IPFS
 InterPlanetary File System	IPFS
 IPLC	IPLC
@@ -24504,9 +24504,9 @@ iptables	iptables
 IPTV	IPTV
 IPv4	IPv4
 IPv6	IPv6
-IQ	IQ
 iq	iq
 intelligence quotient	iq
+IQ	IQ
 IQIYI	IQIYI
 IQOS	IQOS
 ir	ir
@@ -25120,8 +25120,8 @@ Java Runtime Environment	JRE
 JRPG	JRPG
 Japanese Role-Playing Game	JRPG
 JS	JS
-JSON	JSON
 json	json
+JSON	JSON
 JSP	JSP
 jsw	jsw
 juan	juan
@@ -25890,8 +25890,8 @@ lampoon	lampoon
 lamppost	lamppost
 lamprey	lamprey
 lamps	lamps
-LAN	LAN
 lan	lan
+LAN	LAN
 lanai	lanai
 lanate	lanate
 lancashire	lancashire
@@ -26070,8 +26070,8 @@ later	later
 lateral	lateral
 laterite	laterite
 latest	latest
-LaTeX	LaTeX
 latex	latex
+LaTeX	LaTeX
 LaTeXian	LaTeXian
 lath	lath
 lathe	lathe
@@ -26936,9 +26936,9 @@ livingston	livingston
 livre	livre
 liz	liz
 lizard	lizard
+llama	llama
 LLaMA	LLaMA
 Large Language Model Meta AI	LLaMA
-llama	llama
 llano	llano
 LLM	LLM
 lloyd	lloyd
@@ -28351,8 +28351,8 @@ MacBook Air	MBA
 MBP	MBP
 MacBook Pro	MBP
 mbps	mbps
-MBR	MBR
 master boot record	mbr
+MBR	MBR
 mbyte	mbyte
 McAfee	McAfee
 McBride	McBride
@@ -29458,8 +29458,8 @@ mitigative	mitigative
 mitigator	mitigator
 mitigatory	mitigatory
 MIT License	MITLicense
-MitM	MitM
 man-in-the-middle	mitm
+MitM	MitM
 mitochondrial	mitochondrial
 mitosis	mitosis
 mitotic	mitotic
@@ -30500,8 +30500,8 @@ narrowness	narrowness
 nartb	nartb
 NAS	NAS
 Network Attached Storage	NAS
-NASA	NASA
 nasa	nasa
+NASA	NASA
 nasal	nasal
 nasalise	nasalise
 nasality	nasality
@@ -31592,6 +31592,8 @@ nystagmus	nystagmus
 o'clock	o'clock
 O'Reilly	O'Reilly
 O2O	O2O
+oa	oa
+OA	OA
 oaf	oaf
 oafish	oafish
 oahu	oahu
@@ -31731,8 +31733,8 @@ obviate	obviate
 obviation	obviation
 obvious	obvious
 obviously	obviously
-OC	OC
 Objective-C	Oc
+OC	OC
 ocarina	ocarina
 occasion	occasion
 occasional	occasional
@@ -31929,8 +31931,8 @@ oilstone	oilstone
 oily	oily
 oink	oink
 ointment	ointment
-OK	OK
 ok	ok
+OK	OK
 okapi	okapi
 okay	okay
 okey	okey
@@ -32078,8 +32080,8 @@ ooh	ooh
 oology	oology
 oolong	oolong
 oomph	oomph
-OOP	OOP
 object-oriented programming	oop
+OOP	OOP
 oops	oops
 ooze	ooze
 oozy	oozy
@@ -32375,9 +32377,9 @@ orthopsychiatry	orthopsychiatry
 ortolan	ortolan
 oryx	oryx
 orz	orz
-OS	OS
 os	os
 Operating System	os
+OS	OS
 osage	osage
 osaka	osaka
 osama	osama
@@ -32877,8 +32879,8 @@ ozonosphere	ozonosphere
 p13n	p13n
 personalization	p13n
 P2P	P2P
-PaaS	PaaS
 platform as a service	paas
+PaaS	PaaS
 pablo	pablo
 pabulum	pabulum
 PAC	PAC
@@ -33474,8 +33476,8 @@ paterson	paterson
 path	path
 pathetic	pathetic
 pathetically	pathetically
-Path Finder	PathFinder
 pathfinder	pathfinder
+Path Finder	PathFinder
 pathless	pathless
 pathname	pathname
 pathogenic	pathogenic
@@ -33589,10 +33591,10 @@ payouts	payouts
 PayPal	PayPal
 payroll	payroll
 pays	pays
-PC	PC
 pc	pc
-PCB	PCB
+PC	PC
 printed circuit board	pcb
+PCB	PCB
 PCBA	PCBA
 Printed Circuit Board Assembly	PCBA
 PCI	PCI
@@ -34880,8 +34882,8 @@ playoffs	playoffs
 playpen	playpen
 playroom	playroom
 plays	plays
-PlayStation	PlayStation
 playstation	playstation
+PlayStation	PlayStation
 playsuit	playsuit
 plaything	plaything
 playtime	playtime
@@ -35396,8 +35398,8 @@ portugal	portugal
 portuguese	portuguese
 portuguese	portuguese
 portulaca	portulaca
-POS	POS
 pos	pos
+POS	POS
 pose	pose
 posed	posed
 poseidon	poseidon
@@ -35572,11 +35574,11 @@ powerful	powerful
 powerhouse	powerhouse
 powerless	powerless
 PowerPack	PowerPack
-PowerPC	PowerPC
 powerpc	powerpc
+PowerPC	PowerPC
+powerpoint	powerpoint
 PowerPoint	PowerPoint
 Microsoft PowerPoint	PowerPoint
-powerpoint	powerpoint
 powers	powers
 powerseller	powerseller
 PowerShell	PowerShell
@@ -36619,8 +36621,8 @@ prussian	prussian
 pry	pry
 pryer	pryer
 prying	prying
-PS	PS
 photoshop	ps
+PS	PS
 psalm	psalm
 psalmist	psalmist
 psalmody	psalmody
@@ -36976,10 +36978,10 @@ puzzler	puzzler
 puzzles	puzzles
 puzzling	puzzling
 PV	PV
-PVC	PVC
 pvc	pvc
-PVE	PVE
+PVC	PVC
 player versus environment	pve
+PVE	PVE
 PVP	PVP
 Player versus Player	PVP
 PyCharm	PyCharm
@@ -37461,9 +37463,9 @@ raleigh	raleigh
 rally	rally
 rallyingly	rallyingly
 ralph	ralph
-RAM	RAM
 ram	ram
 random-access memory	ram
+RAM	RAM
 ramada	ramada
 ramark	ramark
 ramble	ramble
@@ -38942,8 +38944,8 @@ restaurant	restaurant
 restaurants	restaurants
 restaurateur	restaurateur
 restaurrateur	restaurrateur
-RESTful	RESTful
 restful	restful
+RESTful	RESTful
 restharrow	restharrow
 resting	resting
 restitution	restitution
@@ -39219,8 +39221,8 @@ RFCs	RFCs
 RFID	RFID
 RFT	RFT
 Rich Text Format	RFT
-RGB	RGB
 rgb	rgb
+RGB	RGB
 rhabdomancy	rhabdomancy
 rhapsodise	rhapsodise
 rhapsodize	rhapsodize
@@ -39466,8 +39468,8 @@ riviera	riviera
 rivulet	rivulet
 riyal	riyal
 rmdir	rmdir
-RNA	RNA
 ribonucleic acid	rna
+RNA	RNA
 roach	roach
 road	road
 roadability	roadability
@@ -39582,9 +39584,9 @@ rollout	rollout
 rollover	rollover
 rolls	rolls
 rollway	rollway
-ROM	ROM
 rom	rom
 read-only memory	rom
+ROM	ROM
 roma	roma
 romaine	romaine
 roman	roman
@@ -39973,8 +39975,8 @@ ryder	ryder
 rye	rye
 ryegrass	ryegrass
 saab	saab
-SaaS	SaaS
 software as a service	saas
+SaaS	SaaS
 sabbath	sabbath
 sabbatical	sabbatical
 saber	saber
@@ -41968,9 +41970,9 @@ siesta	siesta
 sieve	sieve
 sift	sift
 sifter	sifter
+sig	sig
 SIG	SIG
 Special Interest Group	SIG
-sig	sig
 sigh	sigh
 sight	sight
 sightless	sightless
@@ -42673,8 +42675,8 @@ snippy	snippy
 snipsnapsnorum	snipsnapsnorum
 snit	snit
 snivel	snivel
-SNMP	SNMP
 snmp	snmp
+SNMP	SNMP
 snob	snob
 snobbery	snobbery
 snobbish	snobbish
@@ -42775,8 +42777,8 @@ socket	socket
 sockets	sockets
 sockeye	sockeye
 socko	socko
-SOCKS	SOCKS
 socks	socks
+SOCKS	SOCKS
 socrates	socrates
 sod	sod
 soda	soda
@@ -43091,8 +43093,8 @@ sower	sower
 sowntown	sowntown
 soy	soy
 soybean	soybean
-SPA	SPA
 spa	spa
+SPA	SPA
 space	space
 spacecraft	spacecraft
 spaced	spaced
@@ -43628,11 +43630,11 @@ SRE	SRE
 srv	srv
 SRWare Iron	SRWareIron
 SSCI	SSCI
-SSD	SSD
 solid-state drive	ssd
+SSD	SSD
+ssh	ssh
 SSH	SSH
 Secure Shell	SSH
-ssh	ssh
 sshd	sshd
 SSID	SSID
 Service Set Identifier	SSID
@@ -45870,8 +45872,8 @@ TechWeb	TechWeb
 tectology	tectology
 tectonic	tectonic
 tectonics	tectonics
-TED	TED
 ted	ted
+TED	TED
 teddy	teddy
 tedious	tedious
 tedium	tedium
@@ -46807,12 +46809,12 @@ titus	titus
 TiVo	TiVo
 tivoli	tivoli
 tizzy	tizzy
-TL;DR	TL;DR
 too long; didn't read	tl;dr
+TL;DR	TL;DR
 TLS	TLS
 Transport Layer Security	TLS
-TM	TM
 tm	tm
+TM	TM
 tmux	tmux
 TNT	TNT
 to	to
@@ -47954,8 +47956,8 @@ tutti	tutti
 tutu	tutu
 tuvalu	tuvalu
 tuxedo	tuxedo
-TV	TV
 television	tv
+TV	TV
 tvga	tvga
 tvOS	TvOS
 twaddle	twaddle
@@ -48030,8 +48032,8 @@ typed	typed
 typeface	typeface
 TypeORM	TypeORM
 types	types
-TypeScript	TypeScript
 typescript	typescript
+TypeScript	TypeScript
 typeset	typeset
 typesetter	typesetter
 typewrite	typewrite
@@ -48087,8 +48089,8 @@ Unidentified Flying Object	UFO
 ufologist	ufologist
 ufw	ufw
 uganda	uganda
-UGC	UGC
 user-generated content	ugc
+UGC	UGC
 ugliest	ugliest
 uglify	uglify
 ugliness	ugliness
@@ -48098,8 +48100,8 @@ UHF	UHF
 UI	UI
 UID	UID
 User ID	UID
-UK	UK
 United Kingdom	uk
+UK	UK
 ukase	ukase
 ukraine	ukraine
 ukrainian	ukrainian
@@ -48842,8 +48844,8 @@ unnecessary	unnecessary
 unnerve	unnerve
 unnoted	unnoted
 unnumbered	unnumbered
-UNO	UNO
 uno	uno
+UNO	UNO
 unobjectionable	unobjectionable
 unobservant	unobservant
 unobtainable	unobtainable
@@ -49165,8 +49167,8 @@ upriver	upriver
 uproar	uproar
 uproarious	uproarious
 uproot	uproot
-UPS	UPS
 ups	ups
+UPS	UPS
 upscale	upscale
 upscayl	upscayl
 upset	upset
@@ -49245,9 +49247,9 @@ ursine	ursine
 urticaria	urticaria
 uruguay	uruguay
 urus	urus
-US	US
 us	us
 United States	us
+US	US
 USA	USA
 The United States of America	USA
 usability	usability
@@ -49521,8 +49523,8 @@ vc	vc
 VCD	VCD
 Video CD	VCD
 VCR	VCR
-VCS	VCS
 version control system	vcs
+VCS	VCS
 vdt	vdt
 veal	veal
 vealy	vealy
@@ -50201,10 +50203,10 @@ voyager	voyager
 voyeur	voyeur
 voyeurweb	voyeurweb
 voyuer	voyuer
-VPN	VPN
 virtual private network	vpn
-VPS	VPS
+VPN	VPN
 virtual private server	vps
+VPS	VPS
 vram	vram
 vs	vs
 vsafe	vsafe
@@ -50528,8 +50530,8 @@ wattled	wattled
 wattmeter	wattmeter
 watts	watts
 waul	waul
-WAV	WAV
 wav	wav
+WAV	WAV
 wave	wave
 waveform	waveform
 wavelength	wavelength
@@ -51082,9 +51084,6 @@ windmill	windmill
 window	window
 windowing	windowing
 windowpane	windowpane
-Windows Me	Windows
-Windows XP	Windows
-Windows Vista	Windows
 windows	windows
 windows	windows
 windows 7	windows
@@ -51095,6 +51094,9 @@ windows 12	windows
 windows 95	windows
 windows 98	windows
 windows 2000	windows
+Windows Me	Windows
+Windows XP	Windows
+Windows Vista	Windows
 windows 10	windows10
 windows 11	windows11
 windows 2000	windows2000
@@ -51514,8 +51516,8 @@ ws	ws
 WSGI	WSGI
 WSL	WSL
 Windows Subsystem for Linux	WSL
-WTF	WTF
 what the fuck	wtf
+WTF	WTF
 WTO	WTO
 wunderlist	wunderlist
 WWDC	WWDC
