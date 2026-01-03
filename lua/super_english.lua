@@ -1,14 +1,15 @@
 -- lua/super_english.lua
 -- https://github.com/amzxyz/rime_wanxiang
--- @description: 英文全能处理器 (Fix: 动态分隔符兼容)
+-- @description: 英文全能处理器 (Filter Only: 锚点切分 + 动态分隔符 + 超时销毁)
 -- @author: amzxyz
--- 
+
 -- 核心功能清单:
 -- 1. [Format] 语句级英文大写格式化,逐词大小写对应 (look HELLO -> look HELLO)
 -- 2. [Spacing] 智能语句空格切分，智能单词上屏加空格 (Smart Spacing) 与无损分词还原
 -- 3. [Memory] 全量历史缓存，完美解决回删乱码问题
 -- 4. [Construct] 原生优先构造策略 (短词无分词则重置为原生输入)
 -- 5. [Order] 单字母(a/A) 智能插队排序,补齐单字母候选
+
 local F = {}
 
 -- 引入常用函数
@@ -24,6 +25,16 @@ local format = string.format
 --====================================================
 -- 1. 基础工具函数
 --====================================================
+
+-- [Time] 封装统一的时间获取函数 (单位: 秒, 带小数)
+local function get_now()
+    -- 使用用户指定的原生 API (毫秒转秒，以便和配置文件里的 0.5 秒兼容)
+    if rime_api and rime_api.get_time_ms then
+        return rime_api.get_time_ms() / 1000
+    end
+    --以此为保底，防止 API 不存在时报错
+    return os.time()
+end
 
 local function pure(s)
     return gsub(s, "[^a-zA-Z]", ""):lower()
@@ -71,16 +82,12 @@ end
 -- 2. 核心逻辑：格式化与还原
 --====================================================
 
--- [核心修复] 使用锚点切分法
+-- [锚点切分] 修复 hi'vcs 等简拼分词问题 (保留修复)
 local function restore_sentence_spacing(cand, split_pattern, check_pattern)
     local guide = cand.preedit or ""
-    
-    -- 1. 只有存在分隔符时才介入
     if not find(guide, check_pattern) then return cand end
 
     local text = cand.text
-    
-    -- 2. 提取所有目标片段 (hi'vcs -> {hi, vcs})
     local targets = {}
     for seg in string.gmatch(guide, split_pattern) do
         local t = pure(seg)
@@ -88,45 +95,27 @@ local function restore_sentence_spacing(cand, split_pattern, check_pattern)
     end
     if #targets == 0 then return cand end
 
-    -- 3. 寻找所有片段在 text 中的“起始锚点”
     local starts = {}
     local p = 1
     for _, target in ipairs(targets) do
-        -- 注意：这里只需要 s (起始位置) 和 e (用于更新搜索进度)
         local s, e = find_target_in_text(text, p, target)
-        if not s then 
-            -- 如果任何一段对不上 (说明 preedit 和 text 不匹配)，则放弃处理，原样返回
-            return cand 
-        end
+        if not s then return cand end
         table.insert(starts, s)
         p = e + 1 
     end
 
-    -- 4. 根据锚点进行切分
     local parts = {}
-    
-    -- 处理第一段之前的残留文本 (如果有)
     if starts[1] > 1 then
         table.insert(parts, sub(text, 1, starts[1] - 1))
     end
 
     for i = 1, #starts do
         local current_s = starts[i]
-        local next_s = starts[i+1] -- 下一段的起点
-        local chunk_end
-        
-        if next_s then
-            -- 如果有下一段，当前段结束于下一段起点之前
-            chunk_end = next_s - 1
-        else
-            -- 如果是最后一段，一直延伸到文本末尾 (修复了 vcs -> ystem 丢失的问题)
-            chunk_end = #text
-        end
-        
+        local next_s = starts[i+1]
+        local chunk_end = next_s and (next_s - 1) or #text
         table.insert(parts, sub(text, current_s, chunk_end))
     end
 
-    -- 5. 拼接并清理多余空格
     local new_text = table.concat(parts, " ")
     new_text = gsub(new_text, "%s%s+", " ") 
     
@@ -223,13 +212,20 @@ function F.init(env)
     env.memory = {}
     local cfg = env.engine.schema.config
     
+    -- 1. 配置读取
     env.english_spacing_mode = "off"
+    env.spacing_timeout = 0 
+    
     if cfg then
-        local str = cfg:get_string("english_spacing")
+        local str = cfg:get_string("wanxiang_english/english_spacing")
         if str then env.english_spacing_mode = str end
+        
+        -- 读取超时 (单位: 秒, 支持小数)
+        local timeout = cfg:get_double("wanxiang_english/spacing_timeout")
+        if timeout then env.spacing_timeout = timeout end
     end
     
-    -- 读取分隔符 (兼容空格和自定义符号)
+    -- 2. 动态获取分隔符
     local delimiter_str = " '" 
     if cfg then
         delimiter_str = cfg:get_string('speller/delimiter') or delimiter_str
@@ -240,6 +236,8 @@ function F.init(env)
     env.delim_check_pattern = "[" .. escaped_delims .. "]" 
 
     env.prev_commit_is_eng = false
+    env.last_commit_time = 0 
+    
     if env.engine.context then
         env.commit_notifier = env.engine.context.commit_notifier:connect(function(ctx)
             local commit_text = ctx:get_commit_text()
@@ -248,7 +246,15 @@ function F.init(env)
                 local clean = gsub(commit_text, "%s+$", "") 
                 if clean == "," or clean == "." or clean == "!" or clean == "?" then is_eng = true end
             end
+            
             env.prev_commit_is_eng = is_eng
+            -- 仅英文上屏更新时间戳 (使用 rime_api 获取)
+            if is_eng then
+                env.last_commit_time = get_now()
+            else
+                env.last_commit_time = 0
+            end
+            
             ctx:set_property("english_spacing", "") 
         end)
     end
@@ -270,9 +276,23 @@ function F.func(input, env)
     local best_candidate_saved = false
     local code_len = #curr_input
     
+    -- [Check 1] 外部脚本发来的打断信号
     local break_signal = (ctx:get_property("english_spacing") == "true")
     local effective_prev_is_eng = env.prev_commit_is_eng
-    if break_signal then effective_prev_is_eng = false end
+
+    if break_signal then 
+        effective_prev_is_eng = false
+        env.prev_commit_is_eng = false
+        
+    -- [Check 2] 时间自然过期
+    elseif effective_prev_is_eng and env.spacing_timeout > 0 then
+        local now = get_now()
+        -- now 是秒(带小数), last_commit_time 是秒(带小数), spacing_timeout 是配置的秒数(如 0.5)
+        if (now - env.last_commit_time) > env.spacing_timeout then
+            effective_prev_is_eng = false
+            env.prev_commit_is_eng = false -- 更新状态避免重复计算
+        end
+    end
 
     local code_ctx = {
         raw_input = curr_input, 
@@ -293,7 +313,6 @@ function F.func(input, env)
     else single_char_injected = true end
 
     for cand in input:iter() do
-        -- 传入 Pattern 进行智能还原
         local good_cand = restore_sentence_spacing(cand, env.split_pattern, env.delim_check_pattern)
         local fmt_cand = apply_formatting(good_cand, code_ctx)
         local is_ascii = is_ascii_phrase_fast(fmt_cand.text)
@@ -336,7 +355,7 @@ function F.func(input, env)
 
     -- [Phase 3] 构造补全
     if not has_valid_candidate then
-        if not has_letters(curr_input) then return end
+        if not has_letters(curr_input) then return end 
         local anchor = nil
         local diff = ""
         

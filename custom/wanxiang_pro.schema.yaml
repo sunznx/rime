@@ -138,11 +138,6 @@ tips:
 charsetlist: []
 charsetblacklist: []
 
-#英文自动加空格，除关闭外共有3种模式可供选择
-#off: 关闭; before: 总是前加; after: 总是后加; 
-#smart: 智能模式连续输入英文时第二个单词前开始加空格，非输入状态的回车与空格都能打断加空格状态
-english_spacing: smart
-
 #shijian:仅仅作为提示使用，编码已经写死，引导键可以在key_binder下修改前缀
 #时间：osj 或者 /sj
 #日期：orq 或者 /rq
@@ -403,6 +398,12 @@ wanxiang_english:
   initial_quality: 2
   comment_format:  #这里很重要如果残留带声调字母，剩余编码提示计算出错引发程序崩溃
     - xform/^~.+$//
+  #英文自动加空格，除关闭外共有3种模式可供选择
+  #off: 关闭; before: 总是前加; after: 总是后加; 
+  #smart: 智能模式连续输入英文时第二个单词前开始加空格，非输入状态的回车与空格都能打断加空格状态
+  #支持设置延时销毁加空格状态，单位秒,0不超时，大于0为超时时间，极大的保证了连续输入的体验。
+  english_spacing: smart
+  spacing_timeout: 5
 wanxiang_mixedcode:
   dictionary: wanxiang_mixedcode
   db_class: stabledb
