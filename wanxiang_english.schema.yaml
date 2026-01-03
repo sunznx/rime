@@ -57,7 +57,10 @@ key_binder:
 recognizer:
   import_preset: default
 
-#英文自动加空格，除关闭外共有3种模式可供选择
-#off: 关闭; before: 总是前加; after: 总是后加; 
-#smart: 智能模式连续输入英文时第二个单词前开始加空格，非输入状态的回车与空格都能打断加空格状态
-english_spacing: smart
+wanxiang_english:
+  #英文自动加空格，除关闭外共有3种模式可供选择
+  #off: 关闭; before: 总是前加; after: 总是后加; 
+  #smart: 智能模式连续输入英文时第二个单词前开始加空格，非输入状态的回车与空格都能打断加空格状态
+  #支持设置延时销毁加空格状态，单位秒,0不超时，大于0为超时时间，极大的保证了连续输入的体验。
+  english_spacing: smart
+  spacing_timeout: 5
