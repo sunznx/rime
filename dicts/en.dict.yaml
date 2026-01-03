@@ -7,14 +7,7 @@ name: wanxiang_english
 version: "LTS"
 sort: original
 ...
-a11y	a11y
-accessibility	a11y
 AA	AA
-MB	MB
-kW	KW
-HB	HB
-KB	KB
-TS	TS
 aaa	aaa
 aaliyah	aaliyah
 aardvark	aardvark
@@ -542,6 +535,7 @@ acuteness	acuteness
 acxiom	acxiom
 ad	ad
 AD	AD
+AD	AD
 ada	ada
 adage	adage
 adagio	adagio
@@ -1015,6 +1009,7 @@ agent	agent
 agents	agents
 ageratum	ageratum
 ages	ages
+AGF	AGF
 agglomerate	agglomerate
 agglomerating	agglomerating
 agglomeration	agglomeration
@@ -1106,6 +1101,7 @@ ahab	ahab
 ahead	ahead
 ahem	ahem
 ahimsa	ahimsa
+AHK	AHK
 ahmad	ahmad
 ahmed	ahmed
 ahoy	ahoy
@@ -7443,6 +7439,7 @@ CD Projekt	CDProjekt
 CD Projekt RED	CDProjektRED
 CDR	CDR
 cdrom	cdrom
+CE	CE
 ceanothus	ceanothus
 cease	cease
 ceased	ceased
@@ -8786,7 +8783,9 @@ CMOS	CMOS
 CMS	CMS
 CN	CN
 CNAME	CNAME
+cnb	cnb
 cnBeta	CnBeta
+CNC	CNC
 CNET	CNET
 CNN	CNN
 co	co
@@ -11158,6 +11157,7 @@ Counter-Strike: Global Offensive	CSGO
 CSS	CSS
 Cascading Style Sheets	CSS
 cstar	cstar
+csv	csv
 CTO	CTO
 Chief Technology Officer	CTO
 ctrl	ctrl
@@ -11309,6 +11309,7 @@ curious	curious
 curiously	curiously
 curium	curium
 curl	curl
+cURL	cURL
 curler	curler
 curlew	curlew
 curliness	curliness
@@ -12872,6 +12873,7 @@ dharma	dharma
 dhcp	dhcp
 DHCP	DHCP
 Dynamic Host Configuration Protocol	DHCP
+DHL	DHL
 dhole	dhole
 dhoti	dhoti
 dhow	dhow
@@ -14066,6 +14068,7 @@ downgrades	downgrades
 downgrading	downgrading
 downhearted	downhearted
 downhill	downhill
+Downie	downie
 downing	downing
 download	download
 downloadable	downloadable
@@ -14103,6 +14106,7 @@ dozens	dozens
 dozenth	dozenth
 dozy	dozy
 DPI	DPI
+Dra	Dra
 drab	drab
 drabb	drabb
 drabble	drabble
@@ -17046,10 +17050,12 @@ fay	fay
 fayette	fayette
 fayetteville	fayetteville
 faze	faze
+FBA	FBA
 fbi	fbi
 FBI	FBI
 Federal Bureau of Investigation	FBI
 FBI WARNING	FBIWARNING
+FBM	FBM
 FCC	FCC
 fcitx	fcitx
 fcitx5	fcitx5
@@ -17648,6 +17654,7 @@ flabbergast	flabbergast
 flabbily	flabbily
 flabbiness	flabbiness
 flabby	flabby
+flac	flac
 flaccid	flaccid
 flaccidity	flaccidity
 flack	flack
@@ -17989,6 +17996,7 @@ fluty	fluty
 fluvial	fluvial
 flux	flux
 fluxion	fluxion
+flv	flv
 fly	fly
 flyaway	flyaway
 flyblow	flyblow
@@ -18012,6 +18020,7 @@ flywheel	flywheel
 fmt	fmt
 fn	fn
 fnOS	FnOS
+FNSKU	FNSKU
 fo	fo
 foal	foal
 foam	foam
@@ -19344,6 +19353,7 @@ genotype	genotype
 genre	genre
 genres	genres
 gens	gens
+Genspark	genspark
 gent	gent
 genteel	genteel
 genteelism	genteelism
@@ -19513,6 +19523,7 @@ giddy	giddy
 GIF	GIF
 Graphics Interchange Format	GIF
 Gif Brewery	GifBrewery
+giffgaff	giffgaff
 GIFs	GIFs
 gift	gift
 gifted	gifted
@@ -21122,6 +21133,7 @@ hazelnut	hazelnut
 hazily	hazily
 haziness	haziness
 hazy	hazy
+HB	HB
 HB	HB
 HBase	HBase
 HBO	HBO
@@ -24491,10 +24503,13 @@ internet protocol	ip
 IP	IP
 IPA	IPA
 iPack	IPack
+iPad	ipad
+iPadOS	ipados
 ipc	ipc
 IPC	IPC
 IPFS	IPFS
 InterPlanetary File System	IPFS
+iPhone	iphone
 IPLC	IPLC
 International Private Leased Circuit	IPLC
 IPN	IPN
@@ -25327,6 +25342,7 @@ kazaa	kazaa
 kazakhstan	kazakhstan
 kazoo	kazoo
 kb	kb
+KB	KB
 kdbx	kdbx
 kea	kea
 keck	keck
@@ -25341,6 +25357,9 @@ keen	keen
 keenly	keenly
 keenness	keenness
 keep	keep
+KeePass	KeePass
+KeePassium	keePassium
+KeePassXC	keePassXC
 keeper	keeper
 keeping	keeping
 keeps	keeps
@@ -25721,10 +25740,12 @@ kuwait	kuwait
 kva	kva
 kvass	kvass
 kW	Kw
+kW	KW
 kwa	kwa
 kwhr	kwhr
 kwic	kwic
 kyat	kyat
+kyc	kyc
 kylie	kylie
 kyloe	kyloe
 kymograph	kymograph
@@ -26287,6 +26308,7 @@ lecturer	lecturer
 lectures	lectures
 lectureship	lectureship
 led	led
+LED	LED
 ledge	ledge
 ledger	ledger
 lee	lee
@@ -27131,6 +27153,7 @@ lookthrough	lookthrough
 lookup	lookup
 loom	loom
 loon	loon
+LoongArch	loongArch
 loony	loony
 loop	loop
 looper	looper
@@ -28351,6 +28374,7 @@ mazda	mazda
 maze	maze
 mazy	mazy
 mb	mb
+MB	MB
 MBA	MBA
 MacBook Air	MBA
 MBP	MBP
@@ -29485,6 +29509,7 @@ mixtures	mixtures
 mizzen	mizzen
 mizzle	mizzle
 mkdir	mkdir
+mkv	mkv
 mL	ML
 mm	mm
 mnemonic	mnemonic
@@ -30030,6 +30055,7 @@ mouthful	mouthful
 mouthiness	mouthiness
 mouthpiece	mouthpiece
 mouthy	mouthy
+mov	mov
 movability	movability
 movable	movable
 movably	movably
@@ -30062,6 +30088,7 @@ Mozilla Firefox	MozillaFirefox
 mozzarella	mozzarella
 MP3	MP3
 MP4	MP4
+MPa	mpa
 mpeg	mpeg
 MplayerX	MplayerX
 MPLS	MPLS
@@ -30075,6 +30102,7 @@ MS-DOS	MS-DOS
 mSATA	MSATA
 MSDN	MSDN
 msg	msg
+MSKU	MSKU
 MSN	MSN
 MSNBC	MSNBC
 MSVC	MSVC
@@ -31962,6 +31990,7 @@ oldster	oldster
 ole	ole
 oleaginous	oleaginous
 oleander	oleander
+OLED	OLED
 oleograph	oleograph
 oleomargarine	oleomargarine
 oleoresin	oleoresin
@@ -33602,6 +33631,7 @@ printed circuit board	pcb
 PCB	PCB
 PCBA	PCBA
 Printed Circuit Board Assembly	PCBA
+PCDN	PCDN
 PCI	PCI
 PCIe	PCIe
 PCI Express	PCIe
@@ -34540,6 +34570,7 @@ pikachu	pikachu
 pike	pike
 pikeman	pikeman
 pikestaff	pikestaff
+PikPak	PikPak
 pilaster	pilaster
 pilates	pilates
 pilatory	pilatory
@@ -35594,6 +35625,7 @@ PP	PP
 ppi	ppi
 ppp	ppp
 PPPoE	PPPoE
+PPR	PPR
 PPT	PPT
 PowerPoint	PPT
 Microsoft PowerPoint	PPT
@@ -36634,6 +36666,7 @@ psalmody	psalmody
 psalms	psalms
 psalter	psalter
 psaltery	psaltery
+psd	psd
 pseudo	pseudo
 pseudoclassicism	pseudoclassicism
 pseudograph	pseudograph
@@ -37041,6 +37074,7 @@ QHD	QHD
 QoS	QoS
 Quality of Service	QoS
 QQ	QQ
+QQNT	QQNT
 QR code	QRcode
 QSpace	QSpace
 qtam	qtam
@@ -37562,6 +37596,7 @@ raptor	raptor
 raptorial	raptorial
 rapture	rapture
 rapturous	rapturous
+rar	rar
 rar	rar
 rare	rare
 rarefaction	rarefaction
@@ -39473,6 +39508,7 @@ riviera	riviera
 rivulet	rivulet
 riyal	riyal
 rmdir	rmdir
+rmvb	rmvb
 ribonucleic acid	rna
 RNA	RNA
 roach	roach
@@ -41481,6 +41517,7 @@ shadowed	shadowed
 shadowgraph	shadowgraph
 shadowiness	shadowiness
 shadowless	shadowless
+Shadowrocket	shadowrocket
 shadows	shadows
 shadowsocks	shadowsocks
 shadowy	shadowy
@@ -42309,6 +42346,7 @@ skitter	skitter
 skittle	skittle
 skivvy	skivvy
 skoal	skoal
+SKU	SKU
 skua	skua
 skulduggery	skulduggery
 skulk	skulk
@@ -43632,6 +43670,7 @@ squoosh	squoosh
 sram	sram
 src	src
 SRE	SRE
+srt	srt
 srv	srv
 SRWare Iron	SRWareIron
 SSCI	SSCI
@@ -45828,6 +45867,7 @@ TeamCity	TeamCity
 teamed	teamed
 teammate	teammate
 teams	teams
+Teamspace	teamspace
 teamster	teamster
 TeamViewer	TeamViewer
 teamwork	teamwork
@@ -47607,6 +47647,7 @@ triode	triode
 triolet	triolet
 trioxide	trioxide
 trip	trip
+tripadvisor	tripadvisor
 tripartite	tripartite
 tripe	tripe
 triphenylmethane	triphenylmethane
@@ -47783,6 +47824,7 @@ trypsin	trypsin
 trysail	trysail
 tryst	tryst
 ts	ts
+TS	TS
 tsar	tsar
 tsr	tsr
 tsunami	tsunami
@@ -49126,6 +49168,7 @@ upbeat	upbeat
 upbraid	upbraid
 upbraiding	upbraiding
 upbringing	upbringing
+UPC	UPC
 upchuck	upchuck
 upcoming	upcoming
 upcountry	upcountry
@@ -49200,6 +49243,7 @@ uptown	uptown
 uptrend	uptrend
 upturn	upturn
 upturned	upturned
+UPVC	UPVC
 upward	upward
 upwards	upwards
 uraemia	uraemia
@@ -49279,6 +49323,7 @@ uses	uses
 usher	usher
 usherette	usherette
 using	using
+USPS	USPS
 usr	usr
 USSR	USSR
 Union of Soviet Socialist Republics	USSR
@@ -49633,6 +49678,7 @@ venturous	venturous
 venue	venue
 venues	venues
 venus	venus
+Veo	Veo
 ver	ver
 veracious	veracious
 veracity	veracity
@@ -50081,6 +50127,7 @@ VLC	VLC
 vLLM	VLLM
 vlog	vlog
 vlogger	vlogger
+VLOOKUP	VLOOKUP
 VLSI	VLSI
 VMess	VMess
 VMware	VMware
@@ -50353,6 +50400,7 @@ walton	walton
 waltz	waltz
 wampee	wampee
 wan	wan
+WAN	WAN
 wand	wand
 wanda	wanda
 wander	wander
@@ -50675,6 +50723,7 @@ weeder	weeder
 weedicide	weedicide
 weeds	weeds
 weedy	weedy
+WEEE	WEEE
 week	week
 weekday	weekday
 weekend	weekend
@@ -50783,6 +50832,7 @@ wettish	wettish
 weymouth	weymouth
 WezTerm	WezTerm
 Wez's Terminal Emulator	WezTerm
+Wget	Wget
 whack	whack
 whacked	whacked
 whacker	whacker
