@@ -569,37 +569,6 @@ function M.func(input, env)
     end
 
     local symbol = env.symbol
-
-    -- 强制英文检测 (仅针对双击符号 \\)
-    local force_english_text = nil
-    local delimiter = nil
-    
-    -- 只有定义了符号，且输入长度足够才检测
-    if symbol and #symbol == 1 then
-        delimiter = symbol .. symbol -- 定义触发符为两个符号
-        if code and #code >= 3 then
-            local c_len = #code
-            -- 严格检测：末尾最后两个字符必须等于 "符号+符号"
-            if string.sub(code, c_len - 1, c_len) == delimiter then
-                -- 提取基础文本 (去掉末尾的 \\)
-                local base = string.sub(code, 1, c_len - 2)
-                if base and #base > 0 then
-                    -- 纯 ASCII 检查 (防止误把中文截断)
-                    local ascii_only = true
-                    for i = 1, #base do
-                        if string.byte(base, i) > 127 then 
-                            ascii_only = false; break 
-                        end
-                    end
-                    if ascii_only then
-                        force_english_text = base
-                    end
-                end
-            end
-        end
-    end
-    -- =======================================================
-
     local code_has_symbol = symbol and #symbol == 1 and (find(code, symbol, 1, true) ~= nil)
     
     -- segmentation：用于保持原有的包裹/分段逻辑
@@ -689,22 +658,9 @@ function M.func(input, env)
         nc.preedit = formatted.preedit
         return nc, (formatted.text or ""), wrapped
     end
-    -- 兜底逻辑 (处理无候选词的情况，如 scx\\)
+    -- 兜底逻辑
     local function improved_fallback_emit()
-        -- 优先处理强制英文：只要触发符匹配，即使无其他候选也必须输出
-        if force_english_text then
-            local start_pos = (last_seg and last_seg.start) or 0
-            -- 关键点：end_pos 设为 #code，确保上屏时覆盖掉 "scx\\"
-            local end_pos   = #code 
-            local eng = Candidate("completion", start_pos, end_pos, force_english_text, "")
-            eng.preedit = force_english_text
-            
-            -- 这里不设 pipeline，直接输出，保证它一定是第一个
-            yield(eng) 
-            return true
-        end
-
-        -- 以下是原有的 Wrap/Completion 兜底逻辑
+        -- Wrap/Completion 兜底逻辑
         if not code_has_symbol or not tail_text then return false end
         local pos = tail_text:find(symbol, 1, true)
         if not (pos and pos > 1) then return false end
@@ -755,16 +711,6 @@ function M.func(input, env)
             end
 
             if idx == 1 then
-                -- 有候选词时，优先插入英文
-                if force_english_text then
-                    local start_pos = 0 
-                    local end_pos   = #code -- 覆盖全长，消除 \\
-                    local eng = Candidate("completion", start_pos, end_pos, force_english_text, cand.comment)
-                    eng.preedit = force_english_text 
-                    emit_ctx.drop_sentence_after_completion = true
-                    emit_with_pipeline(eng, emit_ctx)
-                end
-                
                 if not emit_ctx.drop_sentence_after_completion then
                     local txt = cand.text or ""
                     if is_table_type(cand) and #txt >= 4 and has_english_token_fast(txt) then
@@ -772,7 +718,7 @@ function M.func(input, env)
                     end
                 end
                 
-                if (not force_english_text) and env.locked and (not wrap_key) and env.cache then
+                if env.locked and (not wrap_key) and env.cache then
                     local start_pos = (last_seg and last_seg.start) or 0
                     local end_pos   = (last_seg and last_seg._end) or #code
                     if keep_tail_len and keep_tail_len > 0 then
@@ -828,17 +774,6 @@ function M.func(input, env)
         end
 
         if idx2 == 1 then
-            -- 分组模式下同样插入英文
-            if force_english_text then
-                local start_pos = 0
-                local end_pos   = #code -- 覆盖全长
-                local eng = Candidate("completion", start_pos, end_pos, force_english_text, cand.comment)
-                eng.preedit = force_english_text 
-
-                emit_ctx.drop_sentence_after_completion = true
-                emit_with_pipeline(eng, emit_ctx)
-            end
-
             if not emit_ctx.drop_sentence_after_completion then
                 local t = fast_type(cand)
                 local txt = cand.text or ""
@@ -848,7 +783,7 @@ function M.func(input, env)
             end
 
             local emitted = false
-            if (not force_english_text) and env.locked and (not wrap_key) and env.cache then
+            if env.locked and (not wrap_key) and env.cache then
                 local start_pos = (last_seg and last_seg.start) or 0
                 local end_pos   = (last_seg and last_seg._end) or #code
                 if keep_tail_len and keep_tail_len > 0 then
