@@ -278,6 +278,19 @@ function F.func(input, env)
     local best_candidate_saved = false
     local code_len = #curr_input
 
+    if code_len > 2 and sub(curr_input, -2) == "\\\\" then
+        local raw_text = sub(curr_input, 1, code_len - 2)
+        
+        if is_ascii_phrase_fast(raw_text) then
+            if ctx.composition and not ctx.composition:empty() then
+                ctx.composition:back().prompt = "〔英文造词〕"
+            end
+            local cand = Candidate("english", 0, code_len, raw_text, "")
+            cand.preedit = raw_text 
+            yield(cand)
+            return -- 强制结束，独占输出
+        end
+    end
     -- [Check 1] 外部脚本发来的打断信号
     local break_signal = (ctx:get_property("english_spacing") == "true")
     local effective_prev_is_eng = env.prev_commit_is_eng
@@ -398,7 +411,7 @@ function F.func(input, env)
             
             local cand = Candidate("completion", 0, #curr_input, output_text, "~")
             cand.preedit = output_preedit
-            cand.quality = 9999999
+            cand.quality = 999
             yield(cand)
         else
             local cand = Candidate("completion", 0, #curr_input, curr_input, "~")
