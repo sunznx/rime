@@ -680,7 +680,7 @@ function M.func(input, env)
     local function wrap_from_base(base_cand, key)
         if not base_cand or not key then return nil end
         local pair = env.wrap_map[key]; if not pair then return nil end
-        local formatted = format_and_autocap(base_cand, code_ctx)
+        local formatted = format_and_autocap(base_cand)
         local pr = env.wrap_parts[key] or { l = "", r = "" }
         local wrapped = (pr.l or "") .. (formatted.text or "") .. (pr.r or "")
         local start_pos = (last_seg and last_seg.start) or formatted.start or 0
@@ -751,7 +751,7 @@ function M.func(input, env)
         for cand in input:iter() do
             idx = idx + 1
             if idx == 1 and (not env.locked) then
-                env.cache = clone_candidate(format_and_autocap(cand, code_ctx))
+                env.cache = clone_candidate(format_and_autocap(cand))
             end
 
             if idx == 1 then
@@ -778,7 +778,7 @@ function M.func(input, env)
                     if keep_tail_len and keep_tail_len > 0 then
                         end_pos = math.max(start_pos, end_pos - keep_tail_len)
                     end
-                    local base = format_and_autocap(env.cache, code_ctx)
+                    local base = format_and_autocap(env.cache)
                     local nc = Candidate(base.type, start_pos, end_pos, base.text or "", base.comment)
                     nc.preedit = base.preedit
                     emit_with_pipeline(nc, emit_ctx)
@@ -824,7 +824,7 @@ function M.func(input, env)
     for cand in input:iter() do
         idx2 = idx2 + 1
         if idx2 == 1 and (not env.locked) then
-            env.cache = clone_candidate(format_and_autocap(cand, code_ctx))
+            env.cache = clone_candidate(format_and_autocap(cand))
         end
 
         if idx2 == 1 then
@@ -854,7 +854,7 @@ function M.func(input, env)
                 if keep_tail_len and keep_tail_len > 0 then
                     end_pos = math.max(start_pos, end_pos - keep_tail_len)
                 end
-                local base = format_and_autocap(env.cache, code_ctx)
+                local base = format_and_autocap(env.cache)
                 local nc = Candidate(base.type, start_pos, end_pos, base.text or "", base.comment)
                 nc.preedit = base.preedit
                 emit_with_pipeline(nc, emit_ctx)
