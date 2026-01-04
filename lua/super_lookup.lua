@@ -74,12 +74,17 @@ local function expand_code_variant(main_projection, xlit_projection, part)
     end
     -- 3. 遍历所有种子（原始编码 + 缩写编码），统一进行规则投影
     for _, code in ipairs(seeds) do
-        -- 应用 main_projection (非大写)
+        -- A. 应用 main_projection
         if main_projection then
             local p = main_projection:apply(code, true)
-            if p and #p > 0 then add(p) end
+            if p and #p > 0 then
+                add(p)
+                if #p == 4 then 
+                     add(p:sub(1,1) .. p:sub(3,3))
+                end
+            end
         end
-        -- 应用 xlit_projection (大写笔画，不参与前面重复计算)
+        -- B. 应用 xlit_projection
         if code:match('^%u+$') and xlit_projection then
             local xlit_result = xlit_projection:apply(code, true)
             if xlit_result and #xlit_result > 0 then add(xlit_result) end
