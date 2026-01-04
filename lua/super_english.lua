@@ -22,9 +22,7 @@ local sub = string.sub
 local match = string.match
 local format = string.format
 
---====================================================
 -- 1. 基础工具函数
---====================================================
 
 -- [Time] 封装统一的时间获取函数 (单位: 秒, 带小数)
 local function get_now()
@@ -78,10 +76,7 @@ local function find_target_in_text(text, start_pos, target_fp)
     return nil, nil
 end
 
---====================================================
 -- 2. 核心逻辑：格式化与还原
---====================================================
-
 -- [锚点切分] 修复 hi'vcs 等简拼分词问题 (保留修复)
 local function restore_sentence_spacing(cand, split_pattern, check_pattern)
     local guide = cand.preedit or ""
@@ -204,10 +199,7 @@ local function apply_formatting(cand, code_ctx)
     return nc
 end
 
---====================================================
 -- 3. 状态管理 (Filter)
---====================================================
-
 function F.init(env)
     env.memory = {}
     local cfg = env.engine.schema.config
@@ -215,7 +207,7 @@ function F.init(env)
     -- 1. 配置读取
     env.english_spacing_mode = "off"
     env.spacing_timeout = 0 
-    
+    env.lookup_key = "`"
     if cfg then
         local str = cfg:get_string("wanxiang_english/english_spacing")
         if str then env.english_spacing_mode = str end
@@ -223,8 +215,10 @@ function F.init(env)
         -- 读取超时 (单位: 秒, 支持小数)
         local timeout = cfg:get_double("wanxiang_english/spacing_timeout")
         if timeout then env.spacing_timeout = timeout end
+        local key = cfg:get_string("wanxiang_lookup/key")
+        if key and key ~= "" then env.lookup_key = key end
     end
-    
+    env.lookup_key_esc = gsub(env.lookup_key, "([%%%^%$%(%)%%%.%[%]%*%+%-%?])", "%%%1")
     -- 2. 动态获取分隔符
     local delimiter_str = " '" 
     if cfg then
@@ -239,6 +233,15 @@ function F.init(env)
     env.last_commit_time = 0 
     
     if env.engine.context then
+        env.update_notifier = env.engine.context.update_notifier:connect(function(ctx)
+            local curr_input = ctx.input
+            -- 检测当前输入是否包含反查符
+            if env.lookup_key and find(curr_input, env.lookup_key, 1, true) then
+                env.block_derivation = true
+            else
+                env.block_derivation = false
+            end
+        end)
         env.commit_notifier = env.engine.context.commit_notifier:connect(function(ctx)
             local commit_text = ctx:get_commit_text()
             local is_eng = is_ascii_phrase_fast(commit_text)
@@ -254,20 +257,19 @@ function F.init(env)
             else
                 env.last_commit_time = 0
             end
-            
-            ctx:set_property("english_spacing", "") 
+            ctx:set_property("english_spacing", "")
+            env.block_derivation = false
         end)
     end
 end
 
 function F.fini(env)
+    if env.update_notifier then env.update_notifier:disconnect(); env.update_notifier = nil end
     if env.commit_notifier then env.commit_notifier:disconnect(); env.commit_notifier = nil end
     env.memory = nil
 end
 
---====================================================
 -- 4. 主逻辑 (Filter)
---====================================================
 
 function F.func(input, env)
     local ctx = env.engine.context
@@ -275,7 +277,7 @@ function F.func(input, env)
     local has_valid_candidate = false
     local best_candidate_saved = false
     local code_len = #curr_input
-    
+
     -- [Check 1] 外部脚本发来的打断信号
     local break_signal = (ctx:get_property("english_spacing") == "true")
     local effective_prev_is_eng = env.prev_commit_is_eng
@@ -332,7 +334,8 @@ function F.func(input, env)
         
         if not is_garbage then
             has_valid_candidate = true
-            if not best_candidate_saved and cand.comment ~= "~" then
+            -- 如果处于拦截状态，就不要把脏数据写进内存了
+            if not best_candidate_saved and cand.comment ~= "~" and not env.block_derivation then
                 env.memory[curr_input] = {
                     text = fmt_cand.text,
                     preedit = fmt_cand.preedit or fmt_cand.text
@@ -355,6 +358,8 @@ function F.func(input, env)
 
     -- [Phase 3] 构造补全
     if not has_valid_candidate then
+        -- 如果设置了拦截标志 (意味着刚刚从反查模式退出来)，则即使有记忆也不派生！
+        if env.block_derivation then return end
         if not has_letters(curr_input) then return end 
         local anchor = nil
         local diff = ""
