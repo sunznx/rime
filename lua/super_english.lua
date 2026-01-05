@@ -33,7 +33,7 @@ end
 -- 辅助函数：判断是否为置顶表词汇
 local function is_table_type(c)
     local t = fast_type(c)
-    return t == "table" or t == "user_table" or t == "fixed"
+    return t == "user_table" or t == "fixed"
 end
 -- [Time] 封装统一的时间获取函数 (单位: 秒, 带小数)
 local function get_now()
@@ -240,8 +240,8 @@ function F.init(env)
     env.delim_check_pattern = "[" .. escaped_delims .. "]" 
 
     env.prev_commit_is_eng = false
-    env.last_commit_time = 0 
-    
+    env.last_commit_time = 0   --记录上次提交时间
+    env.comp_start_time = nil  -- 记录本次输入开始的时间
     if env.engine.context then
         env.update_notifier = env.engine.context.update_notifier:connect(function(ctx)
             local curr_input = ctx.input
@@ -250,6 +250,13 @@ function F.init(env)
                 env.block_derivation = true
             else
                 env.block_derivation = false
+            end
+            -- 如果输入框为空，重置开始时间
+            if curr_input == "" then
+                env.comp_start_time = nil
+            -- 如果输入框不为空，且还没记录开始时间，说明是“刚刚开始打字”
+            elseif env.comp_start_time == nil then
+                env.comp_start_time = get_now()
             end
         end)
         env.commit_notifier = env.engine.context.commit_notifier:connect(function(ctx)
@@ -311,11 +318,12 @@ function F.func(input, env)
         
     -- [Check 2] 时间自然过期
     elseif effective_prev_is_eng and env.spacing_timeout > 0 then
-        local now = get_now()
-        -- now 是秒(带小数), last_commit_time 是秒(带小数), spacing_timeout 是配置的秒数(如 0.5)
-        if (now - env.last_commit_time) > env.spacing_timeout then
+        -- 取“输入开始时间”保证输入中
+        local check_time = env.comp_start_time or get_now()
+        -- 计算间隙：(开始打字时间 - 上次上屏时间)
+        if (check_time - env.last_commit_time) > env.spacing_timeout then
             effective_prev_is_eng = false
-            env.prev_commit_is_eng = false -- 更新状态避免重复计算
+            env.prev_commit_is_eng = false 
         end
     end
 
