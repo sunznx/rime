@@ -58,7 +58,7 @@ function P.init(env)
     local context = engine.context
     
     env.page_size = config:get_int("menu/page_size") or 6
-    local m = config:get_string("kp_number/kp_number_mode") or "auto"
+    local m = config:get_string("kp_number_mode") or "auto"
     if m ~= "auto" and m ~= "compose" then m = "auto" end
     env.kp_mode = m
 
