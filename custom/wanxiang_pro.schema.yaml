@@ -139,8 +139,7 @@ charsetlist: []
 charsetblacklist: []
 
 # 给 kp_number_processor 用的小键盘模式，能自动读取recognizer下面正则与之功能对齐
-kp_number:
-  kp_number_mode: auto
+kp_number_mode: auto
   #小键盘数字处理逻辑
   #  "compose" : 小键盘数字始终不上屏参与编码
   #  "auto"    : 输入中 push，空闲时 commit（默认）
