@@ -455,7 +455,8 @@ function F.func(input, env)
     if not has_valid_candidate then
         -- 如果设置了拦截标志 (意味着刚刚从反查模式退出来)，则即使有记忆也不派生！
         if env.block_derivation then return end
-        if not has_letters(curr_input) then return end 
+        if find(curr_input, "^[/]") then return end
+        if not has_letters(curr_input) then return end
         local anchor = nil
         local diff = ""
         
