@@ -152,7 +152,6 @@ local function restore_sentence_spacing(cand, split_pattern, check_pattern)
         table.insert(parts, sub(text, current_s, chunk_end))
     end
 
-    local new_text = table.concat(parts, " ")
     local new_text = ""
     for i, part in ipairs(parts) do
         if i == 1 then
