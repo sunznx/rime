@@ -153,6 +153,19 @@ local function restore_sentence_spacing(cand, split_pattern, check_pattern)
     end
 
     local new_text = table.concat(parts, " ")
+    local new_text = ""
+    for i, part in ipairs(parts) do
+        if i == 1 then
+            new_text = part
+        else
+            local last_char = sub(new_text, -1)
+            if last_char == "'" or last_char == "-" then
+                new_text = new_text .. part
+            else
+                new_text = new_text .. " " .. part
+            end
+        end
+    end
     new_text = gsub(new_text, "%s%s+", " ") 
     
     if new_text == "" then return cand end
