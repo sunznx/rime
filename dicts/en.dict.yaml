@@ -7,10 +7,6 @@ name: wanxiang_english
 version: "LTS"
 sort: original
 ...
-	
-a	a
-a.	a.
-a. 灵巧的， 熟练的	a. 灵巧的， 熟练的
 AA	AA
 aaa	aaa
 aaliyah	aaliyah
@@ -45543,7 +45539,7 @@ pandemic	pandemic
 pandemonium	pandemonium
 pander	pander
 pandit	pandit
-pandoc	pandoc
+Pandoc	pandoc
 Pandora	Pandora
 pandowdy	pandowdy
 pane	pane
