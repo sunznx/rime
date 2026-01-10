@@ -1,7 +1,5 @@
 # Rime dictionary
 # encoding: utf-8
-# 挂载英文输入词库
-#注意，为了配合方案转写逻辑，第二列编码必须首字母大写，与混合词库一起共用
 ---
 name: wanxiang_english
 version: "LTS"
@@ -15022,6 +15020,7 @@ coughed	coughed
 coughing	coughing
 coughs	coughs
 could	could
+could've	could've
 couldn't	couldn't
 coulee	coulee
 coulomb	coulomb
@@ -29435,6 +29434,7 @@ HDR	HDR
 HDTV	HDTV
 he	he
 he'd	he'd
+he'll	he'll
 he's	he's
 head	head
 headache	headache
@@ -30807,7 +30807,10 @@ hovered	hovered
 hovering	hovering
 hovers	hovers
 how	how
+how'd	how'd
+how'll	how'll
 how's	how's
+how've	how've
 how-to	how-to
 Howard	Howard
 howbeit	howbeit
@@ -31251,8 +31254,12 @@ hysterology	hysterology
 hytera	hytera
 hyundai	hyundai
 I	I
+I'd	I'd
+I'll	I'll
 i'm	i'm
+I'm	I'm
 i've	i've
+I've	I've
 i.e.	i.e
 i18n	i18n
 internationalization	i18n
@@ -37987,6 +37994,7 @@ M-Team	M-Team
 m17n	m17n
 multilingualization	m17n
 M4A1	M4A1
+ma'am	ma'am
 Mabel	Mabel
 mac	mac
 Mac	Mac
@@ -39153,6 +39161,7 @@ Maxwell	Maxwell
 Maxwellian	Maxwellian
 may	may
 May	May
+may've	may've
 Maya	Maya
 mayan	mayan
 Mayans	Mayans
@@ -40160,6 +40169,7 @@ miff	miff
 mifflin	mifflin
 mig	mig
 might	might
+might've	might've
 mightier	mightier
 mightiest	mightiest
 mightily	mightily
@@ -41871,6 +41881,7 @@ Mussolinis	Mussolinis
 Mussorgsky	Mussorgsky
 mussy	mussy
 must	must
+must've	must've
 mustache	mustache
 mustached	mustached
 mustaches	mustaches
@@ -42293,6 +42304,7 @@ NDM	NDM
 Neat Download Manager	NDM
 NDS	NDS
 ne	ne
+ne'er	ne'er
 Neal	Neal
 Neanderthal	Neanderthal
 neap	neap
@@ -43564,6 +43576,7 @@ O'Connor	O'Connor
 O'Dell	O'Dell
 O'Donnell	O'Donnell
 O'Dwyer	O'Dwyer
+o'er	o'er
 O'Hare	O'Hare
 O'Leary	O'Leary
 O'Neill	O'Neill
@@ -44717,6 +44730,7 @@ Ouagadougou	Ouagadougou
 oubiette	oubiette
 ouch	ouch
 ought	ought
+ought've	ought've
 oughtn't	oughtn't
 ouija	ouija
 ounce	ounce
@@ -57299,6 +57313,8 @@ shawm	shawm
 shawn	shawn
 Shawnee	Shawnee
 she	she
+she'd	she'd
+she'll	she'll
 she's	she's
 Shea	Shea
 sheaf	sheaf
@@ -57611,6 +57627,7 @@ shotguns	shotguns
 shots	shots
 shottr	shottr
 should	should
+should've	should've
 shoulder	shoulder
 shouldered	shouldered
 shouldering	shouldering
@@ -63852,6 +63869,8 @@ thanksgivings	thanksgivings
 thanos	thanos
 thanx	thanx
 that	that
+that'd	that'd
+that'll	that'll
 that's	that's
 thatch	thatch
 thatches	thatches
@@ -63939,6 +63958,8 @@ therapist	therapist
 therapists	therapists
 therapy	therapy
 there	there
+there'd	there'd
+there'll	there'll
 there's	there's
 thereabouts	thereabouts
 thereafter	thereafter
@@ -69881,7 +69902,11 @@ wharfinger	wharfinger
 Wharton	Wharton
 wharves	wharves
 what	what
+what'd	what'd
+what'll	what'll
+what're	what're
 what's	what's
+what've	what've
 whatcha	whatcha
 whatever	whatever
 Whatley	Whatley
@@ -69919,13 +69944,19 @@ Wheller	Wheller
 whelm	whelm
 whelp	whelp
 when	when
+when'd	when'd
+when'll	when'll
 when's	when's
+when've	when've
 whence	whence
 whencesoever	whencesoever
 whenever	whenever
 whensoever	whensoever
 where	where
+where'd	where'd
+where'll	where'll
 where's	where's
+where've	where've
 whereabouts	whereabouts
 whereafter	whereafter
 whereas	whereas
@@ -70076,7 +70107,10 @@ whizzed	whizzed
 whizzes	whizzes
 whizzing	whizzing
 who	who
+who'd	who'd
+who'll	who'll
 who's	who's
+who've	who've
 whoever	whoever
 whois	whois
 whole	whole
@@ -70113,7 +70147,10 @@ whortleberry	whortleberry
 whose	whose
 whosever	whosever
 why	why
+why'd	why'd
+why'll	why'll
 why's	why's
+why've	why've
 whys	whys
 Wi-Fi	Wi-Fi
 Wichita	Wichita
@@ -70767,6 +70804,7 @@ worthwhileness	worthwhileness
 worthy	worthy
 Wotan	Wotan
 would	would
+would've	would've
 wouldn't	wouldn't
 wound	wound
 wounded	wounded
@@ -70987,6 +71025,11 @@ xylose	xylose
 xylotomy	xylotomy
 xyst	xyst
 xyster	xyster
+y'all	y'all
+y'all'd	y'all'd
+y'all'll	y'all'll
+y'all're	y'all're
+y'all've	y'all've
 yabber	yabber
 yacht	yacht
 yachts	yachts
@@ -71371,3 +71414,5 @@ zymogenic	zymogenic
 zymology	zymology
 zymosis	zymosis
 ZZZ	ZZZ
+'tis	'tis
+'twas	'twas
