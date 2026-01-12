@@ -54,17 +54,6 @@ local function has_english_token_fast(s)
             if b >= 0x61 and b <= 0x7A then
                 return true
             end
-            -- 你自己想认的几个 ASCII 符号：
-            -- 空格、#、-、@、'
-            if b == 0x20   -- space
-               or b == 0x23  -- '#'
-               or b == 0x2D  -- '-'
-               or b == 0x40  -- '@'
-               or b == 0x27  -- '\''
-            then
-                return true
-            end
-            -- 如果想再加别的 ASCII 标点，也在这里列
         else
             -- b >= 0x80: UTF-8 非 ASCII 字节，直接跳过
         end
@@ -85,7 +74,7 @@ local function is_english_candidate(cand)
     return true
 end
 
---  文本格式化 (精简版：仅保留转义与重复)
+--  文本格式化
 local escape_map = {
     ["\\n"] = "\n",            -- 换行
     ["\\r"] = "\r",            -- 回车
