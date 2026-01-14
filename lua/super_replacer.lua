@@ -71,9 +71,11 @@ local s_match = string.match
 local s_gmatch = string.gmatch
 local s_format = string.format
 local s_byte = string.byte
+local s_sub = string.sub
 local s_gsub = string.gsub
 local open = io.open
 local type = type
+local tonumber = tonumber
 
 -- 基础依赖
 local function safe_require(name)
@@ -83,33 +85,9 @@ local function safe_require(name)
 end
 
 local userdb = safe_require("lib/userdb") or safe_require("userdb")
-local bit = safe_require("lib/bit") or safe_require("bit")
+local wanxiang = safe_require("wanxiang")
 
--- 核心工具函数
-
-local function get_file_hash(path)
-    local f = open(path, "rb")
-    if not f then return "NIL" end 
-    if not bit then local s=f:seek("end"); f:close(); return tostring(s) end
-    local h = 0x811C9DC5
-    while true do
-        local chunk = f:read(4096)
-        if not chunk then break end
-        for i = 1, #chunk do h=bit.bxor(h,s_byte(chunk,i)); h=(h*0x01000193)%0x100000000; h=bit.band(h,0xFFFFFFFF) end
-    end
-    f:close()
-    return s_format("%08x", h)
-end
-
-local function calculate_tasks_signature(tasks)
-    local sig_parts = {}
-    for _, task in ipairs(tasks) do
-        local file_hash = get_file_hash(task.path)
-        insert(sig_parts, task.prefix .. "@" .. file_hash)
-    end
-    return concat(sig_parts, "|")
-end
-
+-- 重建数据库 (仅在 wanxiang 版本变更时运行)
 local function rebuild(tasks, db)
     if db.empty then db:empty() end
     for _, task in ipairs(tasks) do
@@ -134,6 +112,68 @@ local function rebuild(tasks, db)
     return true
 end
 
+-- UTF-8 辅助
+local function get_utf8_offsets(text)
+    local offsets = {}
+    local len = #text
+    local i = 1
+    while i <= len do
+        insert(offsets, i)
+        local b = s_byte(text, i)
+        if b < 128 then i = i + 1
+        elseif b < 224 then i = i + 2
+        elseif b < 240 then i = i + 3
+        else i = i + 4 end
+    end
+    insert(offsets, len + 1)
+    return offsets
+end
+
+-- FMM 分词转换算法
+local function segment_convert(text, db, prefix, split_pat)
+    local offsets = get_utf8_offsets(text)
+    local char_count = #offsets - 1
+    local result_parts = {}
+    local i = 1 
+    local MAX_LOOKAHEAD = 6 
+    
+    while i <= char_count do
+        local matched = false
+        local max_j = i + MAX_LOOKAHEAD
+        if max_j > char_count + 1 then max_j = char_count + 1 end
+        
+        for j = max_j - 1, i + 1, -1 do
+            local start_byte = offsets[i]
+            local end_byte = offsets[j] - 1
+            local sub_text = s_sub(text, start_byte, end_byte)
+            
+            local val = db:fetch(prefix .. sub_text)
+            if val then
+                local first_val = s_match(val, split_pat) 
+                insert(result_parts, first_val or sub_text)
+                i = j - 1 
+                matched = true
+                break
+            end
+        end
+        
+        if not matched then
+            local start_byte = offsets[i]
+            local end_byte = offsets[i+1] - 1
+            local char = s_sub(text, start_byte, end_byte)
+            local val = db:fetch(prefix .. char)
+            if val then
+                local first_val = s_match(val, split_pat)
+                insert(result_parts, first_val or char)
+            else
+                insert(result_parts, char)
+            end
+        end
+        i = i + 1
+    end
+    return concat(result_parts)
+end
+
 -- 模块接口
 
 function M.init(env)
@@ -150,6 +190,12 @@ function M.init(env)
     env.delimiter = delim
     env.comment_format = config:get_string(ns .. "/comment_format") or "〔%s〕"
     
+    -- 获取全局版本号
+    local current_version = "v0.0.0"
+    if wanxiang and wanxiang.version then
+        current_version = wanxiang.version
+    end
+    
     env.chain = config:get_bool(ns .. "/chain")
     if env.chain == nil then env.chain = false end
 
@@ -158,7 +204,7 @@ function M.init(env)
 
     -- 2. 解析 Types
     env.types = {}
-    local tasks = {}
+    local tasks = {} -- 仅在需要重建时使用
 
     local function resolve_path(relative)
         if not relative then return nil end
@@ -221,20 +267,21 @@ function M.init(env)
             if #triggers > 0 then
                 local prefix = config:get_string(entry_path .. "/prefix") or ""
                 local mode = config:get_string(entry_path .. "/mode") or "append"
-
-                -- 模式: "append"(默认), "text"(原文), "none"(无)
                 local comment_mode = config:get_string(entry_path .. "/comment_mode")
-                if not comment_mode then comment_mode = "none" end
+                if not comment_mode then comment_mode = "comment" end
+                local fmm = config:get_bool(entry_path .. "/fmm")
+                if fmm == nil then fmm = false end
 
                 insert(env.types, {
                     triggers = triggers,
                     tags = target_tags,
                     prefix = prefix,
                     mode   = mode,
-                    comment_mode = comment_mode
+                    comment_mode = comment_mode,
+                    fmm = fmm
                 })
 
-                -- 解析文件
+                -- 收集文件路径 (用于重建)
                 local keys_to_check = {"files", "file"}
                 for _, key in ipairs(keys_to_check) do
                     local d_path = entry_path .. "/" .. key
@@ -259,13 +306,27 @@ function M.init(env)
 
     if ok and db then
         env.db = db
-        local cur_sig = calculate_tasks_signature(tasks)
-        local old_sig = db:meta_fetch("_sig")
+        
+        -- Wanxiang 版本控制核心逻辑 ★★★
+        local db_version = db:meta_fetch("_wanxiang_ver") or ""
         local old_delim = db:meta_fetch("_delim")
-        if cur_sig ~= old_sig or env.delimiter ~= old_delim then
+        
+        local need_rebuild = false
+        
+        -- 1. 检查版本号字符串是否一致 (例如 "v14.0.5" vs "v14.0.6")
+        if current_version ~= db_version then need_rebuild = true end
+        
+        -- 2. 分隔符变了也需要重建
+        if env.delimiter ~= old_delim then need_rebuild = true end
+        
+        if need_rebuild then
             if rebuild(tasks, db) then
-                db:meta_update("_sig", cur_sig)
+                -- 写入新的版本号字符串
+                db:meta_update("_wanxiang_ver", current_version)
                 db:meta_update("_delim", env.delimiter)
+                if log and log.info then 
+                    log.info("super_replacer: 检测到版本变更 (" .. db_version .. " -> " .. current_version .. ")，数据已重建。") 
+                end
             end
         end
     else
@@ -321,18 +382,16 @@ function M.func(input, env)
                 local key = t.prefix .. query_text
                 local val = db:fetch(key)
                 
+                if not val and t.fmm then
+                    local seg_result = segment_convert(query_text, db, t.prefix, split_pat)
+                    if seg_result ~= query_text then val = seg_result end
+                end
+                
                 if val then
                     local mode = t.mode
-                    
-                    -- 计算注释内容
                     local rule_comment = ""
-                    if t.comment_mode == "text" then
-                        rule_comment = cand.text
-                    elseif t.comment_mode == "append" then
-                        rule_comment = cand.comment
-                    else
-                        rule_comment = ""
-                    end
+                    if t.comment_mode == "text" then rule_comment = cand.text
+                    elseif t.comment_mode == "comment" then rule_comment = cand.comment end
 
                     if mode == "comment" then
                         local parts = {}
@@ -345,12 +404,8 @@ function M.func(input, env)
                             for p in s_gmatch(val, split_pat) do
                                 if first then 
                                     current_text = p
-                                    -- 链式替换时更新主候选注释
-                                    if t.comment_mode == "none" then 
-                                        current_main_comment = ""
-                                    elseif t.comment_mode == "text" then
-                                        current_main_comment = cand.text
-                                    end
+                                    if t.comment_mode == "none" then current_main_comment = ""
+                                    elseif t.comment_mode == "text" then current_main_comment = cand.text end
                                     first = false
                                 else
                                     insert(pending_candidates, { text=p, comment=rule_comment })
@@ -384,6 +439,7 @@ function M.func(input, env)
         if show_main then
             if is_chain and current_text ~= cand.text then
                 local nc = Candidate("kv", cand.start, cand._end, current_text, current_main_comment)
+                nc.preedit = cand.preedit 
                 nc.quality = cand.quality
                 yield(nc)
             else
@@ -394,6 +450,7 @@ function M.func(input, env)
         for _, item in ipairs(pending_candidates) do
             if not (show_main and item.text == current_text) then
                 local nc = Candidate("kv", cand.start, cand._end, item.text, item.comment)
+                nc.preedit = cand.preedit
                 nc.quality = cand.quality
                 yield(nc)
             end
