@@ -269,7 +269,7 @@ function M.init(env)
                 local mode = config:get_string(entry_path .. "/mode") or "append"
                 local comment_mode = config:get_string(entry_path .. "/comment_mode")
                 if not comment_mode then comment_mode = "comment" end
-                local fmm = config:get_bool(entry_path .. "/fmm")
+                local fmm = config:get_bool(entry_path .. "/sentence")
                 if fmm == nil then fmm = false end
 
                 insert(env.types, {
