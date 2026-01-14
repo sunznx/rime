@@ -3,7 +3,7 @@
   --tags: [ abc ]  # 检索当前tag的候选
   --key: "`"       # 输入中反查引导符
   --lookup: [ wanxiang_reverse ] #反查滤镜数据库
-  --data_source: [ comment, db ] # 优先级：写在前面优先。即使只写db，只要开启enable_tone也能从注释获取声调。
+  --data_source: [ aux, db ] # 优先级：写在前面优先。即使只写db，只要开启enable_tone也能从注释获取声调。
   --enable_tone: true  #启用声调反查
 
 -- 工具函数：转义正则特殊字符
@@ -339,6 +339,13 @@ function f.init(env)
 end
 
 function f.func(input, env)
+    local context = env.engine.context
+    local seg = context.composition:back()
+
+    if not seg or not f.tags_match(seg, env) then
+        for cand in input:iter() do yield(cand) end
+        return
+    end
     if #env.data_sources == 0 then
         for cand in input:iter() do yield(cand) end
         return
