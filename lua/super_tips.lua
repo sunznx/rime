@@ -43,8 +43,8 @@ tips.status = "pending"
 
 ---@type table<string, boolean>
 tips.disabled_types = {}
-tips.preset_file_path = wanxiang.get_filename_with_fallback("lua/tips/tips_show.txt")
-tips.user_override_path = rime_api.get_user_data_dir() .. "/lua/tips/tips_user.txt"
+tips.preset_file_path = wanxiang.get_filename_with_fallback("lua/data/tips_show.txt")
+tips.user_override_path = rime_api.get_user_data_dir() .. "/lua/data/tips_user.txt"
 
 local META_KEY = {
     version = "wanxiang_version",
