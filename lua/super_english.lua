@@ -63,6 +63,7 @@ local allowed_ascii_symbols = {
     [39] = true,  -- ' (Don't)
     [44] = true,  -- ,
     [45] = true,  -- - (Co-op)
+    [43] = true,  -- +
     [46] = true,  -- .
     [63] = true,  -- ?
     [92] = true,  -- \
@@ -99,9 +100,9 @@ local function find_target_in_text(text, start_pos, target_fp)
     local target_len = #target_fp
     if target_len == 0 then return nil, nil end
 
-    local t_idx = 1       
-    local scan_p = start_pos 
-    local s_index = nil   
+    local t_idx = 1
+    local scan_p = start_pos
+    local s_index = nil
 
     while scan_p <= text_len and t_idx <= target_len do
         local char_txt = sub(text, scan_p, scan_p)
@@ -352,7 +353,6 @@ function F.fini(env)
 end
 
 -- 4. 主逻辑 (Filter)
-
 function F.func(input, env)
     local ctx = env.engine.context
     local curr_input = ctx.input
@@ -360,9 +360,9 @@ function F.func(input, env)
     local best_candidate_saved = false
     local code_len = #curr_input
 
+    -- [Feature] 强制英文造词 (末尾 \\)
     if code_len > 2 and sub(curr_input, -2) == "\\\\" then
         local raw_text = sub(curr_input, 1, code_len - 2)
-        
         if is_ascii_phrase_fast(raw_text) then
             if ctx.composition and not ctx.composition:empty() then
                 ctx.composition:back().prompt = "〔英文造词〕"
@@ -370,9 +370,10 @@ function F.func(input, env)
             local cand = Candidate("english", 0, code_len, raw_text, "")
             cand.preedit = raw_text 
             yield(cand)
-            return -- 强制结束，独占输出
+            return 
         end
     end
+    
     -- [Check 1] 外部脚本发来的打断信号
     local break_signal = (ctx:get_property("english_spacing") == "true")
     local effective_prev_is_eng = env.prev_commit_is_eng
@@ -383,9 +384,7 @@ function F.func(input, env)
         
     -- [Check 2] 时间自然过期
     elseif effective_prev_is_eng and env.spacing_timeout > 0 then
-        -- 取“输入开始时间”保证输入中
         local check_time = env.comp_start_time or get_now()
-        -- 计算间隙：(开始打字时间 - 上次上屏时间)
         if (check_time - env.last_commit_time) > env.spacing_timeout then
             effective_prev_is_eng = false
             env.prev_commit_is_eng = false 
@@ -398,80 +397,109 @@ function F.func(input, env)
         prev_is_eng = effective_prev_is_eng
     }
 
-    local single_char_injected = false
+    -- 1. 准备单字母候选
     local single_chars = {}
+    local has_single_chars = false
+    local single_char_injected = false 
     
     if code_len == 1 then
         local b = byte(curr_input)
         local is_upper = (b >= 65 and b <= 90)
         local is_lower = (b >= 97 and b <= 122)
-        
+        -- 只有输入是字母时，才准备 A/a 候选
         if is_upper or is_lower then
-            -- 根据输入大小写决定排序：输入 N -> [N, n]; 输入 n -> [n, N]
             local t1 = curr_input
             local t2 = is_upper and lower(curr_input) or upper(curr_input)
-            
             table.insert(single_chars, Candidate("completion", 0, 1, t1, ""))
             table.insert(single_chars, Candidate("completion", 0, 1, t2, ""))
-        else
-            single_char_injected = true 
+            has_single_chars = true
         end
-    else 
+    else
         single_char_injected = true 
     end
 
+    -- 2. 流式遍历
     for cand in input:iter() do
-        local good_cand = restore_sentence_spacing(cand, env.split_pattern, env.delim_check_pattern)
-        local fmt_cand = apply_formatting(good_cand, code_ctx)
-        local is_ascii = is_ascii_phrase_fast(good_cand.text) 
-        local is_tbl = is_table_type(cand)
+        local c_type = cand.type
+        local final_cand = cand 
+        local is_ascii = false 
 
-        -- [策略1]：如果是普通词(completion)，还没输出单字母，则“插队”到它前面
-        -- 场景：无高频词时，输出 A, a, able...
-        if not single_char_injected and is_ascii and #single_chars > 0 and not is_tbl then
-            if not best_candidate_saved then
-                env.memory[curr_input] = { text = single_chars[1].text, preedit = single_chars[1].text }
-                best_candidate_saved = true
-            end
-            for _, c in ipairs(single_chars) do yield(c) end
-            single_char_injected = true
-            has_valid_candidate = true 
+        if c_type ~= "phrase" then
+            local good_cand = restore_sentence_spacing(cand, env.split_pattern, env.delim_check_pattern)
+            final_cand = apply_formatting(good_cand, code_ctx)
+            is_ascii = is_ascii_phrase_fast(final_cand.text)
+        end
+        if final_cand.comment and find(final_cand.comment, "\226\152\175") then
+            local nc = Candidate(final_cand.type, final_cand.start, final_cand._end, final_cand.text, "")
+            nc.preedit = final_cand.preedit
+            final_cand = nc
+        end
+        local is_garbage = (c_type == "raw")
+        
+        if not is_garbage and code_len == 1 and has_letters(curr_input) then
+             if lower(final_cand.text) == lower(curr_input) then
+                 is_garbage = true
+             end
         end
 
-        local is_garbage = (cand.type == "raw") or (fmt_cand.text == curr_input)
-        
         if not is_garbage then
             has_valid_candidate = true
-            if not best_candidate_saved and cand.comment ~= "~" and not env.block_derivation then
-                env.memory[curr_input] = {
-                    text = fmt_cand.text,
-                    preedit = fmt_cand.preedit or fmt_cand.text
-                }
-                best_candidate_saved = true
-            end
-        end
-        
-        yield(fmt_cand)
+            
+            local is_vip_type = (c_type == "user_table" or c_type == "fixed" or c_type == "phrase")
+            local is_hidden_vip = (not is_vip_type) and (not is_ascii)
+            local treat_as_vip = is_vip_type or is_hidden_vip
 
-        -- [策略2]：如果是用户词(user_table/fixed)，且还没输出单字母，则“紧随”其后输出
-        -- 场景：有高频词时，输出 AA, A, a, AB...
-        if not single_char_injected and is_ascii and #single_chars > 0 and is_tbl then
-             if not best_candidate_saved then
-                env.memory[curr_input] = { text = single_chars[1].text, preedit = single_chars[1].text }
-                best_candidate_saved = true
+            if treat_as_vip then
+                -- VIP 通道 (汉字、符号、用户词)
+                if not best_candidate_saved and cand.comment ~= "~" and not env.block_derivation then
+                    env.memory[curr_input] = {
+                        text = final_cand.text,
+                        preedit = final_cand.preedit or curr_input
+                    }
+                    best_candidate_saved = true
+                end
+                yield(final_cand)
+
+            else
+                -- 普通通道 (英文插队)
+                if has_single_chars and not single_char_injected then
+                    if not best_candidate_saved then
+                        env.memory[curr_input] = { text = single_chars[1].text, preedit = curr_input }
+                        best_candidate_saved = true
+                    end
+                    for _, c in ipairs(single_chars) do yield(c) end
+                    single_char_injected = true
+                    has_valid_candidate = true
+                end
+                
+                if not best_candidate_saved and cand.comment ~= "~" and not env.block_derivation then
+                    env.memory[curr_input] = {
+                        text = final_cand.text,
+                        preedit = final_cand.preedit or curr_input
+                    }
+                    best_candidate_saved = true
+                end
+                yield(final_cand)
             end
-            for _, c in ipairs(single_chars) do yield(c) end
-            single_char_injected = true
-            has_valid_candidate = true 
         end
+    end
+
+    -- 3. 兜底逻辑
+    if has_single_chars and not single_char_injected then
+        if not best_candidate_saved then
+            env.memory[curr_input] = { text = single_chars[1].text, preedit = curr_input }
+            best_candidate_saved = true
+        end
+        for _, c in ipairs(single_chars) do yield(c) end
+        has_valid_candidate = true
     end
 
     -- [Phase 3] 构造补全
     if not has_valid_candidate then
-        -- 如果设置了拦截标志 (意味着刚刚从反查模式退出来)，则即使有记忆也不派生！
         if env.block_derivation then return end
         if find(curr_input, "^[/]") then return end
         if not has_letters(curr_input) then return end
+        
         local anchor = nil
         local diff = ""
         
@@ -492,9 +520,9 @@ function F.func(input, env)
             local output_text = ""
             local output_preedit = ""
             
-            -- 英文构造策略
+            local is_code_mode = find(curr_input, "^[/\\]")
+            
             if is_ascii_phrase_fast(anchor.text) then
-                -- === 英文逻辑：拼接 diff，长词加空格 ===
                 if has_spacing then
                     output_text = anchor.text .. diff
                     output_preedit = (anchor.preedit or anchor.text) .. diff
@@ -507,12 +535,11 @@ function F.func(input, env)
                     output_text = curr_input
                     output_preedit = curr_input
                 end
+            elseif is_code_mode then
+                output_text = anchor.text .. diff
+                output_preedit = (anchor.preedit or anchor.text) .. diff
             else
-                -- 中文逻辑：只显示历史词 (anchor)，丢弃 diff
-                -- 输入 nil -> anchor="你", diff="l" 注释 "~"
                 output_text = anchor.text
-                
-                -- preedit 依然保留 diff，但中间加入自动分词符号
                 output_preedit = (anchor.preedit or anchor.text) .. env.delimiter_char .. diff
             end
             
@@ -529,5 +556,4 @@ function F.func(input, env)
         end
     end
 end
-
 return F
