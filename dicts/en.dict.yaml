@@ -1599,6 +1599,7 @@ airbag	airbag
 airbags	airbags
 airbed	airbed
 airbnb	airbnb
+AirTag	airtag
 airborne	airborne
 airbrush	airbrush
 Airbus	Airbus
@@ -64738,8 +64739,9 @@ tome	tome
 ToMemo	ToMemo
 tomfool	tomfool
 tomfoolery	tomfoolery
-TOML	TOML
-Tom's Obvious Minimal Language	TOML
+toml	toml
+.toml	toml
+Tom's Obvious Minimal Language	toml
 Tomlinson	Tomlinson
 Tommie	Tommie
 tommy	tommy
@@ -65118,6 +65120,7 @@ traditionalize	traditionalize
 traditionally	traditionally
 traditions	traditions
 traduce	traduce
+Trae	Trae
 traefik	traefik
 traffic	traffic
 trafficator	trafficator
@@ -66210,6 +66213,7 @@ tympanitis	tympanitis
 Tyndall	Tyndall
 tyne	tyne
 type	type
+Typst	Typst
 typecast	typecast
 typecasting	typecasting
 typed	typed
