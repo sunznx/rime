@@ -45,7 +45,6 @@ switches:
   - name: char_priority                #多体现在编码重合但候选有单字或者多字的情况`引导的辅码查词时是否单字优先，全拼常见，类似于特定编码情况下、反查状态下的调序能力。归属：super_lookup.lua
     states: [词组先, 单字先]
 
-
 # 输入引擎
 engine:
   processors:
